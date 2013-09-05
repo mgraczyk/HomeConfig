@@ -1,3 +1,6 @@
 #Specific Files and directories
 .bash_history
-.ssh/
+.ssh/id_rsa*
+.ssh/known_hosts
+Downloads
+
