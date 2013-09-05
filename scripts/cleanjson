@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ "$1" != "" ]; then
+	if `cat $1 | json > ${1}.new`; then 
+	  	mv -f "${1}.new" "$1"
+	else
+	  	echo "Failed to clean json."
+	fi
+else 
+	fname=`basename $0`
+	echo "Usage: $fname <jsonfile> "
+fi
