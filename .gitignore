@@ -2,6 +2,10 @@
 .bash_history
 .ssh/id_rsa*
 .ssh/known_hosts
+.swp
+.octave_hist
+
+
 Downloads
 
 .thumbnails
