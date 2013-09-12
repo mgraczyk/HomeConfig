@@ -58,7 +58,11 @@ else
 	set background=light
 endif
 
+"" Various Remappings
 " Space inserts a space
 nmap <Space> i_<Esc>r
+"Ctrl-c closes buffer but not window
+nnoremap <C-c> :bp\|bd # <CR>
+
 
 
