@@ -2,6 +2,7 @@ alias whereami="echo $HOSTNAME"
 export PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
 export EDITOR=vim
 
+export TERM=xterm-256color
 
 # Source hexagon development variables
 if [ -f ~/dev/.hexdevvars.bash ] ; then
