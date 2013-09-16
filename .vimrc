@@ -53,11 +53,12 @@ if has('gui_running')
 endif
 
 set background=dark
-colorscheme solarized
 let g:solarized_italic = 1
+colorscheme solarized
 
 " Comments should be in italics
-highlight comment cterm=italic
+highlight Comment gui=italic 
+
 
 "" Various Remappings
 " Space inserts a space
