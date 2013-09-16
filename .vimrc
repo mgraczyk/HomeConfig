@@ -39,7 +39,6 @@ set shiftwidth=3
 set tabstop=3
 
 syntax enable
-set wildmenu
 set ffs=unix
 set ff=unix
 set splitbelow
@@ -58,6 +57,15 @@ else
 	set background=light
 endif
 
+"" Use Consolas Font
+if has("gui_running")
+	if has("gui_gtk2")
+		set guifont=Inconsolata\ 12
+	elseif has("gui_win32")
+		set guifont=Consolas:h11:cANSI
+	endif
+endif
+
 "" Various Remappings
 " Space inserts a space
 nmap <Space> i_<Esc>r
@@ -65,4 +73,4 @@ nmap <Space> i_<Esc>r
 nnoremap <C-c> :bp\|bd # <CR>
 
 
-
+set completeopt-=preview

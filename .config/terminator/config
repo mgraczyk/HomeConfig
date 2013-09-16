@@ -1,6 +1,8 @@
 [global_config]
   title_transmit_bg_color = "#d30102"
   focus = system
+  #use_system_font = False
+  #font = Inconsolata 12
 [keybindings]
 [profiles]
   [[default]]
