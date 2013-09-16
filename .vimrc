@@ -30,6 +30,8 @@ set number
 filetype plugin on
 set nocompatible
 syntax on
+
+
 if has("autocmd")
 	filetype plugin indent on
 endif
@@ -45,26 +47,17 @@ set splitbelow
 set splitright
 
 " Colors
+
 if has('gui_running')
-	set guifont=Ubuntu\ Mono\ 12
 	set guioptions-=T " no toolbar
 endif
 
-if has('gui_running')
-	colorscheme solarized
-	set background=dark
-else
-	set background=light
-endif
+set background=dark
+colorscheme solarized
+let g:solarized_italic = 1
 
-"" Use Consolas Font
-if has("gui_running")
-	if has("gui_gtk2")
-		set guifont=Inconsolata\ 12
-	elseif has("gui_win32")
-		set guifont=Consolas:h11:cANSI
-	endif
-endif
+" Comments should be in italics
+highlight comment cterm=italic
 
 "" Various Remappings
 " Space inserts a space
