@@ -9,4 +9,9 @@
 	numbered = auto
 [diff]
 	tool = vimdiff
+	renamelimit = 1400
 
+[push]
+	default = simple
+[branch]
+	autosetuprebase = always

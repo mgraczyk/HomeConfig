@@ -4,31 +4,19 @@
 [keybindings]
 [profiles]
   [[default]]
-    # solarized-dark
+    scrollbar_position = hidden
+    scrollback_lines = 5000
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
-    foreground_color = "#eee8d5"
+    cursor_color = "#93a1a1"
+    foreground_color = "#839496"
     background_color = "#002b36"
-    cursor_color = "#eee8d5"
-  	 scrollback_lines = 5000
-
-  [[solarized-dark]]
-    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
-    foreground_color = "#eee8d5"
-    background_color = "#002b36"
-    cursor_color = "#eee8d5"
-
-  [[solarized-light]]
-    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
-    background_color = "#eee8d5"
-    foreground_color = "#002b36"
-    cursor_color = "#002b36"
-
+  [[none]]
 [layouts]
   [[default]]
     [[[child1]]]
       type = Terminal
       parent = window0
-      profile = solarized-dark
+      profile = default
     [[[window0]]]
       type = Window
       parent = ""
