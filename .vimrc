@@ -30,6 +30,8 @@ set number
 filetype plugin on
 set nocompatible
 syntax on
+
+
 if has("autocmd")
 	filetype plugin indent on
 endif
@@ -39,26 +41,30 @@ set shiftwidth=3
 set tabstop=3
 
 syntax enable
-set wildmenu
 set ffs=unix
 set ff=unix
 set splitbelow
 set splitright
 
 " Colors
+
 if has('gui_running')
-	set guifont=Ubuntu\ Mono\ 12
 	set guioptions-=T " no toolbar
 endif
 
-if has('gui_running')
-	colorscheme solarized
-	set background=dark
-else
-	set background=light
-endif
+set background=dark
+let g:solarized_italic = 1
+colorscheme solarized
 
+" Comments should be in italics
+highlight Comment gui=italic 
+
+
+"" Various Remappings
 " Space inserts a space
 nmap <Space> i_<Esc>r
+"Ctrl-c closes buffer but not window
+nnoremap <C-c> :bp\|bd # <CR>
 
 
+set completeopt-=preview
