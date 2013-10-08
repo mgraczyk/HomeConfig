@@ -2,6 +2,10 @@ alias whereami="echo $HOSTNAME"
 export PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
 export EDITOR=vim
 
+# Disable ctrl-s because it's stupid
+stty ixany
+stty ixoff -ixon
+9
 export TERM=xterm-256color
 
 # Source hexagon development variables
