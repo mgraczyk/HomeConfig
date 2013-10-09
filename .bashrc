@@ -6,6 +6,9 @@ export EDITOR=vim
 stty ixany
 stty ixoff -ixon
 
+# Use vim keybindings
+set -o vi
+
 export TERM=xterm-256color
 
 # Source hexagon development variables
