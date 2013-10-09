@@ -1,9 +1,9 @@
 #!/bin/sh
-export ARCHSTRING="--model_smt 1 --model_b2b 1 --fe_fetch_packets_max 3"
+export ARCHSTRING="--model_smt 1 --model_b2b 1 --fe_fetch_packets_max 3 --smt_slots 8 --l2cache_fast 0"
 if [[ "$1" == *cache* ]]; then
 	export ARCHSTRING=:"$ARCHSTRING --cachedebugfile cache.log"
 fi
 
 ~/dev/arch/bin/sim --timing --quiet --uarchtrace utrace.log --pctrace pctrace.log *.exe
-#~/dev/arch/bin/sim --uarchtrace utrace.log *.exe
+#~/dev/arch/bin/sim --quiet *.exe
 
