@@ -12,3 +12,7 @@ else
 	esac
 fi
 
+if [ "$HOSTNAME" = "MGDev" ]
+then
+	[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+fi
