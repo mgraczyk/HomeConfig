@@ -21,7 +21,7 @@
     background_color = "#002b36"
     use_custom_command = True
     exit_action = restart
-    custom_command = ssh mgraczyk@mgraczyk-ubuntu
+    custom_command = ssh -t mgraczyk@mgraczyk-ubuntu "cd $PWD; bash"
 [layouts]
   [[default]]
     [[[child1]]]
