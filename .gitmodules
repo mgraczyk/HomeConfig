@@ -1,3 +1,6 @@
 [submodule ".vim/vim-colors-solarized"]
 	path = .vim/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule "scripts/.dircolors"]
+	path = scripts/.dircolors
+	url = https://github.com/seebi/dircolors-solarized.git
