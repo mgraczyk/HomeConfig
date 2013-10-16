@@ -2,6 +2,13 @@ alias whereami="echo $HOSTNAME"
 export PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
 export EDITOR=vim
 
+# Disable ctrl-s because it's stupid
+stty ixany
+stty ixoff -ixon
+
+# Use vim keybindings
+set -o vi
+
 export TERM=xterm-256color
 
 # Source hexagon development variables
@@ -32,4 +39,4 @@ _completemarks() {
 			  return 0
 		  }
 
-		  complete -F _completemarks jump unmark
+complete -F _completemarks jump unmark
