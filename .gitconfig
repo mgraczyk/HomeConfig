@@ -12,6 +12,6 @@
 	renamelimit = 1400
 
 [push]
-	default = simple
+	default = current
 [branch]
 	autosetuprebase = always
