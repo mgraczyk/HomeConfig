@@ -1,3 +1,14 @@
+" The bare necessities
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathgen#infect()
+
+filetype off
+call pathogen#runtime_append_all_bundles()
+filetype plugin on
+set nocompatible
+
+
+
 "----------------------------
 " Recommended vim settings
 
@@ -26,9 +37,6 @@ set visualbell
 " Line numbers
 set number!
 
-
-filetype plugin on
-set nocompatible
 syntax on
 
 
@@ -39,6 +47,7 @@ endif
 " Indentation settings
 set shiftwidth=3
 set tabstop=3
+set softtabstop=3
 
 syntax enable
 set ffs=unix
