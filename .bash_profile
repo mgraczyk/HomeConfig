@@ -18,8 +18,6 @@ if [ "$SESSION_TYPE" = "remote/ssh" ]; then
   if [ "$SSH_CLIENT_HOSTNAME" = "MGRACZYK" ]; then
 	  startterminator
   fi
-
-  unalias git
 fi
 
 

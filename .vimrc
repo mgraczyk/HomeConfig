@@ -7,7 +7,6 @@ filetype plugin on
 set nocompatible
 
 
-
 "----------------------------
 " Recommended vim settings
 
@@ -23,8 +22,6 @@ set showcmd
 
 " Highlight searches
 set hlsearch
-
-
 
 "----------------------------
 " Encouraged/Usability settings
@@ -73,11 +70,6 @@ nnoremap <leader><space> :noh<cr>
 
 set ignorecase
 set smartcase
-
-" Fix regex
-nnoremap / /\v
-vnoremap / /\v
-
 
 " Training
 nnoremap <up> <nop>
