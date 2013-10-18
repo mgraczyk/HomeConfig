@@ -24,7 +24,7 @@ set confirm
 set visualbell
 
 " Line numbers
-set number
+set number!
 
 
 filetype plugin on
