@@ -1,9 +1,8 @@
 " The bare necessities
 runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathgen#infect()
 
 filetype off
-call pathogen#runtime_append_all_bundles()
+execute pathogen#infect()
 filetype plugin on
 set nocompatible
 
@@ -17,6 +16,7 @@ set hidden
 
 " Better completion
 set wildmenu
+set wildmode=list:longest
 
 " Show partial commands in the last line of the screen
 set showcmd
@@ -24,21 +24,28 @@ set showcmd
 " Highlight searches
 set hlsearch
 
+
+
 "----------------------------
 " Encouraged/Usability settings
 
-set ignorecase
-set smartcase
 
 set ruler
 set confirm
 set visualbell
 
-" Line numbers
-set number!
+set backspace=indent,eol,start
 
-syntax on
 
+" Fast scrolling
+set ttyfast
+
+
+" No Line numbers, relative numbers instead
+set relativenumber
+
+" undo between instances
+set undofile
 
 if has("autocmd")
 	filetype plugin indent on
@@ -49,11 +56,43 @@ set shiftwidth=3
 set tabstop=3
 set softtabstop=3
 
+syntax on
 syntax enable
 set ffs=unix
 set ff=unix
 set splitbelow
 set splitright
+
+
+" Searching/Moving
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
+nnoremap <leader><space> :noh<cr>
+
+set ignorecase
+set smartcase
+
+" Fix regex
+nnoremap / /\v
+vnoremap / /\v
+
+
+" Training
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" Who uses F1?
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
 
 " Colors
 
@@ -69,11 +108,18 @@ colorscheme solarized
 highlight Comment gui=italic 
 
 
-"" Various Remappings
+
+set completeopt-=preview
+
+
+
+"" Various Personal Remappings
+let mapleader = ","
+
 " Space inserts a space
 nmap <Space> i_<Esc>r
 "Ctrl-c closes buffer but not window
 nnoremap <C-c> :bp\|bd # <CR>
 
 
-set completeopt-=preview
+"
