@@ -26,6 +26,9 @@ fi
 alias whereami="echo $HOSTNAME"
 alias ll="ls -l"
 
+# For tmux: export 256color
+[ -n "$TMUX" ] && export TERM=screen-256color
+
 # Some cool directory navigation stuff from 
 # http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
 export MARKPATH=$HOME/.marks
