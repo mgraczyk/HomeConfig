@@ -11,6 +11,7 @@ set -o vi
 export TERM=xterm-256color
 export PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
 eval `dircolors ./scripts/.dircolors/dircolors.ansi-dark`
+alias ls="ls --color"
 
 # Source hexagon development variables
 if [ -f ~/dev/.hexdevvars.bash ] ; then
@@ -19,7 +20,6 @@ fi
 
 # Special cygwin settings
 if [[ $(uname) == *"CYGWIN"* ]]; then
-	alias ls="ls --color"
 fi
 
 # Various aliases
