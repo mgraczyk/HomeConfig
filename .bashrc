@@ -1,5 +1,3 @@
-alias whereami="echo $HOSTNAME"
-export PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
 export EDITOR=vim
 
 # Disable ctrl-s because it's stupid
@@ -9,12 +7,24 @@ stty ixoff -ixon
 # Use vim keybindings
 set -o vi
 
+# COLORS!!!!!!1111one
 export TERM=xterm-256color
+export PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
+eval `dircolors ./scripts/.dircolors/dircolors.ansi-dark`
 
 # Source hexagon development variables
 if [ -f ~/dev/.hexdevvars.bash ] ; then
 	source ~/dev/.hexdevvars.bash
 fi
+
+# Special cygwin settings
+if [[ $(uname) == *"CYGWIN"* ]]; then
+	alias ls="ls --color"
+fi
+
+# Various aliases
+alias whereami="echo $HOSTNAME"
+alias ll="ls -l"
 
 # Some cool directory navigation stuff from 
 # http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
