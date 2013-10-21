@@ -19,8 +19,8 @@ if [ -f ~/dev/.hexdevvars.bash ] ; then
 fi
 
 # Special cygwin settings
-if [[ $(uname) == *"CYGWIN"* ]]; then
-fi
+#if [[ $(uname) == *"CYGWIN"* ]]; then
+#fi
 
 # Various aliases
 alias whereami="echo $HOSTNAME"
