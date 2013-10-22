@@ -104,7 +104,6 @@ highlight Comment gui=italic
 set completeopt-=preview
 
 
-
 "" Various Personal Remappings
 let mapleader = ","
 
@@ -113,5 +112,7 @@ nmap <Space> i_<Esc>r
 "Ctrl-c closes buffer but not window
 nnoremap <C-c> :bp\|bd # <CR>
 
+" Automatically reload folds
+au BufWinLeave ?* mkview
+au BufWinEnter ?* silent loadview
 
-"
