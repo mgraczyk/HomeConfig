@@ -69,3 +69,32 @@
 *color14:                 S_base1
 *color15:                 S_base3
 
+*VT100.Translations: #override \
+Ctrl <Btn4Down>: larger-vt-font() \n\ 
+Ctrl <Btn5Down>: smaller-vt-font() \n\ 
+Shift Ctrl <Key>=: larger-vt-font() \n\ 
+Shift Ctrl <Key>-: smaller-vt-font() 
+
+Rxvt.font: xft:consolas:size=12
+
+
+Xft.antialias:	true
+Xft.rgba:		rgb
+Xft.hinting:	true
+Xft.hintstyle:	hintfull
+
+!!!!!!!!!
+! XTerm !
+!!!!!!!!!
+	
+*utf8:		true
+*faceName: xft:consolas
+*faceSize: 12
+
+*faceSize1:    8
+*faceSize2:    9
+*faceSize3:    11
+*faceSize4:    13
+*faceSize5:    15
+*faceSize6:    24
+
