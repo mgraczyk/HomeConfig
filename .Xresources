@@ -98,3 +98,6 @@ Xft.hintstyle:	hintfull
 *faceSize5:    15
 *faceSize6:    24
 
+XTerm*bellIsUrgent: true
+URxvt.urgentOnBell: true
+
