@@ -29,7 +29,6 @@ set hlsearch
 
 set ruler
 set confirm
-set visualbell
 
 set backspace=indent,eol,start
 
