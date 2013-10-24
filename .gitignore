@@ -1,14 +1,30 @@
-#Specific Files and directories
+# Vim undo history
+*.un~
+
+# Any temp file
+*~
+
+# Vbox's special files
+.vboxclient*
+
+# Specific Files and Directories
+Downloads
 .bash_history
+.cache
+.dbus
+.config/chromium
+.icedtea
+.java
+.lesshst
+.local
+.marks
+.octave_hist
+.pki
+.viminfo
+.vim/view
 .ssh/id_rsa*
 .ssh/known_hosts
 .swp
-.octave_hist
-
-*.un~
-
-Downloads
-
+.swt
+.sqlite_history
 .thumbnails
-.marks
-
