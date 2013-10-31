@@ -12,7 +12,6 @@ export PATH=${PATH}:~/scripts
 
 # Disable ctrl-s because it's stupid
 if [[ ! $OS == *Windows* ]]; then
-   echo "WTF"
    eval `dircolors ~/scripts/.dircolors/dircolors.ansi-dark`
    stty ixany
    stty ixoff -ixon
