@@ -1,8 +1,5 @@
 export EDITOR=vim
 
-# Disable ctrl-s because it's stupid
-stty ixany
-stty ixoff -ixon
 
 # Use vim keybindings
 set -o vi
@@ -10,9 +7,16 @@ set -o vi
 # COLORS!!!!!!1111one
 export TERM=xterm-256color
 export PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
-eval `dircolors ~/scripts/.dircolors/dircolors.ansi-dark`
 alias ls="ls --color"
 export PATH=${PATH}:~/scripts
+
+# Disable ctrl-s because it's stupid
+if [[ ! $OS == *Windows* ]]; then
+   echo "WTF"
+   eval `dircolors ~/scripts/.dircolors/dircolors.ansi-dark`
+   stty ixany
+   stty ixoff -ixon
+fi
 
 # Source hexagon development variables
 if [ -f ~/dev/.hexdevvars.bash ] ; then
