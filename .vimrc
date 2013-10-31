@@ -48,6 +48,7 @@ if has("autocmd")
 endif
 
 " Indentation settings
+set expandtab
 set shiftwidth=3
 set tabstop=3
 set softtabstop=3
@@ -97,7 +98,6 @@ colorscheme solarized
 
 " Comments should be in italics
 highlight Comment gui=italic 
-
 
 
 set completeopt-=preview
