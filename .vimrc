@@ -90,6 +90,7 @@ vnoremap <F1> <ESC>
 
 if has('gui_running')
 	set guioptions-=T " no toolbar
+   set guifont=Consolas
 endif
 
 set background=dark
