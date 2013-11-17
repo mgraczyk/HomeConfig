@@ -29,6 +29,7 @@ fi
 # Various aliases
 alias whereami="echo $HOSTNAME"
 alias ll="ls -l"
+alias la="ls -a"
 
 # For tmux: export 256color
 [ -n "$TMUX" ] && export TERM=screen-256color
