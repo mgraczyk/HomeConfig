@@ -8,6 +8,7 @@ set -o vi
 export TERM=xterm-256color
 export PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
 alias ls="ls --color"
+
 export PATH=${PATH}:~/scripts
 
 # Disable ctrl-s because it's stupid
@@ -33,6 +34,9 @@ alias la="ls -a"
 
 # For tmux: export 256color
 [ -n "$TMUX" ] && export TERM=screen-256color
+
+# tmux shouldn't see TMPDIR
+export TMPDIR=
 
 # Some cool directory navigation stuff from 
 # http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html

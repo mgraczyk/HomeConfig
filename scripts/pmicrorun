@@ -4,6 +4,6 @@ if [[ "$1" == *cache* ]]; then
 	export ARCHSTRING=:"$ARCHSTRING --cachedebugfile cache.log"
 fi
 
-~/dev/arch/bin/sim --timing --quiet --uarchtrace utrace.log --uarchtrace_print_tag_info 1 --pctrace pctrace.log --l2cachetrace l2trace.log *.exe
+~/dev/arch/bin/sim --timing --quiet --uarchtrace_print_tag_info 1 --uarchtrace utrace.log --pctrace pctrace.log --l2cachetrace l2trace.log *.exe
 #~/dev/arch/bin/sim --quiet *.exe
 
