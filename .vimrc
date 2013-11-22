@@ -49,9 +49,9 @@ endif
 
 " Indentation settings
 set expandtab
-set shiftwidth=3
-set tabstop=3
-set softtabstop=3
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
 
 syntax on
 syntax enable
