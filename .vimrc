@@ -37,8 +37,9 @@ set backspace=indent,eol,start
 set ttyfast
 
 
-" No Line numbers, relative numbers instead
+" Relative numbers, with current line number at cursor
 set relativenumber
+set number
 
 " undo between instances
 set undofile
@@ -122,4 +123,6 @@ inoremap <Leader>T <C-R>=strftime("%s")<CR>
 " Automatically reload folds
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
+
+au BufRead,BufNewFile,BufEnter */dev/arch/src/* setlocal noet
 
