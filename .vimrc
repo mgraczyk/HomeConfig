@@ -63,6 +63,7 @@ set splitright
 
 
 " Searching/Moving
+set mouse=nv
 set gdefault
 set incsearch
 set showmatch
@@ -124,5 +125,5 @@ inoremap <Leader>T <C-R>=strftime("%s")<CR>
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
 
-au BufRead,BufNewFile,BufEnter */dev/arch/src/* setlocal noet
+au BufRead,BufNewFile,BufEnter */dev/arch/src/* setlocal noet sw=2 ts=2 sts=2
 
