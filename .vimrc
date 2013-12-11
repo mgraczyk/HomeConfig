@@ -117,9 +117,9 @@ nnoremap <C-c> :bp\|bd # <CR>
 " Leader t and Leader T for time strings
 " T is UNIX time
 nnoremap <Leader>t "=strftime("%FT%T%z")<CR>P
-inoremap <Leader>t <C-R>=strftime("%FT%T%z")<CR>
+"inoremap <Leader>t <C-R>=strftime("%FT%T%z")<CR>
 nnoremap <Leader>T "=strftime("%s")<CR>P
-inoremap <Leader>T <C-R>=strftime("%s")<CR>
+"inoremap <Leader>T <C-R>=strftime("%s")<CR>
 
 " Automatically reload folds
 au BufWinLeave ?* mkview
