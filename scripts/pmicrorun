@@ -4,6 +4,14 @@ if [[ "$1" == *cache* ]]; then
 	export ARCHSTRING=:"$ARCHSTRING --cachedebugfile cache.log"
 fi
 
-~/dev/arch/bin/sim --timing --quiet --uarchtrace_print_tag_info 1 --uarchtrace utrace.log --l2cachetrace l2trace.log *.exe
-#~/dev/arch/bin/sim --quiet *.exe
+SIM_PATH=/local/ssd/dev/arch/bin/sim
+if [[ "$1" == *debug* ]]; then 
+   SIM_BIN="gdb --args $SIM_PATH"
+else
+   SIM_BIN="$SIM_PATH"
+fi
+
+$SIM_BIN --timing --quiet --uarchtrace_print_tag_info 1 --uarchtrace utrace.log --l2cachetrace l2trace.log *.exe
+#$SIM_BIN --timing --quiet *.exe
+#$SIM_BIN --quiet *.exe
 
