@@ -8,6 +8,7 @@ set -o vi
 export TERM=xterm-256color
 export PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
 alias ls="ls --color"
+alias grep="grep --color"
 
 export PATH=${PATH}:~/scripts
 
