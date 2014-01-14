@@ -7,6 +7,8 @@ fi
 SIM_PATH=/local/ssd/dev/arch/bin/sim
 if [[ "$1" == *debug* ]]; then 
    SIM_BIN="gdb --args $SIM_PATH"
+elif [[ "$1" == *valgrind* ]]; then
+   SIM_BIN="valgrind --tool=cachegrind $SIM_PATH"
 else
    SIM_BIN="$SIM_PATH"
 fi
