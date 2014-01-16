@@ -121,6 +121,10 @@ nnoremap <Leader>t "=strftime("%FT%T%z")<CR>P
 nnoremap <Leader>T "=strftime("%s")<CR>P
 "inoremap <Leader>T <C-R>=strftime("%s")<CR>
 
+" n is name
+nnoremap <Leader>n iMichael Graczyk<Esc>
+nnoremap <Leader>N iMichael<Esc>
+
 " Automatically reload folds
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
