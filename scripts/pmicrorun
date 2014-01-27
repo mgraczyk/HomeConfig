@@ -1,5 +1,5 @@
 #!/bin/sh
-export ARCHSTRING="--model_smt 1 --model_b2b 1 --fe_fetch_packets_max 3 --smt_slots 8 --l2cache_fast 0"
+export ARCHSTRING=" "
 if [[ "$1" == *cache* ]]; then
 	export ARCHSTRING=:"$ARCHSTRING --cachedebugfile cache.log"
 fi
@@ -17,3 +17,6 @@ $SIM_BIN --timing --quiet --uarchtrace_print_tag_info 1 --uarchtrace utrace.log 
 #$SIM_BIN --timing --quiet *.exe
 #$SIM_BIN --quiet *.exe
 
+
+# Do some common analysis every time
+/prj/dsp/qdsp6/arch/v60/mtools/v60_latest/gnu/bin/hexagon-objdump -d *.exe > asm.s &
