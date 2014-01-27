@@ -61,6 +61,7 @@ endif
 #	setenv NOOPENWIN true
 # to your .login.local.
 #
+exit
 if ( `tty` != "/dev/console" || $?NOOPENWIN || $TERM != "sun" ) then
         exit    # leave user at regular C shell prompt
 endif
