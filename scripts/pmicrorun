@@ -1,10 +1,14 @@
 #!/bin/sh
 export ARCHSTRING=" "
+MOREARGS=" "
+SIM_PATH=/local/ssd/dev/arch/bin/sim
+
+REV="--core V60A_512"
+
 if [[ "$1" == *cache* ]]; then
 	export ARCHSTRING=:"$ARCHSTRING --cachedebugfile cache.log"
 fi
 
-SIM_PATH=/local/ssd/dev/arch/bin/sim
 if [[ "$1" == *debug* ]]; then 
    SIM_BIN="gdb --args $SIM_PATH"
 elif [[ "$1" == *valgrind* ]]; then
@@ -13,9 +17,16 @@ else
    SIM_BIN="$SIM_PATH"
 fi
 
-$SIM_BIN --timing --quiet --uarchtrace_print_tag_info 1 --uarchtrace utrace.log --l2cachetrace l2trace.log *.exe
+if [[ "$1" == *hexgdb* ]]; then
+   MOREARGS="--interactive $MOREARGS"
+fi
+
+if [[ "$1" != *notiming* ]]; then
+   MOREARGS="--timing $MOREARGS"
+fi
+
+$SIM_BIN $MOREARGS $REV --quiet --uarchtrace utrace.log --l2cachetrace l2trace.log *.exe
 #$SIM_BIN --timing --quiet *.exe
-#$SIM_BIN --quiet *.exe
 
 
 # Do some common analysis every time
