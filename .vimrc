@@ -121,6 +121,10 @@ nnoremap <Leader>t "=strftime("%FT%T%z")<CR>P
 nnoremap <Leader>T "=strftime("%s")<CR>P
 "inoremap <Leader>T <C-R>=strftime("%s")<CR>
 
+" map Leader-h to html-ify a given document, and Leader-H for a range
+map <silent><Leader>h :so $VIMRUNTIME/syntax/2html.vim<CR>
+map <silent><Leader>H :TOhtml<CR>
+
 " n is name
 nnoremap <Leader>n iMichael Graczyk<Esc>
 nnoremap <Leader>N iMichael<Esc>
