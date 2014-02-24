@@ -121,9 +121,17 @@ nnoremap <Leader>t "=strftime("%FT%T%z")<CR>P
 nnoremap <Leader>T "=strftime("%s")<CR>P
 "inoremap <Leader>T <C-R>=strftime("%s")<CR>
 
+" Slight modification to TOhtml so that the solarized colorscheme
+" is used in the generated html CSS
+let g:cterm_color = {
+    \   0: "#073642", 1: "#dc322f", 2: "#859900", 3: "#b58900",
+    \   4: "#268bd2", 5: "#d33682", 6: "#2aa198", 7: "#eee8d5",
+    \   8: "#002b36", 9: "#cb4b16", 10: "#586e75", 11: "#657b83",
+    \   12: "#839496", 13: "#6c71c4", 14: "#93a1a1", 15: "#fdf6e3"
+    \ }
+
 " map Leader-h to html-ify a given document, and Leader-H for a range
-map <silent><Leader>h :so $VIMRUNTIME/syntax/2html.vim<CR>
-map <silent><Leader>H :TOhtml<CR>
+map <silent><Leader>h :TOhtml<CR>
 
 " n is name
 nnoremap <Leader>n iMichael Graczyk<Esc>
