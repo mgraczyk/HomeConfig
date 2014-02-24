@@ -1,0 +1,12 @@
+--- 2html.vim	2014-02-24 02:07:40.811127100 -0600
++++ change/2html.vim	2014-02-24 02:11:52.082499000 -0600
+@@ -69,6 +69,9 @@
+ " TODO - is this true anymore?
+ if has("gui_running")
+   let s:whatterm = "gui"
++elseif exists("g:cterm_color")
++  let s:whatterm = "cterm"
++  let s:cterm_color = g:cterm_color
+ else
+   let s:whatterm = "cterm"
+   if &t_Co == 8
