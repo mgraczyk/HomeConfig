@@ -10,7 +10,7 @@ export PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
 alias ls="ls --color"
 alias grep="grep --color"
 
-export PATH=${PATH}:~/scripts
+export PATH=/usr/local/sbin:/usr/local/bin/:/usr/sbin:/usr/bin:/bin:/sbin:~/scripts
 
 # Disable ctrl-s because it's stupid
 if [[ ! $OS == *Windows* ]]; then
