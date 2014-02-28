@@ -95,8 +95,8 @@ complete -o bashdefault -o default -o nospace -F _ssh ssh 2>/dev/null \
 
 
 function rsc() {
-	CLIENTID=$1.`date +%S`
-	tmux new-session -d -t $1 -s $CLIENTID \; set-option destroy-unattached \; attach-session -t $CLIENTID
+    CLIENTID=$1$(date +%s)
+	tmux new-session -d -t $1 -s $CLIENTID \; set-option destroy-unattached on \; attach-session -t $CLIENTID
 }
 
 function mksc () {
