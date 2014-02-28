@@ -26,7 +26,7 @@ if [[ "$1" != *notiming* ]]; then
 fi
 
 $SIM_BIN $MOREARGS $REV --quiet --uarchtrace utrace.log *.exe
-#$SIM_BIN --timing --quiet *.exe
+#$SIM_BIN $MOREARGS $REV --quiet *.exe
 
 
 # Do some common analysis every time
