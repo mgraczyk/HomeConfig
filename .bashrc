@@ -20,8 +20,8 @@ if [[ ! $OS == *Windows* ]]; then
 fi
 
 # Source hexagon development variables
-if [ -f ~/dev/.hexdevvars.bash ] ; then
-	source ~/dev/.hexdevvars.bash
+if [ -f ~/.hexdevvars.bash ] ; then
+	source ~/.hexdevvars.bash
 fi
 
 # Special cygwin settings
