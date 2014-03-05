@@ -6,9 +6,12 @@ set -o vi
 
 # COLORS!!!!!!1111one
 export TERM=xterm-256color
-export PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
 alias ls="ls --color"
 alias grep="grep --color"
+
+# Only show 3 dirs in PS1
+export PROMPT_DIRTRIM=3
+export PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
 
 export PATH=/usr/local/sbin:/usr/local/bin/:/usr/sbin:/usr/bin:/bin:/sbin:~/scripts
 
