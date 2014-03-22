@@ -19,3 +19,6 @@
 [submodule ".config/Gdbinit"]
 	path = .config/Gdbinit
 	url = https://github.com/gdbinit/Gdbinit
+[submodule ".config/intellij-colors-solarized"]
+	path = .config/intellij-colors-solarized
+	url = https://github.com/jkaving/intellij-colors-solarized.git
