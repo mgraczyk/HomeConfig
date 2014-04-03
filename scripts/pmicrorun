@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 export ARCHSTRING=" "
 MOREARGS=" "
 SIM_PATH=/local/ssd/dev/arch/bin/sim
