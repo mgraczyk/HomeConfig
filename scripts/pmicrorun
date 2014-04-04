@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 export ARCHSTRING=" "
 MOREARGS=" "
 SIM_PATH=/local/ssd/dev/arch/bin/sim
@@ -11,8 +11,11 @@ fi
 
 if [[ "$1" == *debug* ]]; then 
    SIM_BIN="gdb --args $SIM_PATH"
-elif [[ "$1" == *valgrind* ]]; then
+elif [[ "$1" == *cachgrind* ]]; then
    SIM_BIN="valgrind --tool=cachegrind $SIM_PATH"
+elif [[ "$1" == *memcheck* ]]; then
+   VGDB="--vgdb=yes --vgdb-error=0"
+   SIM_BIN="valgrind --tool=memcheck --leak-check=yes -v --track-origins=yes $SIM_PATH"
 else
    SIM_BIN="$SIM_PATH"
 fi
@@ -25,7 +28,10 @@ if [[ "$1" != *notiming* ]]; then
    MOREARGS="--timing $MOREARGS"
 fi
 
-$SIM_BIN $MOREARGS $REV --quiet --uarchtrace utrace.log *.exe
+$SIM_BIN $MOREARGS $REV --quiet --uarchtrace utrace.log --uarchtrace_print_l2sb_info 0 --uarchtrace_print_stall_info 1 *.exe
+#$SIM_BIN $MOREARGS $REV --quiet --coproctrace coproc.log *.exe
+#$SIM_BIN $MOREARGS $REV --quiet --pctrace pctrace.log *.exe
+#$SIM_BIN $MOREARGS $REV --quiet --stalltrace stalltrace.log *.exe
 #$SIM_BIN $MOREARGS $REV --quiet *.exe
 
 

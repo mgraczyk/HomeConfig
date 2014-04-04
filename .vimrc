@@ -35,6 +35,7 @@ set backspace=indent,eol,start
 
 " Fast scrolling
 set ttyfast
+set lazyredraw
 
 
 " Relative numbers, with current line number at cursor
@@ -141,5 +142,5 @@ nnoremap <Leader>N iMichael<Esc>
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
 
-au BufRead,BufNewFile,BufEnter */dev/arch/src/* setlocal noet sw=2 ts=2 sts=2
+au BufRead,BufNewFile,BufEnter */dev/arch/src/**.{c,h} setlocal noet sw=2 ts=2 sts=2
 
