@@ -80,10 +80,13 @@ Rxvt.font: xft:consolas:size=12
 URxvt.urgentOnBell: true
 URxvt.scrollBar: false
 
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
 Xft.antialias:	true
 Xft.rgba:		rgb
 Xft.hinting:	true
 Xft.hintstyle:	hintfull
+Xft.dpi: 102
 
 !!!!!!!!!
 ! XTerm !
