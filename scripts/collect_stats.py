@@ -8,6 +8,7 @@ import json
 import numpy as np
 
 from collections import defaultdict
+from collections import OrderedDict
 from collections import namedtuple
 from functools import reduce
 from itertools import chain
@@ -51,7 +52,7 @@ class Autolist(list):
 def recursive_autolist():
     return Autolist(recursive_autolist, None)
 
-class IndexDict(dict):
+class IndexDict(OrderedDict):
     def __missing__(self, key):
         super().__setitem__(key, len(self))
         return len(self) - 1
@@ -116,6 +117,7 @@ def parse_values_from_results(passData, dimensions):
             leaf = reduce(getitem, indices[:-1], tree)
             leaf[indices[-1]] = value
 
+
     # Return the domain as a numeric type if possible
     domainNames = tuple(chain(("test", "stat"), dimensions))
     domainValues = tuple(map(normalize_type, [d.keys() for d in domainIdxs]))
@@ -136,7 +138,7 @@ def sort_data(keys, data):
     colon = slice(None)
     dim = len(sortOrders)
     for i, indices in enumerate(sortOrders):
-        indexer = [indices if j==i else colon for j in range(dim)]
+        indexer = [colon]*i + [indices,Ellipsis]
         dArr = dArr[indexer]
 
     keysort = lambda l,i: tuple(l[p] for p in i)
