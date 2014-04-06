@@ -56,7 +56,8 @@ class Sweep(object):
         newDNames, newDValues = zip(*(v for i, v in
             enumerate(zip(self.domain_names, self.domain_values))
             if i != dimIdx))
-        indexer = [testPos if j == dimIdx else slice(None) for j in range(len(self.domain_names))]
+
+        indexer = [slice(None)]*dimIdx + [testPos,Ellipsis]
         sliced = self._sliced + ((dimension, name),)
         return Sweep(newDNames, newDValues, self.data[indexer], sliced)
 
@@ -69,11 +70,19 @@ class Sweep(object):
     def plot(self):
         x = self.domain_values[0]
         y = self.data
-        
+       
+        xMin, xMax = min(0, min(x)), max(x)
+        yMin, yMax = min(y), max(y)
+
+        if yMin == yMax:
+            yMin -= 1
+            yMax += 1
+
         plt.plot(x, y)
-        plt.axis([min(x), max(x), min(y), max(y)])
+        plt.axis([xMin, xMax, yMin, yMax])
         plt.title(self._sliced)
-        plt.show()
+        plt.savefig('figure.png')
+        #plt.show()
 
 def example(path, test, stat):
     with open(path, "r") as f:
