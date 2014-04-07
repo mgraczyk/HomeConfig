@@ -4,8 +4,6 @@ import pmu_stats
 
 import sys
 import os
-import json
-import numpy as np
 
 from collections import defaultdict
 from collections import OrderedDict
@@ -16,6 +14,8 @@ from itertools import repeat
 from itertools import starmap
 from operator import getitem
 from operator import itemgetter
+
+from Sweep import Sweep
 
 import pprint as pp
 
@@ -122,31 +122,9 @@ def parse_values_from_results(passData, dimensions):
     domainNames = tuple(chain(("test", "stat"), dimensions))
     domainValues = tuple(map(normalize_type, [d.keys() for d in domainIdxs]))
 
-    return {
-        "domain_names": domainNames,
-        "domain_values": domainValues,
-        "data": tree
-    }
+    return Sweep(domainNames, domainValues, tree)
 
-def sort_data(keys, data):
-    """ Sorts a multidimensional array based on a list of keys.
-        The sort order of dimension i of data is determined by keys[i].
-    """
-
-    sortOrders = tuple(map(np.argsort, map(np.array, keys)))
-    dArr = np.array(data)
-    colon = slice(None)
-    dim = len(sortOrders)
-    for i, indices in enumerate(sortOrders):
-        indexer = [colon]*i + [indices,Ellipsis]
-        dArr = dArr[indexer]
-
-    keysort = lambda l,i: tuple(l[p] for p in i)
-    sortedKeys = tuple(map(keysort, keys, sortOrders))
-
-    return sortedKeys, dArr.tolist()
-
-def collect_stats(path):
+def collect_stats(path, dimensions):
     passData = []
     for subdir in get_immediate_subdirectories(path):
         try: 
@@ -155,10 +133,7 @@ def collect_stats(path):
             # Warn but ignore
             print("Couldn't get data for {}: {}".format(subdir, e))
 
-    # Since we read the data in an unspecified order, we need to
-    # sort each dimension to get a result that's easier to use
-    sweep = parse_values_from_results(passData, ["mmvec_vfifo_depth"])
-    sweep["domain_values"], sweep["data"] = sort_data(sweep["domain_values"], sweep["data"])
+    sweep = parse_values_from_results(passData, dimensions)
 
     return sweep
 
@@ -168,9 +143,5 @@ if __name__ == "__main__":
     else:
         path = os.getcwd()
 
-    json.dump(
-            collect_stats(path), sys.stdout,
-            separators=(',',':'),
-            check_circular=False,
-            allow_nan=False)
+    collect_stats(path, sys.argv[2:]).ToFile(sys.stdout)
     print()
