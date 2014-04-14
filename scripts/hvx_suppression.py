@@ -71,11 +71,13 @@ if __name__ == "__main__":
         exit(1)
 
     if "-r" in sys.argv:
-        run_sweep("v60_h2_short", (("mmvec_check_reg_suppression", (1,2,3,4))), sys.argv[1]) 
+        run_sweep("v60_h2_short", (("mmvec_reg_suppression_range", (0,1,2,3,4)),("mmvec_reg_suppression_type", ("V",))), sys.argv[1])
 
-    indep = "mmvec_check_reg_suppression"
-    sweep = collect_stats(sys.argv[1], [indep])
+    indep = ["mmvec_reg_suppression_range", "mmvec_reg_suppression_type"]
+    sweep = collect_stats(sys.argv[1], indep)
+    print(sweep)
+    exit()
 
-    create_plots(sweep, indep)
+    create_plots(sweep, indep[0])
     sweep.ToFile(sys.stdout)
     print()
