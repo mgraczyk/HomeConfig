@@ -1,5 +1,5 @@
 #!/bin/bash
-export ARCHSTRING=" "
+export ARCHSTRING=" --mmvec_reg_suppression_range 1 --mmvec_reg_suppression_type V"
 MOREARGS=" "
 SIM_PATH=/local/ssd/dev/arch/bin/sim
 
@@ -27,6 +27,8 @@ fi
 if [[ "$1" != *notiming* ]]; then
    MOREARGS="--timing $MOREARGS"
 fi
+
+
 
 $SIM_BIN $MOREARGS $REV --quiet --uarchtrace utrace.log --uarchtrace_print_l2sb_info 0 --uarchtrace_print_stall_info 1 *.exe
 #$SIM_BIN $MOREARGS $REV --quiet --coproctrace coproc.log *.exe
