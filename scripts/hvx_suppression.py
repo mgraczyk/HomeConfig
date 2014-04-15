@@ -8,6 +8,7 @@ matplotlib.use('WebAgg')
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
+import os
 import sys
 import numpy as np
 
@@ -16,7 +17,7 @@ from run_sweep import run_sweep
 
 from Sweep import Sweep
 
-def create_3d_plot(sweep, indep, stat, normStat):
+def create_3d_plot(sweep, stat, normStat):
     norm = sweep.slice_stat(normStat).data
     sweep = sweep.slice_stat(stat)
 
@@ -28,16 +29,16 @@ def create_3d_plot(sweep, indep, stat, normStat):
     testIdx = sweep.domain_names.index("test")
     x = np.array(range(len(sweep.domain_values[testIdx])))
 
-    markers = "os^+"
+    markers = "os^+*"
 
     data = sweep.data / (norm+1)
-    order = data.mean(1).argsort()
+    order = data.max(1).argsort()
     data = np.rollaxis(data[order], 1)
     testNames = sweep.domain_values[testIdx][order]
     for i, rangeData in enumerate(data):
         ax.plot(x, rangeData,
                 marker=markers[i],
-                linestyle='-', label="{} pkt".format(i+1))
+                linestyle='-', label="{} pkt".format(i))
    
     plt.axis([np.amin(x), np.amax(x), np.amin(data), np.amax(data)])
     ax.set_xticks(x)
@@ -59,11 +60,22 @@ def create_3d_plot(sweep, indep, stat, normStat):
     plt.close()
 
 
-def create_plots(sweep, indep):
-    create_3d_plot(sweep, indep, "HVX_REGISTER_RAR_SUPPRESSION", "HVX_REGISTER_READS")
-    create_3d_plot(sweep, indep, "HVX_REGISTER_RAW_SUPPRESSION", "HVX_REGISTER_READS")
-    create_3d_plot(sweep, indep, "HVX_REGISTER_WAR_SUPPRESSION", "HVX_REGISTER_WRITES")
-    create_3d_plot(sweep, indep, "HVX_REGISTER_WAW_SUPPRESSION", "HVX_REGISTER_WRITES")
+def create_plots(sweep):
+    pairs = (("HVX_REGISTER_RAR_SUPPRESSION", "HVX_REGISTER_READS"),
+             ("HVX_REGISTER_RAW_SUPPRESSION", "HVX_REGISTER_READS"),
+             ("HVX_REGISTER_WAR_SUPPRESSION", "HVX_REGISTER_WRITES"),
+             ("HVX_REGISTER_WAW_SUPPRESSION", "HVX_REGISTER_WRITES"))
+
+    for pair in pairs:
+        create_3d_plot(sweep, *pair)
+        for p in pair:
+            sweep.slice_stat(p).ToCsvPath(p + ".csv")
+
+    testIdx = sweep.domain_names.index("test")
+    with open("testnames.csv", "w") as tF:
+        for name in sweep.domain_values[testIdx]:
+            tF.write(name)
+            tF.write("\n")
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
@@ -75,9 +87,9 @@ if __name__ == "__main__":
 
     indep = ["mmvec_reg_suppression_range", "mmvec_reg_suppression_type"]
     sweep = collect_stats(sys.argv[1], indep)
-    print(sweep)
-    exit()
 
-    create_plots(sweep, indep[0])
+    sweep = sweep.slice_dimension(indep[1], sweep.domain_values[sweep.domain_names.index(indep[1])][0])
+
+    create_plots(sweep)
     sweep.ToFile(sys.stdout)
     print()

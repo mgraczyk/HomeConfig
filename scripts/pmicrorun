@@ -1,5 +1,5 @@
 #!/bin/bash
-export ARCHSTRING=" --mmvec_reg_suppression_range 1 --mmvec_reg_suppression_type V"
+export ARCHSTRING=" "
 MOREARGS=" "
 SIM_PATH=/local/ssd/dev/arch/bin/sim
 
