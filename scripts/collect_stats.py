@@ -24,17 +24,16 @@ def get_immediate_subdirectories(dr):
             if os.path.isdir(os.path.join(dr, name)))
 
 class Autolist(list):
-    def __init__(self, defaultFactory, filler=None):
+    def __init__(self, defaultFactory):
         super().__init__(self)
 
-        self._filler = filler
         self._defaultFactory = defaultFactory
         self._isOn = lambda: Control
 
     def __setitem__(self, key, value):
         try:
             if key >= len(self):
-                self.extend([self._filler]*(key - len(self) + 1))
+                self.extend(self._defaultFactory() for i in range(key - len(self) + 1))
         except TypeError as e:
             pass
 
@@ -50,7 +49,7 @@ class Autolist(list):
         return super().__getitem__(key)
 
 def recursive_autolist():
-    return Autolist(recursive_autolist, None)
+    return Autolist(recursive_autolist)
 
 class IndexDict(OrderedDict):
     def __missing__(self, key):

@@ -42,7 +42,7 @@ class Sweep(object):
         positions = self._domainValues[dimIdx]
 
         try:
-            testPos = positions.searchsorted(name)
+            pos = positions.searchsorted(name)
         except ValueError as e:
             raise ValueError("{} '{}' is not in the data set".format(dimension, name))
        
@@ -50,7 +50,7 @@ class Sweep(object):
             enumerate(zip(self._domainNames, self._domainValues))
             if i != dimIdx))
 
-        indexer = [slice(None)]*dimIdx + [testPos,Ellipsis]
+        indexer = [slice(None)]*dimIdx + [pos,Ellipsis]
         sliced = self._sliced + ((dimension, name),)
         return Sweep(newDNames, newDValues, self.data[indexer], sliced, False)
 
@@ -102,7 +102,7 @@ class Sweep(object):
         self._data = data
 
     def ToCsv(self, f, delimiter=",", fmt="%10.5f"):
-        header = delimiter.join(map(str, self.domain_values[1]))
+        header = self.domain_names[1] + "\n" + delimiter.join(map(str, self.domain_values[1]))
         np.savetxt(f, self.data, fmt=fmt, delimiter=delimiter, header=header)
 
     def ToCsvPath(self, path, *args, **kwargs):
