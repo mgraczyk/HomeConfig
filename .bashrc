@@ -4,6 +4,9 @@ export EDITOR=vim
 # Use vim keybindings
 set -o vi
 
+# Don't use unset variables
+set -o nounset
+
 # COLORS!!!!!!1111one
 export TERM=xterm-256color
 alias ls="ls --color"
