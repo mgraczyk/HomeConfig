@@ -51,9 +51,9 @@ endif
 
 " Indentation settings
 set expandtab
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 
 syntax on
 syntax enable
@@ -142,5 +142,5 @@ nnoremap <Leader>N iMichael<Esc>
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
 
-au BufRead,BufNewFile,BufEnter */dev/arch/src/**.{c,h} setlocal noet sw=2 ts=2 sts=2
+au BufRead,BufNewFile,BufEnter */dev/arch/src/**.{c,h,py} setlocal noet sw=2 ts=2 sts=2
 
