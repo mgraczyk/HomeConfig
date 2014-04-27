@@ -1,7 +1,7 @@
 #!/bin/bash
 export ARCHSTRING=" "
 MOREARGS=" "
-SIM_PATH=/local/ssd/dev/arch/bin/sim
+SIM_PATH=$Q6SIM
 
 REV="--core V60A_512"
 
@@ -28,14 +28,17 @@ if [[ "$1" != *notiming* ]]; then
    MOREARGS="--timing $MOREARGS"
 fi
 
+RUN_EXEC="$SIM_BIN $MOREARGS $REV --quiet "
 
+$RUN_EXEC --magic_angel --uarchtrace utrace.log --uarchtrace_print_l2sb_info 1 --uarchtrace_print_stall_info 1 *.exe
+#$RUN_EXEC --coproctrace coproc.log *.exe
+#$RUN_EXEC --pctrace pctrace.log *.exe
+#$RUN_EXEC --stalltrace stalltrace.log *.exe
+#$RUN_EXEC *.exe
 
-$SIM_BIN $MOREARGS $REV --quiet --uarchtrace utrace.log --uarchtrace_print_l2sb_info 0 --uarchtrace_print_stall_info 1 *.exe
-#$SIM_BIN $MOREARGS $REV --quiet --coproctrace coproc.log *.exe
-#$SIM_BIN $MOREARGS $REV --quiet --pctrace pctrace.log *.exe
-#$SIM_BIN $MOREARGS $REV --quiet --stalltrace stalltrace.log *.exe
-#$SIM_BIN $MOREARGS $REV --quiet *.exe
-
+RETVAL=$?
 
 # Do some common analysis every time
 /prj/dsp/qdsp6/arch/v60/mtools/v60_latest/gnu/bin/hexagon-objdump -d *.exe > asm.s &
+
+exit $RETVAL
