@@ -65,6 +65,11 @@ set splitright
 
 " Searching/Moving
 set mouse=nv
+
+if exists('$TMUX') " Resizing in tmux
+  set ttymouse=xterm2
+endif
+
 set gdefault
 set incsearch
 set showmatch
