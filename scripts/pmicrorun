@@ -30,7 +30,7 @@ fi
 
 RUN_EXEC="$SIM_BIN $MOREARGS $REV --quiet "
 
-$RUN_EXEC --magic_angel --uarchtrace utrace.log --uarchtrace_print_l2sb_info 1 --uarchtrace_print_stall_info 1 *.exe
+$RUN_EXEC --magic_angel --uarchtrace >(xz -0 > utrace.log.xz)  --uarchtrace_print_l2sb_info 1 --uarchtrace_print_stall_info 1 *.exe
 #$RUN_EXEC --coproctrace coproc.log *.exe
 #$RUN_EXEC --pctrace pctrace.log *.exe
 #$RUN_EXEC --stalltrace stalltrace.log *.exe

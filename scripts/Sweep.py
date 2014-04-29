@@ -86,6 +86,9 @@ class Sweep(object):
             The sort order of dimension i of data is determined by keys[i].
         """
 
+        if not self._data:
+            return
+
         data = self._data
         keys = self._domainValues
         sortOrders = map(np.argsort, keys)
