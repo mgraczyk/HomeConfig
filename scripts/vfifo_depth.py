@@ -11,6 +11,8 @@ from scipy import signal
 
 from itertools import chain
 
+from collect_stats import collect_stats
+from run_sweep import run_sweep
 from Sweep import Sweep
 
 def fit_func(x, *p):
@@ -72,6 +74,17 @@ def fit_data(sweep):
 
 
 if __name__ == "__main__":
-    with open(sys.argv[1]) as f:
-        sweep = Sweep.FromFile(f)
+    if len(sys.argv) < 2:
+        print("USAGE: {} results_path [-r]".format(sys.argv[0]))
+        exit(1)
+
+    indep = ["mmvec_vfifo_depth"]
+
+    if "-r" in sys.argv:
+        run_sweep("v60_h2_short", ((indep[0], chain(range(25), (32, 48, 64, 96, 128))),), sys.argv[1])
+
+    sweep = collect_stats(sys.argv[1], indep)
+
+    sweep.ToFile(sys.stdout)
     fit_data(sweep)
+    print()
