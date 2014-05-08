@@ -76,6 +76,10 @@ Shift Ctrl <Key>=: larger-vt-font() \n\
 Shift Ctrl <Key>-: smaller-vt-font() 
 
 Rxvt.font: xft:consolas:size=12
+URxvt.font: xft:consolas:size=12
+URxvt.antialias: true
+URxvt.hinting: true
+URxvt.hintstyle: true
 
 URxvt.urgentOnBell: true
 URxvt.scrollBar: false
