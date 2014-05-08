@@ -22,3 +22,6 @@
 [submodule ".config/intellij-colors-solarized"]
 	path = .config/intellij-colors-solarized
 	url = https://github.com/jkaving/intellij-colors-solarized.git
+[submodule ".vim/bundle/vim-fugitive"]
+	path = .vim/bundle/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
