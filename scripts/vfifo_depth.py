@@ -19,7 +19,7 @@ def fit_func(x, *p):
     return p[0] + p[1]*x**p[2]
 
 def fit_data(sweep):
-    cycles = sweep.slice_stat("QDSP6_clk_cnt")
+    cycles = sweep.slice_stat("COPROC_LOAD_STALL_CYCLES")
 
     indepVar = "mmvec_vfifo_depth"
     testIdx = cycles.domain_names.index("test")
@@ -60,8 +60,8 @@ def fit_data(sweep):
             yMin -= 1
             yMax += 1
 
-        err = np.average(((y/fit_func(x, *popt) - 1)*weights)**2)
-        fitParams.append(err)
+        err = np.average((weights*(y - fit_func(x, *popt))/popt[1])**2)
+        fitParams.append((popt, err))
 
         plt.plot(x, y, "ro-", xFit, yFit, "b-")
         plt.axis([xMin, xMax, yMin, yMax])
@@ -70,6 +70,8 @@ def fit_data(sweep):
         plt.savefig(testName + '.png')
         plt.close()
 
+    print("Regression to fit a + bx^c")
+    print("Name, a, b, c, error = (w(x)*(y(x) - yfit(x))/b)^2")
     list(map(print, zip(sweep.domain_values[testIdx], fitParams)))
 
 
@@ -85,6 +87,8 @@ if __name__ == "__main__":
 
     sweep = collect_stats(sys.argv[1], indep)
 
-    sweep.ToFile(sys.stdout)
+    with open("data.json", "w") as f:
+        sweep.ToFile(f)
+
     fit_data(sweep)
     print()
