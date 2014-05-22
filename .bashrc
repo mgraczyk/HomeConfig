@@ -167,3 +167,7 @@ function execute_in_all_panes {
   tmux send-keys "clear" C-m
  
 }
+
+function flip() {
+    let x=$(printf '%d' "'$(</dev/random head -c 1)"); let x=x%2; if [ "$x" -eq "0" ]; then echo HEADS; else echo TAILS; fi
+}
