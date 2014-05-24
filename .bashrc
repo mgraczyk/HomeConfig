@@ -169,5 +169,5 @@ function execute_in_all_panes {
 }
 
 function flip() {
-    let x=$(printf '%d' "'$(</dev/random head -c 1)"); let x=x%2; if [ "$x" -eq "0" ]; then echo HEADS; else echo TAILS; fi
+    python -c "import random; print('HEADS' if random.randint(0,1) else 'TAILS')"
 }
