@@ -4,6 +4,7 @@ export EDITOR=vim
 # Use vim keybindings
 set -o vi
 
+
 # COLORS!!!!!!1111one
 export TERM=xterm-256color
 alias ls="ls --color"
@@ -35,7 +36,7 @@ fi
 alias whereami="echo $HOSTNAME"
 alias ll="ls -l"
 alias la="ls -a"
-alias hop="cd $(pwd -L)"
+alias hop='cd $(pwd -L)'
 
 # For tmux: export 256color
 [ -n "$TMUX" ] && export TERM=screen-256color
@@ -165,4 +166,8 @@ function execute_in_all_panes {
   tmux send-keys C-c "$command && fg 2>/dev/null" C-m
   tmux send-keys "clear" C-m
  
+}
+
+function flip() {
+    python -c "import random; print('HEADS' if random.randint(0,1) else 'TAILS')"
 }

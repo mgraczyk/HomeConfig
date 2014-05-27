@@ -76,14 +76,21 @@ Shift Ctrl <Key>=: larger-vt-font() \n\
 Shift Ctrl <Key>-: smaller-vt-font() 
 
 Rxvt.font: xft:consolas:size=12
+URxvt.font: xft:consolas:size=12
+URxvt.antialias: true
+URxvt.hinting: true
+URxvt.hintstyle: true
 
 URxvt.urgentOnBell: true
 URxvt.scrollBar: false
 
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
 Xft.antialias:	true
 Xft.rgba:		rgb
 Xft.hinting:	true
 Xft.hintstyle:	hintfull
+Xft.dpi: 102
 
 !!!!!!!!!
 ! XTerm !

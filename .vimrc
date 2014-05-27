@@ -65,6 +65,11 @@ set splitright
 
 " Searching/Moving
 set mouse=nv
+
+if exists('$TMUX') " Resizing in tmux
+  set ttymouse=xterm2
+endif
+
 set gdefault
 set incsearch
 set showmatch
@@ -142,5 +147,5 @@ nnoremap <Leader>N iMichael<Esc>
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
 
-au BufRead,BufNewFile,BufEnter */dev/arch/src/**.{c,h} setlocal noet sw=2 ts=2 sts=2
+au BufRead,BufNewFile,BufEnter */dev/arch/src/**.{c,h,py} setlocal noet sw=2 ts=2 sts=2
 
