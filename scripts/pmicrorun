@@ -3,7 +3,9 @@ export ARCHSTRING=" "
 MOREARGS=" "
 SIM_PATH=$Q6SIM
 
-REV="--core V60A_512"
+if [[ "$REV" != "" ]]; then
+    REV="--core V60A_512"
+fi
 
 if [[ "$1" == *cache* ]]; then
 	export ARCHSTRING=:"$ARCHSTRING --cachedebugfile cache.log"
@@ -30,16 +32,16 @@ fi
 
 RUN_EXEC="$SIM_BIN $MOREARGS $REV --quiet --simulated_returnval --magic_angel "
 
-#$RUN_EXEC --uarchtrace >(xz -0 > utrace.log.xz)  --uarchtrace_print_l2sb_info 1 --uarchtrace_print_stall_info 1 *.exe
-#$RUN_EXEC --uarchtrace utrace.log  --uarchtrace_print_l2sb_info 1 --uarchtrace_print_stall_info 1 *.exe
-#$RUN_EXEC --coproctrace coproc.log *.exe
-#$RUN_EXEC --pctrace pctrace.log *.exe
-#$RUN_EXEC --stalltrace stalltrace.log *.exe
-$RUN_EXEC *.exe
+#$RUN_EXEC --uarchtrace >(xz -0 > utrace.log.xz)  --uarchtrace_print_l2sb_info 1 --uarchtrace_print_stall_info 1 *.e??
+$RUN_EXEC --uarchtrace utrace.log  --uarchtrace_print_l2sb_info 1 --uarchtrace_print_stall_info 1 --uarchtrace_print_l2fifo_info 0 --uarchtrace_print_sbuf_info 0 *.e??
+#$RUN_EXEC --coproctrace coproc.log *.e??
+#$RUN_EXEC --pctrace pctrace.log *.e??
+#$RUN_EXEC --stalltrace stalltrace.log *.e??
+#$RUN_EXEC *.e??
 
 RETVAL=$?
 
 # Do some common analysis every time
-/prj/dsp/qdsp6/arch/v60/mtools/v60_latest/gnu/bin/hexagon-objdump -d *.exe > asm.s &
+/prj/dsp/qdsp6/arch/v60/mtools/v60_latest/gnu/bin/hexagon-objdump -D *.e?? > asm.s &
 
 exit $RETVAL
