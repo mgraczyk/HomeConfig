@@ -20,7 +20,9 @@ export TMPDIR=/tmp
 
 # Disable ctrl-s because it's stupid
 if [[ ! $OS == *Windows* ]]; then
-   eval `dircolors ~/scripts/.dircolors/dircolors.ansi-dark`
+   if [ -f ~/scripts/.dircolors/dircolors.ansi-dark ] ; then
+       eval `dircolors ~/scripts/.dircolors/dircolors.ansi-dark`
+   fi
    stty ixany
    stty ixoff -ixon
 fi
