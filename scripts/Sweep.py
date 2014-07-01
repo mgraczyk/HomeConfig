@@ -78,6 +78,14 @@ class Sweep(object):
         plt.savefig('figure.png')
         #plt.show()
 
+    def values_for_domain(self, dimension):
+        try:
+            dimIdx = self._domainNames.index(dimension)
+        except ValueError as e:
+            raise ValueError("{} is not in the data set's domain.".format(dimension)) from e
+
+        return iter(self._domainValues[dimIdx])
+
     def _title_from_sliced(self):
         return "\n".join(starmap("{} = {}".format, self._sliced))
 

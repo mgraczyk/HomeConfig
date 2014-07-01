@@ -9,7 +9,7 @@ pmuRe = re.compile("(?:([^:]*):)?([^:]+):([^:]+)")
 def parse_pmu_fp(f):
     values = {}
     for num, line in enumerate(f):
-        match = pmuRe.search(line)
+        match = pmuRe.search(line.replace(" ", ""))
         if match:
             groups = match.groups()
             # Sometimes the first capture group is missing :(

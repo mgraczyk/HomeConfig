@@ -4,6 +4,9 @@ import pmu_stats
 
 import sys
 import os
+import operator
+
+from os.path import isfile, isdir, islink
 
 from collections import defaultdict
 from collections import OrderedDict
@@ -48,6 +51,12 @@ class Autolist(list):
 
         return super().__getitem__(key)
 
+    @classmethod
+    def FromIter(cls, other, defaultFactory):
+        ret = Autolist(defaultFactory)
+        ret.extend(other)
+        return ret
+
 def recursive_autolist():
     return Autolist(recursive_autolist)
 
@@ -59,15 +68,23 @@ class IndexDict(OrderedDict):
 def get_stats(path):
     PmuStatFileName = "pmu_stats.txt"
 
-    try: 
-        return pmu_stats.parse_pmu_file(os.path.join(path, PmuStatFileName))
-    except Exception as eOuter:
-        # It could be test subdirectory if the test "failed"
-        try:
-            return pmu_stats.parse_pmu_file(os.path.join(path, "test", PmuStatFileName))
-        except Exception as eInner:
-            # Show the first error since it will be more meaningful
-            raise eInner from eOuter
+    fullPath = os.path.join(path, PmuStatFileName)
+    if isfile(fullPath):
+        return pmu_stats.parse_pmu_file(fullPath)
+    else:
+        for subdir in os.listdir(path):
+            subPath = os.path.join(path, subdir)
+            if isdir(subPath) and not (subdir.startswith(".") or islink(subdir)):
+                stats = get_stats(subPath)
+                if stats:
+                    return stats
+    return None
+
+def find_stats(root):
+    stats = get_stats(root)
+    if not stats:
+        raise FileNotFoundError("Couldn't find stats file.")
+    return stats
 
 def parse_passname(passname, dimensions):
     values = []
@@ -101,23 +118,49 @@ def normalize_type(values):
 
     return tuple(values)
 
+def deep_replace(tree, pred, newVal):
+    try:
+        replacements = tuple(i for i, elem in enumerate(tree) if deep_replace(elem, pred, newVal)) 
+        for i in replacements:
+            tree[i] = newVal
+    except TypeError:
+        # Don't replace noniterables that pass the predicate
+        pass
+
+    return pred(tree)
+
+def smooth_tree(tree):
+    for child in tree:
+        try:
+            smooth_tree(child)
+        except Exception as e:
+            pass
+
+    childMax = max(map(len, tree))
+    for child in tree:
+        child.extend([Autolist(type(None))]*(childMax - len(child)))
+
 def parse_values_from_results(passData, dimensions):
     # Two extra for stats and test names
     tree = recursive_autolist()
     domainIdxs = [IndexDict() for i in range(len(dimensions) + 2)]
 
+    stats = []
     # Read all the data.
     # We do this in a roundabout way since we don't know in advance
     # What all of the data points will be.
     for passName, values in passData:
         test, domain = parse_passname(passName, dimensions)
+        stats.append(values.keys())
         for stat,value in values.items():
             indices = list(map(getitem, domainIdxs, chain((test, stat), domain)))
             leaf = reduce(getitem, indices[:-1], tree)
             leaf[indices[-1]] = value
 
+    smooth_tree(tree)
+    deep_replace(tree, lambda x: issubclass(x.__class__, list) and not x, 0)
 
-    # Return the domain as a numeric type if possible
+    # Return the domainh as a numeric type if possible
     domainNames = tuple(chain(("test", "stat"), dimensions))
     domainValues = tuple(map(normalize_type, [d.keys() for d in domainIdxs]))
 
@@ -127,10 +170,10 @@ def collect_stats(path, dimensions):
     passData = []
     for subdir in get_immediate_subdirectories(path):
         try: 
-            passData.append((subdir, get_stats(os.path.join(path, subdir))))
+            passData.append((subdir, find_stats(os.path.join(path, subdir))))
         except Exception as e:
             # Warn but ignore
-            print("Couldn't get data for {}: {}".format(subdir, e))
+            print("Couldn't get data for {}: {}".format(subdir, e), file=sys.stderr)
 
     sweep = parse_values_from_results(passData, dimensions)
 
