@@ -53,6 +53,8 @@ if __name__ == "__main__":
     zebu = sweep.slice_dimension("model", "zebu")
 
     result = Sweep(iss.domain_names, iss.domain_values, iss.data/zebu.data)
+    iss.ToCsvPath(os.path.join(outpath, "iss.csv"))
+    zebu.ToCsvPath(os.path.join(outpath, "zebu.csv"))
     result.ToCsvPath(os.path.join(outpath, "result.csv"))
 
     with open(os.path.join(outpath, "tests.csv"), "w") as f:
