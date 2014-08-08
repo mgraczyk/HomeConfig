@@ -21,7 +21,7 @@ def parse_pmu_fp(f):
 
 def parse_pmu_file(rootdir, filePath):
     with open(filePath, 'r') as f:
-        return parse_pmu_fp(f)
+        return (rootdir, parse_pmu_fp(f))
 
 if __name__ == "__main__":
     sys.stdout.write(json.dumps(parse_pmu_fp(sys.stdin), separators=(',',':')))

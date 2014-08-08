@@ -168,7 +168,7 @@ def collect_data_file(path, target, processFunc):
     data = []
     for subdir in get_immediate_subdirectories(path):
         try: 
-            datum = (subdir, find_data(os.path.join(path, subdir), target, processFunc))
+            datum = find_data(os.path.join(path, subdir), target, processFunc)
             data.append(datum)
         except Exception as e:
             # Warn but ignore
