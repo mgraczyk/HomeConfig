@@ -12,8 +12,9 @@ from collections import namedtuple
 
 import numpy as np
 
-CommitEvent = namedtuple("CommitEvent", ["time","event","pc","tid","id"])
+CommitEvent = namedtuple("CommitEvent", ["time","event", "pc","tid","id"])
 PerfEvent = namedtuple("PerfEvent", ["time","event","cnt"])
+BranchEvent = namedtuple("BranchEvent", ["time","event","tid","br_pc","next_pc","pred","actual"])
 
 CommitSequence = namedtuple("CommitSequence", ["startTime","counts"])
 
@@ -45,8 +46,9 @@ def read_bad_line(line):
         raise ValueError("Read unexpected line:\n\t{}".format(line))
 
 lineRegexs = [
-    (re.compile("PKTID:time=(\d+):(newpc)=([0-9a-fA-F]+):tid=(\d+):id=(\d+).*"), CommitEvent),
-    (re.compile("PERF:time=(\d+):event=(\d+):cnt=(\d+)"), PerfEvent),
+    (re.compile("PKTID:time=(?P<time>\d+):(?P<event>newpc)=(?P<pc>[0-9a-fA-F]+):tid=(?P<tid>\d+):id=(?P<id>\d+).*"), CommitEvent),
+    (re.compile("PERF:time=(?P<time>\d+):event=(?P<event>\d+):cnt=(?P<cnt>\d+)"), PerfEvent),
+    (re.compile("(?<event>Branch) Info:Time=(?P<time>\d+):Tid=(?P<tid>\d+):Branch PC=(?P<br_pc>0x[0-9a-fA-F]+):Next PC=(?P<next_pc>0x[0-9a-fA-F]+)Predicted Direction=(?P<pred>[01]):Actual Direction=(P<actual>[01])"), BranchEvent),
     (re.compile("(.*)"), read_bad_line)
 ]
 
@@ -61,13 +63,18 @@ def _get_pktid_data_from_file(fp):
         for reg, eventType in lineRegexs:
             match = reg.match(line)
             if match:
-                groups = match.groups()
-                evt = eventType(int(groups[0]), *groups[1:])
+                groups = match.groupdict()
+                evt = eventType(**groups)
                 events[evt.event].append(evt)
                 break
 
 
     return events
+
+def get_pktid_data(path):
+    with open(path, "r") as fp:
+        data = _get_pktid_data_from_file(fp)
+    return data
 
 def plot_sequence_spectrum(data, eventName, displayName): 
     seq = get_sequence(data, eventName)
@@ -114,21 +121,17 @@ def plot_sequence(data, eventName, displayName):
     plt.savefig("{}.png".format(displayName))
     plt.close()
 
-def get_pktid_data(path):
-    with open(path, "r") as fp:
-        data = _get_pktid_data_from_file(fp)
-
-    plot_sequence(data, "newpc", "Commit")
-    plot_sequence(data, "245", "COPROC_L2_STORE_STALL_CYCLES")
-    plot_sequence(data, "248", "COPROC_CORE_VFIFO_FULL_STALL")
-
 def main():
     if len(sys.argv) > 1:
         path = sys.argv[1]
     else:
-        print("USAGE: {} {}".format(sys.argv[0], sys.argv[1]))
+        print("USAGE: {} pktid_log_path".format(sys.argv[0]))
 
     data = get_pktid_data(path)
+
+    plot_sequence(data, "newpc", "Commit")
+    plot_sequence(data, "245", "COPROC_L2_STORE_STALL_CYCLES")
+    plot_sequence(data, "248", "COPROC_CORE_VFIFO_FULL_STALL")
 
 if __name__ == "__main__":
     main()

@@ -3,7 +3,7 @@ export ARCHSTRING=" "
 MOREARGS=" "
 SIM_PATH=$Q6SIM
 
-if [[ "$REV" != "" ]]; then
+if [[ "$REV" == "" ]]; then
     REV="--core V60A_512"
 fi
 
@@ -17,7 +17,7 @@ elif [[ "$1" == *cachgrind* ]]; then
    SIM_BIN="valgrind --tool=cachegrind $SIM_PATH"
 elif [[ "$1" == *memcheck* ]]; then
    VGDB="--vgdb=yes --vgdb-error=0"
-   SIM_BIN="valgrind --tool=memcheck --leak-check=yes -v --track-origins=yes $SIM_PATH"
+   SIM_BIN="valgrind --tool=memcheck --leak-check=yes -v --track-origins=yes $VGDB $SIM_PATH"
 elif [[ "$1" == *sgcheck* ]]; then
    VGDB="--vgdb=yes --vgdb-error=0"
    SIM_BIN="valgrind --tool=exp-sgcheck $SIM_PATH"
@@ -37,10 +37,10 @@ RUN_EXEC="$SIM_BIN $MOREARGS $REV --quiet --simulated_returnval --magic_angel "
 
 #$RUN_EXEC --uarchtrace >(xz -0 > utrace.log.xz)  --uarchtrace_print_l2sb_info 1 --uarchtrace_print_stall_info 1 *.e??
 #$RUN_EXEC --axibusratio 1 --axibuspenalty 1 --uarchtrace utrace.log  --uarchtrace_print_l2sb_info 1 --uarchtrace_print_stall_info 1 --uarchtrace_print_l2fifo_info 0 --uarchtrace_print_sbuf_info 0 *.e??
-#$RUN_EXEC --uarchtrace utrace.log  *.e??
+#$RUN_EXEC --uarchtrace utrace.log  --uarchtrace_print_l2sb_info 1 --uarchtrace_print_stall_info 1 --uarchtrace_print_l2fifo_info 0 --uarchtrace_print_sbuf_info 0 --uarchtrace_print_branch_info 1 --uarchtrace_print_reg_info 2 *.e??
+$RUN_EXEC --uarchtrace utrace.log  *.e??
 #$RUN_EXEC --coproctrace coproc.log *.e??
-$RUN_EXEC --pctrace pctrace.log *.e??
-#$RUN_EXEC --stalltrace stalltrace.log *.e??
+#$RUN_EXEC --pctrace pctrace.log *.e??
 #$RUN_EXEC *.e??
 
 RETVAL=$?

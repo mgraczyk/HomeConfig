@@ -44,20 +44,33 @@ def get_zebu_sweep(path):
             [archData, zebuData])
 
 if __name__ == "__main__":
+    if len(sys.argv) < 2 or "-h" in sys.argv:
+        print("USAGE: {} rundir results_path".format(sys.argv[0]))
+        exit(1)
+
     inpath = sys.argv[1] if len(sys.argv) > 1 else os.getcwd()
-    outpath = sys.argv[2] if len(sys.argv) > 2 else os.getcwd()
+    outpath = sys.argv[2] if len(sys.argv) > 2 else os.getcwd() + "/results.csv"
 
     sweep = get_zebu_sweep(inpath)
 
     iss = sweep.slice_dimension("model", "iss")
     zebu = sweep.slice_dimension("model", "zebu")
 
-    result = Sweep(iss.domain_names, iss.domain_values, iss.data/zebu.data)
-    iss.ToCsvPath(os.path.join(outpath, "iss.csv"))
-    zebu.ToCsvPath(os.path.join(outpath, "zebu.csv"))
-    result.ToCsvPath(os.path.join(outpath, "result.csv"))
+    ratios = Sweep(iss.domain_names, iss.domain_values, iss.data/zebu.data)
 
-    with open(os.path.join(outpath, "tests.csv"), "w") as f:
-        f.write("\n".join(iss.values_for_domain("test")))
+    try:
+        os.makedirs(os.path.dirname(outpath))
+    except FileExistsError:
+        pass
+
+    with open(outpath, "wb+") as fp:
+        fp.write(b"Test Names\n")
+        fp.write(bytes("\n".join(iss.values_for_domain("test")), encoding="ascii"))
+        fp.write(b"\n\nISS Results\n")
+        iss.ToCsv(fp)
+        fp.write(b"\n\nZEBU Results\n")
+        zebu.ToCsv(fp)
+        fp.write(b"\n\nRatio: ISS/ZEBU\n")
+        ratios.ToCsv(fp)
 
     print()

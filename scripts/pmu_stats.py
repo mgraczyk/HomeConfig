@@ -19,7 +19,7 @@ def parse_pmu_fp(f):
 
     return values
 
-def parse_pmu_file(filePath):
+def parse_pmu_file(rootdir, filePath):
     with open(filePath, 'r') as f:
         return parse_pmu_fp(f)
 

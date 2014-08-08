@@ -83,7 +83,10 @@ if __name__ == "__main__":
     indep = ["mmvec_vfifo_depth"]
 
     if "-r" in sys.argv:
-        run_sweep("v60_h2_short", ((indep[0], chain(range(1,25), (32, 48, 64, 96, 128))),), sys.argv[1])
+        run_sweep(
+                testlist="v60_h2_short",
+                permutations=((indep[0], chain(range(1,25), (32, 48, 64, 96, 128))),),
+                resultsDir=sys.argv[1])
 
     sweep = collect_stats(sys.argv[1], indep)
 

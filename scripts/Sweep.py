@@ -113,8 +113,9 @@ class Sweep(object):
         header = self.domain_names[1] + "\n" + delimiter.join(map(str, self.domain_values[1]))
         np.savetxt(f, self.data, fmt=fmt, delimiter=delimiter, header=header)
 
-    def ToCsvPath(self, path, *args, **kwargs):
-        with open(path, "wb") as f:
+    def ToCsvPath(self, path, append=False, *args, **kwargs):
+        mode = "wb" + ("+" if append else "")
+        with open(path, mode) as f:
             self.ToCsv(f, *args, **kwargs)
 
     def ToFile(self, f):

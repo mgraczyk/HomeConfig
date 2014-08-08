@@ -65,26 +65,24 @@ class IndexDict(OrderedDict):
         super().__setitem__(key, len(self))
         return len(self) - 1
 
-def get_stats(path):
-    PmuStatFileName = "pmu_stats.txt"
-
-    fullPath = os.path.join(path, PmuStatFileName)
+def get_datum(path, rootdir, target, processFunc):
+    fullPath = os.path.join(path, target)
     if isfile(fullPath):
-        return pmu_stats.parse_pmu_file(fullPath)
+        return processFunc(rootdir, fullPath)
     else:
         for subdir in os.listdir(path):
             subPath = os.path.join(path, subdir)
             if isdir(subPath) and not (subdir.startswith(".") or islink(subdir)):
-                stats = get_stats(subPath)
+                stats = get_datum(subPath, rootdir, target, processFunc)
                 if stats:
                     return stats
     return None
 
-def find_stats(root):
-    stats = get_stats(root)
-    if not stats:
-        raise FileNotFoundError("Couldn't find stats file.")
-    return stats
+def find_data(root, target, processFunc):
+    datum = get_datum(root, root, target, processFunc)
+    if not datum:
+        raise FileNotFoundError("Couldn't find data file in {}.".format(root))
+    return datum
 
 def parse_passname(passname, dimensions):
     values = []
@@ -166,17 +164,20 @@ def parse_values_from_results(passData, dimensions):
 
     return Sweep(domainNames, domainValues, tree)
 
-def collect_stats(path, dimensions):
-    passData = []
+def collect_data_file(path, target, processFunc):
+    data = []
     for subdir in get_immediate_subdirectories(path):
         try: 
-            passData.append((subdir, find_stats(os.path.join(path, subdir))))
+            datum = (subdir, find_data(os.path.join(path, subdir), target, processFunc))
+            data.append(datum)
         except Exception as e:
             # Warn but ignore
             print("Couldn't get data for {}: {}".format(subdir, e), file=sys.stderr)
+    return data
 
+def collect_stats(path, dimensions):
+    passData = collect_data_file(path, "pmu_stats.txt", pmu_stats.parse_pmu_file)
     sweep = parse_values_from_results(passData, dimensions)
-
     return sweep
 
 if __name__ == "__main__":
