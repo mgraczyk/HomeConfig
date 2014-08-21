@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 
-import pmu_stats
-
 import sys
 import os
 import operator
@@ -19,6 +17,7 @@ from operator import getitem
 from operator import itemgetter
 
 from Sweep import Sweep
+import pmu_stats
 
 import pprint as pp
 

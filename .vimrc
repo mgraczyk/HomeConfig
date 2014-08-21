@@ -115,6 +115,9 @@ set completeopt-=preview
 "" Various Personal Remappings
 let mapleader = ","
 
+" I'll launch with "vim -E" if I want Ex mode
+nnoremap Q <nop>
+
 " Space inserts a space
 nmap <Space> i_<Esc>r
 "Ctrl-c closes buffer but not window
@@ -148,4 +151,6 @@ au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
 
 au BufRead,BufNewFile,BufEnter */dev/arch/src/**.{c,h,py} setlocal noet sw=2 ts=2 sts=2
+au BufRead,BufNewFile,BufEnter */dev/arch/src/arch/perfscripts**.{py} setlocal et sw=4 ts=4 sts=4
+au BufRead,BufNewFile,BufEnter */perfmicro/**.{S} setlocal noet sw=2 ts=2 sts=2
 
