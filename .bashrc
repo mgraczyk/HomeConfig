@@ -14,7 +14,7 @@ alias grep="grep --color"
 export PROMPT_DIRTRIM=3
 export PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
 
-export PATH=/usr/local/sbin:/usr/local/bin/:/usr/sbin:/usr/bin:/bin:/sbin:~/scripts
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/sbin:~/scripts
 export TMP=/tmp
 export TMPDIR=/tmp
 
