@@ -2,12 +2,12 @@
 
 import sys
 import argparse
-import random
 
-import numpy as np
-
-def generate_elements(length, valMin, valMax):
+def generate_elements_numpy(length, valMin, valMax):
     return np.random.randint(int(valMin), int(valMax), int(length))
+
+def generate_elements_std(length, valMin, valMax):
+    return [int(valMax*random.random()) + valMin for _ in range(length)]
 
 def write_array_text(fp, name, dataType, data):
     fp.write("{} {}[] = {{ ".format(dataType, name))
@@ -42,6 +42,16 @@ def main():
 
     data = generate_elements(args.length, args.val_min, args.val_max)
     write_array_text(sys.stdout, args.array_name, args.data_type, data)
+
+try:
+    import numpy as np
+    generate_elements = generate_elements_numpy
+except ImportError:
+    # numpy unavailable
+    import random
+    np = None
+    generate_elements = generate_elements_std
+
 
 if __name__ == "__main__":
     main()
