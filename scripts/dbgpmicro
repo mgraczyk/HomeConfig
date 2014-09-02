@@ -1,2 +1,0 @@
-#!/bin/sh
-hexagon-gdb *.dbg.exe

@@ -17,9 +17,10 @@ from operator import getitem
 from operator import itemgetter
 
 from Sweep import Sweep
-import pmu_stats
 
 import pprint as pp
+
+StateFileName = "stats.txt"
 
 def get_immediate_subdirectories(dr):
     return (name for name in os.listdir(dr)
@@ -63,6 +64,10 @@ class IndexDict(OrderedDict):
     def __missing__(self, key):
         super().__setitem__(key, len(self))
         return len(self) - 1
+
+
+def parse_func(rootdir, fullPath):
+    return {}
 
 def get_datum(path, rootdir, target, processFunc):
     fullPath = os.path.join(path, target)
@@ -175,7 +180,7 @@ def collect_data_file(path, target, processFunc):
     return data
 
 def collect_stats(path, dimensions):
-    passData = collect_data_file(path, "pmu_stats.txt", pmu_stats.parse_pmu_file)
+    passData = collect_data_file(path, StateFileName, parse_func)
     sweep = parse_values_from_results(passData, dimensions)
     return sweep
 

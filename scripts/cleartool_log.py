@@ -1,4 +1,4 @@
-#!/pkg/qct/software/python/3.3.2c/bin/python
+#!/usr/bin/python3
 
 import re
 import sys
