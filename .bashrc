@@ -274,3 +274,7 @@ function execute_in_all_panes {
 function flip() {
     python -c "import random; print('HEADS' if random.randint(0,1) else 'TAILS')"
 }
+
+function line_count_tree() {
+    find . -type f  | parallel -n1 -L 1 "wc" | sort -rn
+}
