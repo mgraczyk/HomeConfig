@@ -120,9 +120,13 @@ set -o vi
 export PROMPT_DIRTRIM=3
 export PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
 
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/sbin:~/scripts
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:~/scripts
 export TMP=/tmp
 export TMPDIR=/tmp
+
+if [ -f ~/.chromium_dev.sh ] ; then
+   source ~/.chromium_dev.sh
+fi
 
 # Disable ctrl-s because it's stupid
 if [[ ! $OS == *Windows* ]]; then
@@ -145,7 +149,7 @@ alias hop='cd $(pwd -L)'
 [ -n "$TMUX" ] && export TERM=screen-256color
 
 # tmux shouldn't see TMPDIR
-export TMPDIR=
+[ -n "$TMUX" ] && export TMPDIR=
 
 # Some cool directory navigation stuff from 
 # http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
