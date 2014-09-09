@@ -75,6 +75,9 @@ Ctrl <Btn5Down>: smaller-vt-font() \n\
 Shift Ctrl <Key>=: larger-vt-font() \n\
 Shift Ctrl <Key>-: smaller-vt-font() 
 
+*VT100*translations: #override \
+Shift Alt <Btn1Up>: exec-formatted("google-chrome '%t'", PRIMARY)
+
 Rxvt.font: xft:consolas:size=12
 URxvt.font: xft:consolas:size=12
 URxvt.antialias: true
@@ -95,17 +98,26 @@ Xft.dpi: 102
 !!!!!!!!!
 ! XTerm !
 !!!!!!!!!
+
+! File Selection
+XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+UXTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+XTerm*on3Clicks: regex ([[:alpha:]]+://)?([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
+UXTerm*on3Clicks: regex ([[:alpha:]]+://)?([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
 	
 *utf8:		true
 *faceName: xft:consolas
-*faceSize: 12
+*faceSize: 11
 
-*faceSize1:    8
-*faceSize2:    9
-*faceSize3:    11
+*faceSize1:    9
+*faceSize2:    11
+*faceSize3:    12
 *faceSize4:    13
 *faceSize5:    15
 *faceSize6:    24
 
 XTerm*bellIsUrgent: true
-
+XTerm*borderWidth: 3
+UXTerm*borderWidth: 3
+XTerm*internalBorder: 3
+UXTerm*internalBorder: 3
