@@ -25,3 +25,6 @@
 [submodule ".vim/bundle/vim-fugitive"]
 	path = .vim/bundle/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
+[submodule ".matlab/solarized-matlab"]
+	path = .matlab/solarized-matlab
+	url = https://github.com/benhager/solarized-matlab.git
