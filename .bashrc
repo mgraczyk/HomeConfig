@@ -56,21 +56,21 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
+#if [ "$color_prompt" = yes ]; then
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+#else
+    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+#fi
+#unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+## If this is an xterm set the title to user@host:dir
+#case "$TERM" in
+#xterm*|rxvt*)
+    #PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    #;;
+#*)
+    #;;
+#esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -88,6 +88,11 @@ fi
 alias ll='ls -al'
 alias la='ls -A'
 alias l='ls -C'
+
+# dircolors on OS X
+if [ "$(uname)" == "Darwin" ]; then
+    export CLICOLOR=1
+fi
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -123,8 +128,8 @@ export PROMPT_DIRTRIM=3
 export PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
 
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:~/scripts
-export TMP=/tmp
-export TMPDIR=/tmp
+export TMP=${TMP:-/tmp}
+export TMPDIR=${TMPDIR:-/tmp}
 
 if [ -f ~/.chromium_dev.sh ] ; then
    source ~/.chromium_dev.sh
@@ -146,12 +151,6 @@ fi
 # Various aliases
 alias whereami="echo $HOSTNAME"
 alias hop='cd $(pwd -L)'
-
-# For tmux: export 256color
-[ -n "$TMUX" ] && export TERM=screen-256color
-
-# tmux shouldn't see TMPDIR
-[ -n "$TMUX" ] && export TMPDIR=
 
 # Some cool directory navigation stuff from 
 # http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
@@ -206,6 +205,23 @@ _ssh() {
 complete -o bashdefault -o default -o nospace -F _ssh ssh 2>/dev/null \
     || complete -o default -o nospace -F _ssh ssh
 
+function flip() {
+    python -c "import random; print('HEADS' if random.randint(0,1) else 'TAILS')"
+}
+
+function line_count_tree() {
+    find . -type f  | parallel -n1 -L 1 "wc" | sort -rn
+}
+
+################################################################################
+# TMUX
+################################################################################
+
+# For tmux: export 256color
+[ -n "$TMUX" ] && export TERM=screen-256color
+
+# tmux shouldn't see TMPDIR
+[ -n "$TMUX" ] && export TMPDIR=
 
 function rsc() {
     CLIENTID=$1$(date +%s)
@@ -217,6 +233,15 @@ function mksc () {
 	rsc $1
 }
 
+function __tmux_sessions() {
+    local cur sessions
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    sessions="$(cut -d ":" -f1 <(tmux list-sessions))"
+    COMPREPLY=( $(compgen -W "${sessions}" -- ${cur}) )
+    return 0
+}
+complete -o bashdefault -o default -o nospace -F __tmux_sessions rsc 2>/dev/null
 
 # Runs the specified command (provided by the first argument) in all tmux panes
 # for every window regardless if applications are running in the terminal or not.
@@ -277,10 +302,4 @@ function execute_in_all_panes {
  
 }
 
-function flip() {
-    python -c "import random; print('HEADS' if random.randint(0,1) else 'TAILS')"
-}
-
-function line_count_tree() {
-    find . -type f  | parallel -n1 -L 1 "wc" | sort -rn
-}
+################################################################################
