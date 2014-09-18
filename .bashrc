@@ -152,6 +152,14 @@ fi
 alias whereami="echo $HOSTNAME"
 alias hop='cd $(pwd -L)'
 
+################################################################################
+# PYTHON
+################################################################################
+
+export PYTHONSTARTUP=~/scripts/.pystartup.py
+
+################################################################################
+
 # Some cool directory navigation stuff from 
 # http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
 export MARKPATH=$HOME/.marks

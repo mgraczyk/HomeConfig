@@ -78,14 +78,22 @@ Shift Ctrl <Key>-: smaller-vt-font()
 *VT100*translations: #override \
 Shift Alt <Btn1Up>: exec-formatted("google-chrome '%t'", PRIMARY)
 
-Rxvt.font: xft:consolas:size=12
-URxvt.font: xft:consolas:size=12
+Rxvt.font: xft:consolas:size=11:antialias=true
+Rxvt.antialias: true
+Rxvt.rgba: rgb
+Rxvt.hinting: true
+Rxvt.hintstyle: hintfull
+URxvt.font: xft:consolas:size=11:antialias=true
 URxvt.antialias: true
+URxvt.rgba: rgb
 URxvt.hinting: true
-URxvt.hintstyle: true
+URxvt.hintstyle: hintfull
 
 URxvt.urgentOnBell: true
 URxvt.scrollBar: false
+
+URxvt.perl-ext:
+URxvt.perl-ext-common:
 
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
