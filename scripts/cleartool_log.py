@@ -4,7 +4,6 @@ import re
 import sys
 import subprocess
 
-from subprocess import CalledProcessError
 from subprocess import TimeoutExpired
 
 from collections import namedtuple
@@ -35,13 +34,13 @@ def printLog(log):
             ["cleartool", "diff", "-serial_format", "-pre", firstElement],
             stdout=subprocess.PIPE)
     try:
-        output,err = proc.communicate()
+        output, err = proc.communicate()
         print(output.decode())
 
         if err:
             print("WARNING: cleartool diff error:")
             print(err.decode())
-    except TimeoutExpired as e:
+    except TimeoutExpired:
         print("WARNING: cleartool diff timed out")
     print()
     print("="*80)
