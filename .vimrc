@@ -142,6 +142,8 @@ let g:cterm_color = {
 " map Leader-h to html-ify a given document, and Leader-H for a range
 map <silent><Leader>h :TOhtml<CR>
 
+map <silent><Leader>j :%!python -mjson.tool<CR><CR>
+
 " n is name
 nnoremap <Leader>n iMichael Graczyk<Esc>
 nnoremap <Leader>N iMichael<Esc>
@@ -150,6 +152,8 @@ nnoremap <Leader>N iMichael<Esc>
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
 
+au BufRead,BufNewFile,BufEnter *.m setlocal et sw=2 ts=2 sts=2
+
 au BufRead,BufNewFile,BufEnter */google/**.{c,h,cc,hpp,cpp} setlocal et sw=2 ts=2 sts=2
-au BufRead,BufNewFile,BufEnter */webrtc-signal/**.{py,m} setlocal et sw=2 ts=2 sts=2
+au BufRead,BufNewFile,BufEnter */webrtc-signal/**.{py} setlocal et sw=2 ts=2 sts=2
 

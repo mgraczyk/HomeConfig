@@ -1,15 +1,22 @@
 servers = (
   {
-    address = "larch";
-    chatnet = "qc";
-    port = "7778";
-    use_ssl = "no";
-    ssl_verify = "no";
+    address = "irc.freenode.net";
+    port = "8001";
+    chatnet = "FreeNode";
     autoconnect = "yes";
   }
 );
 
-chatnets = { qc = { type = "IRC"; }; };
+chatnets = {
+
+qc = { type = "IRC"; }; 
+
+FreeNode = {
+type = "IRC";
+autosendcmd = "MSG NickServ IDENTIFY password; /MODE nick -i";
+};
+
+};
 
 channels = ( { name = "#arch"; chatnet = "qc"; autojoin = "yes"; } );
 
