@@ -62,9 +62,8 @@ def recursive_autolist():
 
 class IndexDict(OrderedDict):
     def __missing__(self, key):
-        super().__setitem__(key, len(self))
+        self.__setitem__(key, len(self))
         return len(self) - 1
-
 
 def parse_func(rootdir, fullPath):
     return {}
@@ -162,7 +161,7 @@ def parse_values_from_results(passData, dimensions):
     smooth_tree(tree)
     deep_replace(tree, lambda x: issubclass(x.__class__, list) and not x, 0)
 
-    # Return the domainh as a numeric type if possible
+    # Return the domain as a numeric type if possible
     domainNames = tuple(chain(("test", "stat"), dimensions))
     domainValues = tuple(map(normalize_type, [d.keys() for d in domainIdxs]))
 

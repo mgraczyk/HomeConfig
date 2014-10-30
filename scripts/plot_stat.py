@@ -6,7 +6,7 @@ import sys
 
 def example(path, test, stat):
     with open(path, "r") as f:
-        sweep = Sweep.FromFile(f)
+        sweep = Sweep.from_json_file(f)
 
     sweep.slice_test(test).slice_stat(stat).plot()
 
