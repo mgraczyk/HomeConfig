@@ -61,6 +61,7 @@ set ffs=unix
 set ff=unix
 set splitbelow
 set splitright
+set textwidth=80
 
 
 " Searching/Moving
@@ -154,6 +155,6 @@ au BufWinEnter ?* silent loadview
 
 au BufRead,BufNewFile,BufEnter *.m setlocal et sw=2 ts=2 sts=2
 
-au BufRead,BufNewFile,BufEnter */google/**.{c,h,cc,hpp,cpp} setlocal et sw=2 ts=2 sts=2
+au BufRead,BufNewFile,BufEnter */google/**.{c,h,cc,hpp,cpp,py} setlocal et sw=2 ts=2 sts=2
 au BufRead,BufNewFile,BufEnter */webrtc-signal/**.{py} setlocal et sw=2 ts=2 sts=2
 
