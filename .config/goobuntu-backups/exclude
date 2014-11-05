@@ -1,0 +1,22 @@
+# This file contains globbing patterns that will be excluded from the nightly,
+# automated backups. Patterns should be relative to $HOME listed one per line.
+# Extended globbing syntax is supported as documented in `man 1 duplicity` under
+# the FILE SELECTION section.
+
+# Exclude application caches.
+.cache/
+
+# Exclude potentially large error logs.
+.xsession-errors*
+
+# Exclude sensitive keys
+.ssh/id_rsa
+
+# Exclude data files
+beamer/
+tmp/
+
+# Exclude things that are revision controlled
+.git/
+.vim/
+scripts/
