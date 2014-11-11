@@ -149,6 +149,14 @@ map <silent><Leader>j :%!python -mjson.tool<CR><CR>
 nnoremap <Leader>n iMichael Graczyk<Esc>
 nnoremap <Leader>N iMichael<Esc>
 
+" Toggle paste and line numbers
+nnoremap <Leader>p :set invpaste paste?<CR>
+nnoremap <Leader>l :set invnumber number?<CR> :set invrelativenumber relativenumber?<CR>
+
+" Toggle hex view
+nnoremap <Leader>x :syntax off<CR> :%!xxd<CR>
+nnoremap <Leader>X :%!xxd -r<CR> :syntax on<CR>
+
 " Automatically reload folds
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
