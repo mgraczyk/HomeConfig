@@ -68,7 +68,11 @@ set textwidth=80
 set mouse=nv
 
 if exists('$TMUX') " Resizing in tmux
-  set ttymouse=xterm2
+  if has("mouse_sgr")
+    set ttymouse=sgr
+  else
+    set ttymouse=xterm2
+  end
 endif
 
 set gdefault
@@ -123,6 +127,9 @@ nnoremap Q <nop>
 nmap <Space> i_<Esc>r
 "Ctrl-c closes buffer but not window
 nnoremap <C-c> :bp\|bd # <CR>
+
+"Ctrl-x closes window
+nnoremap <C-x> :q <CR>
 
 " Leader t and Leader T for time strings
 " T is UNIX time
