@@ -1,2 +1,2 @@
 #!/bin/sh
-matlab -nodesktop -nodisplay -nosplash -nojvm
+matlab -nodesktop -nodisplay -nosplash -nojvm $1
