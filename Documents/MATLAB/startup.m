@@ -1,7 +1,10 @@
 home = getenv('HOME');
-matlabLibDir = fullfile(home, 'software/matlab');
+matlab_lib_dir = fullfile(home, 'software/matlab');
 
-addpath(matlabLibDir)
+if isdir(matlab_lib_dir)
+  addpath(matlab_lib_dir);
+end
+
 set(0, 'DefaultFigureRenderer', 'OpenGL');
 
 %devDir = fullfile(home, 'dev');
