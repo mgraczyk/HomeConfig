@@ -177,12 +177,19 @@ function marks {
 	ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
 }
 
+# OSX find lacks printf
+if [ "$(uname)" == "Darwin" ]; then
+  _MARK_PRINT_CMD='-print'
+else
+  _MARK_PRINT_CMD='-printf "%f\n"'
+fi
+
 _completemarks() {
-	  local curw=${COMP_WORDS[COMP_CWORD]}
-	    local wordlist=$(find $MARKPATH -type l -printf "%f\n")
-		   COMPREPLY=($(compgen -W '${wordlist[@]}' -- "$curw"))
-			  return 0
-		  }
+  local curw=${COMP_WORDS[COMP_CWORD]}
+  local wordlist=$(find $MARKPATH -type l $_MARK_PRINT_CMD)
+  COMPREPLY=($(compgen -W '${wordlist[@]}' -- "$curw"))
+  return 0
+}
 
 complete -F _completemarks jump unmark
 
