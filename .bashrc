@@ -240,8 +240,8 @@ function line_count_tree() {
 [ -n "$TMUX" ] && export TMPDIR=
 
 function rsc() {
-    CLIENTID=$1$(date +%s)
-	tmux new-session -d -t $1 -s $CLIENTID \; set-option destroy-unattached on \; attach-session -t $CLIENTID
+  CLIENTID=$1$(date +%s)
+  tmux new-session -d -t $2 -s $CLIENTID \; set-option destroy-unattached on \; attach-session -t $CLIENTID
 }
 
 function mksc () {
@@ -253,11 +253,16 @@ function __tmux_sessions() {
     local cur sessions
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
-    sessions="$(cut -d ":" -f1 <(tmux list-sessions))"
-    COMPREPLY=( $(compgen -W "${sessions}" -- ${cur}) )
-    return 0
+    sessions="$(cut -d ":" -f1 <(tmux list-sessions 2> /dev/null))"
+    if [ -z "${sessions}" ]; then
+      >&2 printf "\rNo sessions active."
+      return 1
+    else
+      COMPREPLY=( $(compgen -W "${sessions}" -- ${cur}) )
+      return 0
+    fi
 }
-complete -o bashdefault -o default -o nospace -F __tmux_sessions rsc 2>/dev/null
+complete -o nospace -F __tmux_sessions rsc 2>/dev/null
 
 # Runs the specified command (provided by the first argument) in all tmux panes
 # for every window regardless if applications are running in the terminal or not.
