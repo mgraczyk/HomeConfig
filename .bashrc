@@ -179,7 +179,7 @@ function marks {
 
 # OSX find lacks printf
 if [ "$(uname)" == "Darwin" ]; then
-  _MARK_PRINT_CMD='-print'
+  _MARK_PRINT_CMD="-exec basename {} ;"
 else
   _MARK_PRINT_CMD='-printf "%f\n"'
 fi
