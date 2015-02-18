@@ -150,7 +150,10 @@ let g:cterm_color = {
 " map Leader-h to html-ify a given document, and Leader-H for a range
 map <silent><Leader>h :TOhtml<CR>
 
+" Expand and contract json
+" TODO(mgraczyk): Fix to remove multiple newlines
 map <silent><Leader>j :%!python -mjson.tool<CR><CR>
+map <silent><Leader>J :%s/[\n \t]\+//<CR>
 
 " n is name
 nnoremap <Leader>n iMichael Graczyk<Esc>
