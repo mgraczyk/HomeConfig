@@ -1,20 +1,24 @@
 servers = (
   {
-    address = "irc.freenode.net";
-    port = "8001";
-    chatnet = "FreeNode";
+    address = "irc.corp.google.com";
+    port = "6697";
+    chatnet = "Google";
     autoconnect = "yes";
+    use_ssl = "yes";
+    ssl_cert = "~/.googlekeys/ssl_server_cert.pem";
+    ssl_verify = "no";
   }
 );
 
 chatnets = {
 
-qc = { type = "IRC"; }; 
+  Google = { type = "IRC"; };
+  qc = { type = "IRC"; };
 
-FreeNode = {
-type = "IRC";
-autosendcmd = "MSG NickServ IDENTIFY password; /MODE nick -i";
-};
+  FreeNode = {
+    type = "IRC";
+    autosendcmd = "MSG NickServ IDENTIFY password; /MODE nick -i";
+  };
 
 };
 
