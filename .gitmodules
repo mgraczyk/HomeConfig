@@ -28,3 +28,6 @@
 [submodule ".matlab/solarized-matlab"]
 	path = .matlab/solarized-matlab
 	url = https://github.com/benhager/solarized-matlab.git
+[submodule ".vim/bundle/vim-clang-format"]
+	path = .vim/bundle/vim-clang-format
+	url = git@github.com:rhysd/vim-clang-format.git
