@@ -1,6 +1,6 @@
 --suffix=none
 --style=1tbs
 --indent-col1-comments
---indent=spaces=4
+--indent=spaces=2
 --indent-switches
 
