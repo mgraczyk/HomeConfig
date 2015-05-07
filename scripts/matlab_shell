@@ -1,3 +1,3 @@
 #!/bin/sh
-matlab -nodesktop -nodisplay -nosplash -nojvm $1
+matlab -nodesktop -nodisplay -nosplash -nojvm $@
 stty sane
