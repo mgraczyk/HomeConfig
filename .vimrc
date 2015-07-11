@@ -167,6 +167,9 @@ nnoremap <Leader>l :set invnumber number?<CR> :set invrelativenumber relativenum
 nnoremap <Leader>x :syntax off<CR> :%!xxd<CR>
 nnoremap <Leader>X :%!xxd -r<CR> :syntax on<CR>
 
+" Run make with ,m
+nnoremap <leader>m :silent make\|redraw!\|cc<CR>
+
 " Automatically reload folds
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
