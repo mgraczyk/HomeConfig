@@ -116,6 +116,7 @@ highlight Comment gui=italic
 
 set completeopt-=preview
 
+let g:tex_indent_items=0
 
 "" Various Personal Remappings
 let mapleader = ","

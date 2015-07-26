@@ -138,11 +138,13 @@ fi
 
 # Disable ctrl-s because it's stupid
 if [[ ! $OS == *Windows* ]]; then
-   if [ -f ~/scripts/.dircolors/dircolors.ansi-dark ] ; then
-       eval `dircolors ~/scripts/.dircolors/dircolors.ansi-dark`
-   fi
-   stty ixany
-   stty ixoff -ixon
+  if [ -x /usr/bin/dircolors ]; then
+     if [ -f ~/scripts/.dircolors/dircolors.ansi-dark ] ; then
+         eval `dircolors ~/scripts/.dircolors/dircolors.ansi-dark`
+     fi
+  fi
+  stty ixany
+  stty ixoff -ixon
 fi
 
 # Special cygwin settings
