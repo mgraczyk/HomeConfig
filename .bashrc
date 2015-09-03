@@ -13,6 +13,9 @@ export HISTCONTROL=ignoreboth
 export HISTSIZE=2000
 export HISTFILESIZE=4000
 export HISTTIMEFORMAT="[%F %T] "
+HOSTNAME="$(hostname)"
+HOSTNAME_SHORT="${HOSTNAME%%.*}"
+export HISTFILE="${HOME}/.history/$(date -u +%Y/%m/%d.%H.%M.%S)_${HOSTNAME_SHORT}_$$"
 
 # append to the history file, don't overwrite it
 shopt -s histappend
