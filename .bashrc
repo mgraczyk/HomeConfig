@@ -226,6 +226,8 @@ _ssh() {
 }
 complete -o bashdefault -o default -o nospace -F _ssh ssh 2>/dev/null \
     || complete -o default -o nospace -F _ssh ssh
+complete -o bashdefault -o default -o nospace -F _ssh mosh 2>/dev/null \
+    || complete -o default -o nospace -F _ssh mosh
 
 function flip() {
     python -c "import random; print('HEADS' if random.randint(0,1) else 'TAILS')"
