@@ -57,6 +57,7 @@ set softtabstop=2
 
 syntax on
 syntax enable
+syntax sync minlines=200
 set ffs=unix
 set ff=unix
 set splitbelow
@@ -177,7 +178,7 @@ au BufWinEnter ?* silent loadview
 
 au BufRead,BufNewFile,BufEnter *.m setlocal et sw=2 ts=2 sts=2
 
-au BufRead,BufNewFile,BufEnter */google/**.{c,h,cc,hpp,cpp,py} setlocal et sw=2 ts=2 sts=2
-au BufRead,BufNewFile,BufEnter */google/**/BUILD setlocal et sw=2 ts=2 sts=2
+au BufRead,BufNewFile,BufEnter */google3/**.{c,h,cc,hpp,cpp,py} setlocal et sw=2 ts=2 sts=2
+au BufRead,BufNewFile,BufEnter */google3/**/BUILD setlocal et sw=2 ts=2 sts=2 ft=python
 au BufRead,BufNewFile,BufEnter */webrtc-signal/**.{py} setlocal et sw=2 ts=2 sts=2
 
