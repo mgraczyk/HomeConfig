@@ -50,10 +50,16 @@ if has("autocmd")
 endif
 
 " Indentation settings
-set expandtab
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
+set expandtab " Make sure that every file uses real tabs, not spaces
+set shiftround  " Round indent to multiple of 'shiftwidth'
+set smartindent " Do smart indenting when starting a new line
+set autoindent  " Copy indent from current line, over to the new line
+
+" Set the tab width
+let s:tabwidth=2
+exec 'set tabstop='    .s:tabwidth
+exec 'set shiftwidth=' .s:tabwidth
+exec 'set softtabstop='.s:tabwidth
 
 syntax on
 syntax enable
@@ -117,8 +123,6 @@ highlight Comment gui=italic
 
 set completeopt-=preview
 
-let g:tex_indent_items=0
-
 "" Various Personal Remappings
 let mapleader = ","
 
@@ -149,6 +153,9 @@ let g:cterm_color = {
     \   12: "#839496", 13: "#6c71c4", 14: "#93a1a1", 15: "#fdf6e3"
     \ }
 
+let g:clang_format#style_options = {
+            \ "Standard" : "C++11"}
+
 " map Leader-h to html-ify a given document, and Leader-H for a range
 map <silent><Leader>h :TOhtml<CR>
 
@@ -172,6 +179,10 @@ nnoremap <Leader>X :%!xxd -r<CR> :syntax on<CR>
 " Run make with ,m
 nnoremap <leader>m :silent make\|redraw!\|cc<CR>
 
+" Format code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
+
 " Automatically reload folds
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
@@ -181,4 +192,3 @@ au BufRead,BufNewFile,BufEnter *.m setlocal et sw=2 ts=2 sts=2
 au BufRead,BufNewFile,BufEnter */google3/**.{c,h,cc,hpp,cpp,py} setlocal et sw=2 ts=2 sts=2
 au BufRead,BufNewFile,BufEnter */google3/**/BUILD setlocal et sw=2 ts=2 sts=2 ft=python
 au BufRead,BufNewFile,BufEnter */webrtc-signal/**.{py} setlocal et sw=2 ts=2 sts=2
-
