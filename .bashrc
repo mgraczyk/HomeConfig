@@ -123,6 +123,11 @@ fi
 
 export EDITOR=vim
 
+# Use nvim if available
+if $(type nvim &>/dev/null); then
+  alias vim='nvim'
+fi
+
 # Use vim keybindings
 set -o vi
 
@@ -136,6 +141,10 @@ export TMPDIR=${TMPDIR:-/tmp}
 
 if [ -f ~/.chromium_dev.sh ] ; then
    source ~/.chromium_dev.sh
+fi
+
+if [ -f ~/.android_dev.sh ] ; then
+   source ~/.android_dev.sh
 fi
 
 # Disable ctrl-s because it's stupid

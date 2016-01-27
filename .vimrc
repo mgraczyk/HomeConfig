@@ -74,7 +74,8 @@ set textwidth=80
 " Searching/Moving
 set mouse=nv
 
-if exists('$TMUX') " Resizing in tmux
+" Resizing in tmux
+if exists('$TMUX') && !has("nvim")
   if has("mouse_sgr")
     set ttymouse=sgr
   else
@@ -166,7 +167,7 @@ map <silent><Leader>J :%s/[\n \t]\+//<CR>
 
 " n is name
 nnoremap <Leader>n iMichael Graczyk<Esc>
-nnoremap <Leader>N iMichael<Esc>
+nnoremap <Leader>N imgraczyk<Esc>
 
 " Toggle paste and line numbers
 nnoremap <Leader>p :set invpaste paste?<CR>

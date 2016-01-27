@@ -64,6 +64,7 @@ Color_CmdWinErrors=C-1703936
 EditorReloadFiles=Btrue
 HelpPopupShowsBrowser=Bfalse
 Editor.NonlocalVariableHighlighting.TextColor=C-8087552
+CommandWindowShowStartupMessage=Bfalse
 RLPrevInitB2_WB_2014b_1=Btrue
 EditorShowNewFilePrompt=Btrue
 Colors_HTML_HTMLLinks=C-14251311
