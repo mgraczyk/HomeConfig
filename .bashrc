@@ -164,7 +164,7 @@ fi
 
 # Various aliases
 alias whereami="echo $HOSTNAME"
-alias hop='cd $(pwd -L)'
+alias hop='cd "$(pwd -L)"'
 
 ################################################################################
 # PYTHON

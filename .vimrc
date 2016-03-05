@@ -124,6 +124,9 @@ highlight Comment gui=italic
 
 set completeopt-=preview
 
+let g:tex_indent_items=0
+let g:tex_flavor='latex'
+
 "" Various Personal Remappings
 let mapleader = ","
 
@@ -189,6 +192,7 @@ au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
 
 au BufRead,BufNewFile,BufEnter *.m setlocal et sw=2 ts=2 sts=2
+au BufRead,BufNewFile,BufEnter *.py setlocal et sw=2 ts=2 sts=2
 
 au BufRead,BufNewFile,BufEnter */google3/**.{c,h,cc,hpp,cpp,py} setlocal et sw=2 ts=2 sts=2
 au BufRead,BufNewFile,BufEnter */google3/**/BUILD setlocal et sw=2 ts=2 sts=2 ft=python
