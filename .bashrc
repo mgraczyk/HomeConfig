@@ -252,9 +252,6 @@ function line_count_tree() {
 # For tmux: export 256color
 [ -n "$TMUX" ] && export TERM=screen-256color
 
-# tmux shouldn't see TMPDIR
-[ -n "$TMUX" ] && export TMPDIR=
-
 function rsc() {
   CLIENTID=$1$(date +%s)
   tmux new-session -d -t $1 -s $CLIENTID \; set-option destroy-unattached on \; attach-session -t $CLIENTID

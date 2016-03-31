@@ -183,6 +183,9 @@ nnoremap <Leader>X :%!xxd -r<CR> :syntax on<CR>
 " Run make with ,m
 nnoremap <leader>m :silent make\|redraw!\|cc<CR>
 
+" Run buffer with ,r
+nnoremap <leader>r :!%:p<Enter>
+
 " Format code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
@@ -195,5 +198,6 @@ au BufRead,BufNewFile,BufEnter *.m setlocal et sw=2 ts=2 sts=2
 au BufRead,BufNewFile,BufEnter *.py setlocal et sw=2 ts=2 sts=2
 
 au BufRead,BufNewFile,BufEnter */google3/**.{c,h,cc,hpp,cpp,py} setlocal et sw=2 ts=2 sts=2
+au BufRead,BufNewFile,BufEnter */google3/**.{c,h,cc,hpp,cpp,py} setlocal et sw=3 ts=3 sts=3
 au BufRead,BufNewFile,BufEnter */google3/**/BUILD setlocal et sw=2 ts=2 sts=2 ft=python
 au BufRead,BufNewFile,BufEnter */webrtc-signal/**.{py} setlocal et sw=2 ts=2 sts=2

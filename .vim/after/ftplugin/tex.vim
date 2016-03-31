@@ -5,7 +5,7 @@ else
   exec "setlocal makeprg=make\\ -f\\ ~/scripts/make/latex.mk\\ " . substitute(bufname("%"),"tex$","pdf", "")
 endif
 
-setlocal spelllang=en_us spell
+setlocal spell spelllang=en_us
 setlocal indentexpr=
 
 setlocal tw=100
