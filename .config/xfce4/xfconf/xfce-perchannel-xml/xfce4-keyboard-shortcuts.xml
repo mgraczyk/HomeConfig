@@ -46,8 +46,7 @@
       <property name="&lt;Super&gt;r" type="string" value="xfce4-appfinder --disable-server"/>
       <property name="&lt;Super&gt;1" type="string" value="gmusicbrowser"/>
       <property name="&lt;Alt&gt;F1" type="string" value="xfce4-popup-applicationsmenu"/>
-      <property name="&lt;Alt&gt;F3" type="string" value="xfce4-appfinder"/>
-      <property name="&lt;Alt&gt;F2" type="string" value="xfrun4"/>
+      <property name="&lt;Alt&gt;F2" type="string" value="xfrun4 --disable-server"/>
       <property name="XF86WWW" type="string" value="exo-open --launch WebBrowser"/>
       <property name="&lt;Super&gt;e" type="string" value="mousepad"/>
       <property name="&lt;Primary&gt;&lt;Alt&gt;Delete" type="string" value="xflock4"/>
@@ -58,8 +57,6 @@
       <property name="&lt;Primary&gt;&lt;Alt&gt;Escape" type="string" value="xkill"/>
       <property name="XF86Music" type="string" value="gmusicbrowser"/>
       <property name="XF86Display" type="string" value="xfce4-display-settings --minimal"/>
-      <property name="XF86Messenger" type="string" value="pidgin"/>
-      <property name="&lt;Super&gt;2" type="string" value="pidgin"/>
       <property name="&lt;Super&gt;3" type="string" value="abiword"/>
       <property name="&lt;Super&gt;4" type="string" value="gnumeric"/>
       <property name="override" type="bool" value="true"/>
