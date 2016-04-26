@@ -178,7 +178,12 @@ export PYTHONSTARTUP=~/scripts/.pystartup.py
 # http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
 export MARKPATH=$HOME/.marks
 function jump { 
-	cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
+  jump_path=$(readlink "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1")
+  if [ ! -z "$jump_path" ];
+  then
+    cd -P "$jump_path" 2>/dev/null || \
+        printf "Mark target missing:\n   $1 -/-> $jump_path\n"
+  fi
 }
 function mark { 
 	mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
