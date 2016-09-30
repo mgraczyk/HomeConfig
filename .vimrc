@@ -198,6 +198,9 @@ au BufRead,BufNewFile,BufEnter *.m setlocal et sw=2 ts=2 sts=2
 au BufRead,BufNewFile,BufEnter *.py setlocal et sw=2 ts=2 sts=2
 
 au BufRead,BufNewFile,BufEnter */google3/**.{c,h,cc,hpp,cpp,py} setlocal et sw=2 ts=2 sts=2
-au BufRead,BufNewFile,BufEnter */google3/**.{c,h,cc,hpp,cpp,py} setlocal et sw=3 ts=3 sts=3
 au BufRead,BufNewFile,BufEnter */google3/**/BUILD setlocal et sw=2 ts=2 sts=2 ft=python
 au BufRead,BufNewFile,BufEnter */webrtc-signal/**.{py} setlocal et sw=2 ts=2 sts=2
+
+if filereadable(glob("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
