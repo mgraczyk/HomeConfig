@@ -189,7 +189,11 @@ function mark {
 	mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
 }
 function unmark { 
-	rm -i "$MARKPATH/$1"
+  if [ -z "$1" ]; then
+    echo "Error: Specify which mark to remove with \"unmark <mark>\""
+    return 1
+  fi
+  rm -i "$MARKPATH/$1"
 }
 function marks {
 	ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/	-/g' && echo
