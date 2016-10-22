@@ -87,7 +87,6 @@ set gdefault
 set incsearch
 set showmatch
 set hlsearch
-nnoremap <leader><space> :noh<cr>
 
 set ignorecase
 set smartcase
@@ -107,11 +106,28 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
+" Settings from vim-sensible
+set complete-=i
+set smarttab
+set nrformats-=octal
+set ttimeout
+set ttimeoutlen=100
+set laststatus=2
+if !empty(&viminfo)
+  set viminfo^=!
+endif
+set sessionoptions-=options
+
 " Colors
 
 if has('gui_running')
 	set guioptions-=T " no toolbar
    set guifont=Consolas
+endif
+
+" Allow color schemes to do bright colors without forcing bold.
+if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
+  set t_Co=16
 endif
 
 set background=dark
@@ -141,6 +157,14 @@ nnoremap <C-c> :bp\|bd # <CR>
 "Ctrl-x closes window
 nnoremap <C-x> :q <CR>
 
+
+"Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+endif
+
+inoremap <C-U> <C-G>u<C-U>
+
 " Leader t and Leader T for time strings
 " T is UNIX time
 nnoremap <Leader>t "=strftime("%FT%T%z")<CR>P
@@ -159,6 +183,7 @@ let g:cterm_color = {
 
 let g:clang_format#style_options = {
             \ "Standard" : "C++11"}
+let g:yapf_style = "google"
 
 " map Leader-h to html-ify a given document, and Leader-H for a range
 map <silent><Leader>h :TOhtml<CR>
@@ -196,10 +221,6 @@ au BufWinEnter ?* silent loadview
 
 au BufRead,BufNewFile,BufEnter *.m setlocal et sw=2 ts=2 sts=2
 au BufRead,BufNewFile,BufEnter *.py setlocal et sw=2 ts=2 sts=2
-
-au BufRead,BufNewFile,BufEnter */google3/**.{c,h,cc,hpp,cpp,py} setlocal et sw=2 ts=2 sts=2
-au BufRead,BufNewFile,BufEnter */google3/**/BUILD setlocal et sw=2 ts=2 sts=2 ft=python
-au BufRead,BufNewFile,BufEnter */webrtc-signal/**.{py} setlocal et sw=2 ts=2 sts=2
 
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
