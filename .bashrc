@@ -50,12 +50,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+  # We have color support; assume it's compliant with Ecma-48
+  # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+  # a case would tend to support setf rather than setaf.)
+  color_prompt=yes
     else
-	color_prompt=
+  color_prompt=
     fi
 fi
 
@@ -151,7 +151,7 @@ fi
 if [[ ! $OS == *Windows* ]]; then
   if [ -x /usr/bin/dircolors ]; then
      if [ -f ~/scripts/.dircolors/dircolors.ansi-dark ] ; then
-         eval `dircolors ~/scripts/.dircolors/dircolors.ansi-dark`
+      eval "$(dircolors ~/scripts/.dircolors/dircolors.ansi-dark)"
      fi
   fi
   stty ixany
@@ -186,7 +186,7 @@ function jump {
   fi
 }
 function mark { 
-	mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
+  mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
 }
 function unmark { 
   if [ -z "$1" ]; then
@@ -196,7 +196,7 @@ function unmark {
   rm -i "$MARKPATH/$1"
 }
 function marks {
-	ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/	-/g' && echo
+  ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/  -/g' && echo
 }
 
 _completemarks() {
@@ -267,8 +267,8 @@ function rsc() {
 }
 
 function mksc () {
-	tmux new-session -d -s $1
-	rsc $1
+  tmux new-session -d -s $1
+  rsc $1
 }
 
 function __tmux_sessions() {
