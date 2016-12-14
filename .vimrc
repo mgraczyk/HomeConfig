@@ -214,13 +214,16 @@ nnoremap <leader>r :!%:p<Enter>
 " Format code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
+autocmd FileType python map <buffer><Leader>f :call yapf#YAPF()<cr>
+autocmd FileType python imap <buffer><Leader>f <c-o>:call yapf#YAPF()<cr>
+"autocmd FileType python set formatprg=yapf
 
 " Automatically reload folds
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
 
 au BufRead,BufNewFile,BufEnter *.m setlocal et sw=2 ts=2 sts=2
-au BufRead,BufNewFile,BufEnter *.py setlocal et sw=2 ts=2 sts=2
+au BufRead,BufNewFile,BufEnter *.py setlocal et sw=2 ts=2 sts=2 textwidth=100
 
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
