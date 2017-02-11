@@ -150,7 +150,7 @@ let mapleader = ","
 nnoremap Q <nop>
 
 " Space inserts a space
-nmap <Space> i_<Esc>r
+nmap <Space> i <Esc>r
 "Ctrl-c closes buffer but not window
 nnoremap <C-c> :bp\|bd # <CR>
 

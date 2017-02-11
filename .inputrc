@@ -4,5 +4,4 @@ set keymap vi-command
 "gg": beginning-of-history
 "G": end-of-history
 set keymap vi-insert
-"jj": vi-movement-mode
 "\C-p": history-search-backward C-L: clear-screen
