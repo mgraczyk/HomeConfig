@@ -52,8 +52,6 @@ endif
 " Indentation settings
 set expandtab " Make sure that every file uses real tabs, not spaces
 set shiftround  " Round indent to multiple of 'shiftwidth'
-set smartindent " Do smart indenting when starting a new line
-set autoindent  " Copy indent from current line, over to the new line
 
 " Set the tab width
 let s:tabwidth=2
@@ -217,6 +215,7 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
 autocmd FileType python map <buffer><Leader>f :call yapf#YAPF()<cr>
 autocmd FileType python imap <buffer><Leader>f <c-o>:call yapf#YAPF()<cr>
 "autocmd FileType python set formatprg=yapf
+
 
 " Automatically reload folds
 au BufWinLeave ?* mkview
