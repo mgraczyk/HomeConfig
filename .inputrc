@@ -5,3 +5,4 @@ set keymap vi-command
 "G": end-of-history
 set keymap vi-insert
 "\C-p": history-search-backward C-L: clear-screen
+set mark-symlinked-directories on
