@@ -31,3 +31,6 @@
 [submodule ".vim/bundle/vim-clang-format"]
 	path = .vim/bundle/vim-clang-format
 	url = https://github.com/rhysd/vim-clang-format.git
+[submodule "/Users/mgraczyk/.vim/bundle/vim-solidity"]
+	path = /Users/mgraczyk/.vim/bundle/vim-solidity
+	url = https://github.com/tomlion/vim-solidity.git
