@@ -1,0 +1,3 @@
+#!/bin/sh
+passlen=${1:-16}
+cat /dev/urandom | env LC_CTYPE=C tr -cd '1-9' | head -c $passlen && printf '\n'

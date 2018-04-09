@@ -1,0 +1,2 @@
+#!/bin/bash
+ps -A | grep ssh | grep mux | awk '{print $1}' | xargs kill
