@@ -161,6 +161,7 @@ fi
 # Special cygwin settings
 #if [[ $(uname) == *"CYGWIN"* ]]; then
 #fi
+export GPG_TTY=$(tty)
 
 # Various aliases
 alias whereami="echo $HOSTNAME"

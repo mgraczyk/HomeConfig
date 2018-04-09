@@ -34,3 +34,6 @@
 [submodule "/Users/mgraczyk/.vim/bundle/vim-solidity"]
 	path = /Users/mgraczyk/.vim/bundle/vim-solidity
 	url = https://github.com/tomlion/vim-solidity.git
+[submodule ".vim/bundle/fzf.vim"]
+	path = .vim/bundle/fzf.vim
+	url = git@github.com:junegunn/fzf.vim.git
