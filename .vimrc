@@ -209,6 +209,8 @@ nnoremap <leader>m :silent make\|redraw!\|cc<CR>
 " Run buffer with ,r
 nnoremap <leader>r :!%:p<Enter>
 
+nnoremap <leader>u :read !python -c 'from uuid import uuid4; import sys; sys.stdout.write(str(uuid4()))'<CR>
+
 " Format code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
