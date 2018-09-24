@@ -19,7 +19,6 @@ HOSTNAME_SHORT="${HOSTNAME%%.*}"
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -138,10 +137,6 @@ export PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:~/scripts
 export TMP=${TMP:-/tmp}
 export TMPDIR=${TMPDIR:-/tmp}
-
-if [ -f ~/.chromium_dev.sh ] ; then
-   source ~/.chromium_dev.sh
-fi
 
 if [ -f ~/.android_dev.sh ] ; then
    source ~/.android_dev.sh

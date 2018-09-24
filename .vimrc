@@ -188,7 +188,7 @@ map <silent><Leader>h :TOhtml<CR>
 
 " Expand and contract json
 " TODO(mgraczyk): Fix to remove multiple newlines
-map <silent><Leader>j :%!python -mjson.tool<CR><CR>
+map <silent><Leader>j :%!python3 -mjson.tool<CR><CR>
 map <silent><Leader>J :%s/[\n \t]\+//<CR>
 
 " n is name
@@ -216,8 +216,8 @@ autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
 autocmd FileType python map <buffer><Leader>f :call yapf#YAPF()<cr>
 autocmd FileType python imap <buffer><Leader>f <c-o>:call yapf#YAPF()<cr>
-"autocmd FileType python set formatprg=yapf
-
+autocmd FileType python setlocal indentkeys-=<:>
+autocmd FileType python setlocal indentkeys-=:
 
 " Automatically reload folds
 au BufWinLeave ?* mkview
