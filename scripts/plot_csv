@@ -1,0 +1,11 @@
+#!/usr/bin/env python3
+
+import sys
+import numpy as np
+from matplotlib import pyplot as plt
+
+for data in sys.argv[1:]:
+  values = np.fromstring(data, sep=',')
+  plt.plot(values)
+
+plt.show()
