@@ -161,6 +161,9 @@ export GPG_TTY=$(tty)
 # Various aliases
 alias whereami="echo $HOSTNAME"
 alias hop='cd "$(pwd -L)"'
+if [ $(command -v rlwrap) ] ; then
+  alias node='NODE_NO_READLINE=1 rlwrap node'
+fi
 
 ################################################################################
 # PYTHON
