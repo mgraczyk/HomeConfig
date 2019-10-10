@@ -123,9 +123,10 @@ fi
 export EDITOR=vim
 
 # Use nvim if available
-if $(type nvim &>/dev/null); then
-  alias vim='nvim'
-fi
+# TODO(mgraczyk): Enable once nvim is better.
+#if $(type nvim &>/dev/null); then
+#  alias vim='nvim'
+#fi
 
 # Use vim keybindings
 set -o vi
