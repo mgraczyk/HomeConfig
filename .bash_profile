@@ -5,13 +5,13 @@ if [[ $OS == *Windows* ]]
 fi
 shopt -u nocasematch
 
-if [ -f ~/.bashrc ]; then  
-  . ~/.bashrc
+if [ -f $HOME/.bashrc ]; then
+  source $HOME/.bashrc
 fi
 
 if [ "$(uname)" == "Darwin" ]; then
     if [ -f `brew --prefix`/etc/bash_completion ]; then
-        . `brew --prefix`/etc/bash_completion
+        source `brew --prefix`/etc/bash_completion
     fi
 fi
 
