@@ -1,0 +1,3 @@
+#!/bin/sh
+rm -rf homedir/ && cp -R ~/tmp/HomeConfig . && mv HomeConfig/ homedir && rm -rf homedir/.git homedir/.fonts
+rsync -rP homedir/ devvm271.ftw2.facebook.com:~

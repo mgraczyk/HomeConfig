@@ -41,12 +41,6 @@ set backspace=indent,eol,start
 set ttyfast
 set lazyredraw
 
-
-" Relative numbers, with current line number at cursor
-set relativenumber
-set number
-hi CursorLineNr term=bold cterm=bold ctermfg=012 gui=bold
-
 " undo between instances
 set undofile
 
