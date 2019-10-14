@@ -1,17 +1,16 @@
 #!/bin/sh
+set -e
 git config --global http.proxy fwdproxy:8080
 git config --global https.proxy fwdproxy:8080
 
 cd ~
-git clone https://github.com/vim/vim.git vim
+git clone --depth 1 https://github.com/vim/vim.git vim || cd vim && git pull
 
-sudo yum install cscope ncurses ncurses-devel ncurses-libs ncurses-base lua
-lua-devel python-libs ruby ruby-devel
+sudo yum install cscope ncurses ncurses-devel ncurses-libs ncurses-base lua lua-devel python-libs ruby ruby-devel
 
-cd vim
+cd ~/vim
 make distclean
-./configure --enable-pythoninterp --enable-rubyinterp --with-features=huge
---enable-luainterp --enable-python3interp
+./configure --enable-pythoninterp --enable-rubyinterp --with-features=huge --enable-luainterp --enable-python3interp
 make
 sudo yum remove 'vim-common.x86_64'
 sudo make install
