@@ -5,18 +5,8 @@ if [[ $OS == *Windows* ]]
 fi
 shopt -u nocasematch
 
-if [ -f /usr/facebook/ops/rc/master.bashrc ]; then
-    . /usr/facebook/ops/rc/master.bashrc
-    saved_path=$PATH
-fi
-
 if [ -f $HOME/.bashrc ]; then
   source $HOME/.bashrc
-fi
-
-if [ -f /usr/facebook/ops/rc/master.bashrc ]; then
-  # my bashrc overwrites the path, so save it
-  PATH=$PATH:$saved_path
 fi
 
 if [ "$(uname)" == "Darwin" ]; then

@@ -4,6 +4,15 @@ case $- in
       *) return;;
 esac
 
+if [ -f /etc/bashrc ]; then
+    source /etc/bashrc
+fi
+
+if [ -f /usr/facebook/ops/rc/master.bashrc ]; then
+    source /usr/facebook/ops/rc/master.bashrc
+    saved_path=$PATH
+fi
+
 # COLORS!!!!!!1111one
 export TERM=xterm-256color
 
@@ -348,3 +357,8 @@ function execute_in_all_panes {
 ################################################################################
 
 [[ -r ~/.bashrc_local ]] && . ~/.bashrc_local
+
+if [ -f /usr/facebook/ops/rc/master.bashrc ]; then
+  # my bashrc overwrites the path, so save it
+  PATH=$PATH:$saved_path
+fi

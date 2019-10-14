@@ -1,3 +1,7 @@
+if filereadable("/usr/facebook/ops/rc/master.vimrc")
+  source /usr/facebook/ops/rc/master.vimrc
+endif
+
 " The bare necessities
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 
@@ -41,6 +45,7 @@ set lazyredraw
 " Relative numbers, with current line number at cursor
 set relativenumber
 set number
+hi CursorLineNr term=bold cterm=bold ctermfg=012 gui=bold
 
 " undo between instances
 set undofile
@@ -140,8 +145,13 @@ colorscheme solarized
 " Comments should be in italics
 highlight Comment gui=italic 
 
-
 set completeopt-=preview
+
+" Relative numbers, with current line number at cursor
+set relativenumber
+set number
+highlight clear CursorLineNR
+highlight CursorLineNR term=bold cterm=bold ctermfg=012 gui=bold
 
 let g:tex_indent_items=0
 let g:tex_flavor='latex'
