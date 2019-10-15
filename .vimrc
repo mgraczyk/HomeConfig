@@ -241,6 +241,8 @@ au BufRead,BufNewFile,BufEnter *.py setlocal et sw=2 ts=2 sts=2 textwidth=100
 au BufRead,BufNewFile,BufEnter *.pyx setlocal et sw=2 ts=2 sts=2 textwidth=100
 au BufRead,BufNewFile,BufEnter *.pxd setlocal et sw=2 ts=2 sts=2 textwidth=100
 
+au BufRead,BufNewFile,BufEnter **/fbsource/**.py setlocal et sw=4 ts=4 sts=4 textwidth=88
+
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
