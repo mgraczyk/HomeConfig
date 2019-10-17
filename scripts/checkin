@@ -1,0 +1,2 @@
+#!/bin/sh
+hg add && hg amend && jf submit --draft
