@@ -1,2 +1,2 @@
 #!/bin/sh
-hg add && hg amend && jf submit --draft
+arc lint -a && hg add && hg amend && jf submit --draft
