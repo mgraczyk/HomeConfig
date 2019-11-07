@@ -1,0 +1,1 @@
+sudo systemctl stop fbflow.service bento@mgraczyk.service vscode-daemon.service 
