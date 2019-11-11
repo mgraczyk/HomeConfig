@@ -1,1 +1,1 @@
-sudo systemctl stop fbflow.service bento@mgraczyk.service vscode-daemon.service 
+sudo systemctl stop fbflow.service bento@mgraczyk.service vscode-daemon.service distillery-server async-distillery-server
