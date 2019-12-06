@@ -36,3 +36,6 @@ if [[ ! $OS == *Windows* ]]
    then
       checkssh
 fi
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
+#CHEF.NO.SOURCE

@@ -1,10 +1,11 @@
 #!/bin/sh
 set -e
 OD_DIR=~/.atom/ondemand
+DEVSERVER=${1:-dev}
 
 rm -rf $OD_DIR/homedir/ && \
   cp -R ~/tmp/HomeConfig $OD_DIR && \
   mv $OD_DIR/HomeConfig/ $OD_DIR/homedir && \
   rm -rf $OD_DIR/homedir/.git $OD_DIR/homedir/.fonts
 
-rsync -rP $OD_DIR/homedir/ devvm271.ftw2.facebook.com:~
+rsync -rP $OD_DIR/homedir/ $DEVSERVER:~
