@@ -26,7 +26,7 @@ function checkssh() {
    fi
 
 
-   if [ "$HOSTNAME" = "MGDev" ]
+   if [ "$HOSTNAME" = "mgraczyk-desktop" ]
    then
       [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
    fi

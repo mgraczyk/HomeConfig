@@ -163,6 +163,7 @@ if [[ ! $OS == *Windows* ]]; then
   stty ixoff -ixon
 fi
 
+
 # Special cygwin settings
 #if [[ $(uname) == *"CYGWIN"* ]]; then
 #fi
@@ -174,6 +175,11 @@ alias hop='cd "$(pwd -L)"'
 if [ $(command -v rlwrap) ] ; then
   alias node='NODE_NO_READLINE=1 rlwrap node'
 fi
+
+if [ $(command -v setxkbmap) ] ; then
+  setxkbmap -option caps:escape
+fi
+
 
 ################################################################################
 # PYTHON

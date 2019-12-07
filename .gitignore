@@ -7,12 +7,18 @@
 # Vbox's special files
 .vboxclient*
 
+id_rsa
+*.pem
+
 # Specific Files and Directories
 Downloads
+.aws/
 .bash_history
+.bashrc_local
 .cache
 .dbus
-.config/chromium
+.cargo/
+.config/**
 .icedtea
 .java
 .lesshst

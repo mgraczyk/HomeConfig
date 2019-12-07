@@ -7,8 +7,8 @@ def main():
     with open(path, 'r') as f:
         lines = f.read().split()
 
-    parts = [l.split('==') for l in lines]
-    names = [p[0] for p in parts if len(p) == 2]
+    parts = [l.strip().split('==') for l in lines]
+    names = [p[0] for p in parts if not parts[:1] == "#"]
     subprocess.check_call(['pip', 'install', '-U'] + names)
 
 if __name__ == '__main__':
