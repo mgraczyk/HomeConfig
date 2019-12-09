@@ -206,7 +206,7 @@ nnoremap <Leader>N imgraczyk<Esc>
 
 " Toggle paste and line numbers
 nnoremap <Leader>p :set invpaste paste?<CR>
-nnoremap <Leader>l :set invnumber number?<CR> :set invrelativenumber relativenumber?<CR>
+nnoremap <Leader>l :set invnumber invrelativenumber<CR>
 
 " Toggle hex view
 nnoremap <Leader>x :syntax off<CR> :%!xxd<CR>
