@@ -1,0 +1,9 @@
+[user]
+  name = Michael Graczyk
+  email = michael@mgraczyk.com
+[alias]
+  ws = rebase --whitespace=fix
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true

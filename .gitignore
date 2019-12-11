@@ -47,6 +47,8 @@ id_rsa
 dev
 
 # Random macOS dirs
+Applications/
+Desktop/
 Downloads/
 Movies/
 Music/
