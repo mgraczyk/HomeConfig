@@ -11,7 +11,6 @@ id_rsa
 *.pem
 
 # Specific Files and Directories
-Downloads
 .aws/
 .bash_history
 .bashrc_local
@@ -41,4 +40,16 @@ Downloads
 .netrc
 .gitcookies
 .Xauthority
+.pyhistory
+.fbchef/
+.atom/
+.android/
 dev
+
+# Random macOS dirs
+Downloads/
+Movies/
+Music/
+Pictures/
+Public/
+Library/
