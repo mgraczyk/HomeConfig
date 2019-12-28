@@ -89,6 +89,8 @@ set nomodeline
 set ignorecase
 set smartcase
 
+set clipboard=unnamedplus
+
 " Training
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -225,8 +227,8 @@ nnoremap <leader>U a<CR><ESC>:.-1read !python -c 'import os; from base64 import 
 " Format code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
-autocmd FileType rust nnoremap <buffer><Leader>f :RustFmt<CR>
-autocmd FileType rust vnoremap <buffer><Leader>f :RustFmt<CR>
+autocmd FileType rust nnoremap <buffer><Leader>f :silent! RustFmt<CR>
+autocmd FileType rust vnoremap <buffer><Leader>f :silent! RustFmt<CR>
 autocmd FileType python map <buffer><Leader>f :call yapf#YAPF()<cr>
 autocmd FileType python imap <buffer><Leader>f <c-o>:call yapf#YAPF()<cr>
 autocmd FileType python setlocal indentkeys-=<:>
