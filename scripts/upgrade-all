@@ -5,10 +5,10 @@ import sys
 def main():
     path = sys.argv[1] if len(sys.argv) > 1 else 'requirements.txt'
     with open(path, 'r') as f:
-        lines = f.read().split()
+        lines = f.read().split("\n")
 
     parts = [l.strip().split('==') for l in lines]
-    names = [p[0] for p in parts if not parts[:1] == "#"]
+    names = [p[0] for p in parts if p[0][:1] != "#" and p[0]]
     subprocess.check_call(['pip', 'install', '-U'] + names)
 
 if __name__ == '__main__':

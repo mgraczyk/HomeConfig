@@ -1,9 +1,11 @@
 [user]
   name = Michael Graczyk
   email = michael@mgraczyk.com
-[alias]
-  ws = rebase --whitespace=fix
 [pull]
 	rebase = true
 [rebase]
 	autoStash = true
+[alias]
+  ws = rebase --whitespace=fix
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all

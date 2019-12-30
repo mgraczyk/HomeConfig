@@ -362,6 +362,8 @@ function execute_in_all_panes {
 
 ################################################################################
 
+alias j="vim ~/journal/daily/$(date +"%Y-%m-%d")_daily.txt"
+
 [[ -r ~/.bashrc_local ]] && . ~/.bashrc_local
 
 if [ -f /usr/facebook/ops/rc/master.bashrc ]; then
