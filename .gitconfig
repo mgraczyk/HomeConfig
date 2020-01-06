@@ -7,5 +7,6 @@
 	autoStash = true
 [alias]
   ws = rebase --whitespace=fix
+  so = status -uno
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
