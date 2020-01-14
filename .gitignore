@@ -12,7 +12,6 @@ id_rsa
 
 # Specific Files and Directories
 .aws/
-.bash_history
 .bashrc_local
 .cache
 .dbus
@@ -40,6 +39,8 @@ id_rsa
 .netrc
 .gitcookies
 .Xauthority
+.xsession*
+.*_history
 .pyhistory
 .fbchef/
 .atom/
