@@ -45,6 +45,9 @@ id_rsa
 .fbchef/
 .atom/
 .android/
+.steam/
+.npm/
+.mozilla/
 dev
 
 # Random macOS dirs
