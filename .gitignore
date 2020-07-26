@@ -29,6 +29,7 @@ id_rsa
 .vim/view
 .ssh/id_rsa*
 .ssh/known_hosts
+.ssh/authorized_keys
 .swp
 .swt
 .sqlite_history
@@ -48,6 +49,7 @@ id_rsa
 .steam/
 .npm/
 .mozilla/
+.rustup/
 dev
 
 # Random macOS dirs
