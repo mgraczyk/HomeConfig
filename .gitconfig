@@ -10,3 +10,4 @@
   so = status -uno
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  amend = commit -a --amend --no-edit

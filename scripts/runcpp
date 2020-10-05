@@ -1,1 +1,2 @@
-g++ --std=c++17 $1 -O0 -g -o "$(basename $1)".out && ./"$(basename $1)".out
+g++ --std=c++17 $1 -O0 -g -fsanitize=address -o  \
+ "$(basename $1)".out && ./"$(basename $1)".out
