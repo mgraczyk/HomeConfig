@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-OD_DIR=~/.atom/ondemand
+OD_DIR=~/.ondemand
 DEVSERVER=${1:-dev}
 
 rm -rf $OD_DIR/homedir/ && \
