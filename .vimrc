@@ -220,6 +220,9 @@ nnoremap <leader>m :silent make\|redraw!\|cc<CR>
 " Run buffer with ,r
 nnoremap <leader>r :!%:p<Enter>
 
+" Save
+nnoremap <leader>w :w <CR> :bp\|bd # <CR>
+
 " https://stackoverflow.com/a/45897194/1301879
 nnoremap <leader>u a<CR><ESC>:.-1read !python -c 'from uuid import uuid4; import sys; sys.stdout.write(str(uuid4()))'<CR>I<BS><ESC>j0i<BS><ESC>l
 nnoremap <leader>U a<CR><ESC>:.-1read !python -c 'import os; from base64 import urlsafe_b64encode; import sys; sys.stdout.write(urlsafe_b64encode(os.urandom(16)).decode().rstrip("="))'<CR>I<BS><ESC>j0i<BS><ESC>l
