@@ -27,7 +27,8 @@ id_rsa
 .pki
 .viminfo
 .vim/view
-.ssh/id_rsa*
+.vim/.netrwhist
+.ssh/id*
 .ssh/known_hosts
 .ssh/authorized_keys
 .swp
@@ -50,14 +51,22 @@ id_rsa
 .npm/
 .mozilla/
 .rustup/
+.DS_Store
+.CFUserTextEncoding
+.emacs
+.profile
+.kshrc
+.cinnamon/
 dev
 
-# Random macOS dirs
+# Random macOS stuff
 Applications/
 Desktop/
 Downloads/
+Documents/
 Movies/
 Music/
 Pictures/
 Public/
 Library/
+.Trash/

@@ -1,0 +1,28 @@
+#!/usr/bin/python3
+import sys
+import json
+
+
+def convert(x, conversions):
+    # TODO: Paths.
+    if isinstance(x, dict):
+        return {
+            k: conversions[k](v)
+            if k in conversions else convert(v, conversions)
+            for k, v in x.items()
+        }
+    if isinstance(x, list):
+        return [convert(v, conversions) for v in x]
+    else:
+        return x
+
+
+def main(argv):
+    parts = [s.split("=") for s in argv]
+    conversions = {k: eval(f_name) for k, f_name in parts}
+    data = json.load(sys.stdin)
+    print(json.dumps(convert(data, conversions), separators=",:"))
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
