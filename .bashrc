@@ -144,8 +144,10 @@ if [ $(command -v rlwrap) ] ; then
   alias node='NODE_NO_READLINE=1 rlwrap node'
 fi
 
-if [ $(command -v setxkbmap) ] ; then
-  setxkbmap -option caps:escape
+if [ -n "$DISPLAY" ]; then
+  if [ $(command -v setxkbmap) ] ; then
+    setxkbmap -option caps:escape
+  fi
 fi
 
 
