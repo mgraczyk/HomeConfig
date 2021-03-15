@@ -16,6 +16,8 @@ function! SourceIfExists(file)
   endif
 endfunction
 
+call SourceIfExists("/usr/share/vim/google/google.vim")
+
 "----------------------------
 " Recommended vim settings
 
