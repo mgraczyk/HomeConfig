@@ -1,8 +1,18 @@
+$include /etc/inputrc
+
 set editing-mode vi
 $if mode=vi
 set keymap vi-command
+# these are for vi-command mode
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+j: history-search-forward
+k: history-search-backward
 "gg": beginning-of-history
 "G": end-of-history
 set keymap vi-insert
 "\C-p": history-search-backward C-L: clear-screen
+# these are for vi-insert mode
+"\e[A": history-search-backward
+"\e[B": history-search-forward
 set mark-symlinked-directories on
