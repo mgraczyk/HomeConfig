@@ -48,9 +48,6 @@ formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     argParser.add_argument('-M', '--val_max', type=float, default=255,
         help="Maximum data value.")
 
-    argParser.add_argument('-f', '--float_type', type=bool, default=None,
-        help="Maximum data value.")
-
     return argParser
 
 def main():
@@ -59,11 +56,10 @@ def main():
         sys.stderr.write("ERROR: min must be less than or equal to max\n")
         exit(1)
 
-    if args.float_type is None:
-      args.float_type = "float" in args.data_type or "double" in args.data_type
+    float_type = "float" in args.data_type or "double" in args.data_type
 
     data = generate_elements(
-        args.length, args.val_min, args.val_max, args.float_type)
+        args.length, args.val_min, args.val_max, float_type)
 
     write_array_text(sys.stdout, args.array_name, args.data_type, data)
 

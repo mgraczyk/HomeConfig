@@ -1,2 +1,0 @@
-sudo systemctl stop fbflow.service bento@mgraczyk.service vscode-daemon.service distillery-server async-distillery-server
-tw stop priv2_global/ig_testbackend/mgraczyk
