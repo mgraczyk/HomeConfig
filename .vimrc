@@ -234,6 +234,14 @@ nnoremap <leader>w :w <CR> :bp\|bd # <CR>
 nnoremap <leader>u a<CR><ESC>:.-1read !python -c 'from uuid import uuid4; import sys; sys.stdout.write(str(uuid4()))'<CR>I<BS><ESC>j0i<BS><ESC>l
 nnoremap <leader>U a<CR><ESC>:.-1read !python -c 'import os; from base64 import urlsafe_b64encode; import sys; sys.stdout.write(urlsafe_b64encode(os.urandom(16)).decode().rstrip("="))'<CR>I<BS><ESC>j0i<BS><ESC>l
 
+" delete without yanking
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+
+" replace currently selected text with default register
+" without yanking it
+vnoremap <leader>p "_dP
+
 " Format code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
