@@ -40,3 +40,6 @@
 [submodule ".vim/bundle/rust.vim"]
 	path = .vim/bundle/rust.vim
 	url = git@github.com:rust-lang/rust.vim.git
+[submodule "/home/ubuntu/.vim/pack/plugins/start/vim-gofmt"]
+	path = .vim/pack/plugins/start/vim-gofmt
+	url = https://github.com/darrikonn/vim-gofmt.git

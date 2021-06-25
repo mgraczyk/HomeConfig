@@ -244,7 +244,7 @@ vnoremap <leader>p "_dP
 
 " Format code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
+autocmd FileType go nnoremap <buffer><Leader>f :GoFmt<CR>
 autocmd FileType rust nnoremap <buffer><Leader>f :silent! RustFmt<CR>
 autocmd FileType rust vnoremap <buffer><Leader>f :silent! RustFmt<CR>
 autocmd FileType python map <buffer><Leader>f :call yapf#YAPF()<cr>
@@ -260,9 +260,11 @@ au BufRead,BufNewFile,BufEnter *.m setlocal et sw=2 ts=2 sts=2
 au BufRead,BufNewFile,BufEnter *.py setlocal et sw=2 ts=2 sts=2 textwidth=100
 au BufRead,BufNewFile,BufEnter *.pyx setlocal et sw=2 ts=2 sts=2 textwidth=100
 au BufRead,BufNewFile,BufEnter *.pxd setlocal et sw=2 ts=2 sts=2 textwidth=100
+au BufRead,BufNewFile,BufEnter *.go setlocal noet sw=4 ts=4 sts=4 textwidth=100
 
 au BufRead,BufNewFile,BufEnter **/fbsource/**.py setlocal et sw=4 ts=4 sts=4 textwidth=88
 au BufRead,BufNewFile,BufEnter **/instagram-server/**.py setlocal et sw=4 ts=4 sts=4 textwidth=88
+au BufRead,BufNewFile,BufEnter **/chia-blockchain/**.py setlocal et sw=4 ts=4 sts=4 textwidth=100
 
 au BufRead,BufNewFile,BufEnter **/exomind/**.py setlocal et sw=2 ts=2 sts=2 textwidth=120
 
