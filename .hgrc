@@ -6,3 +6,5 @@ prevent-push-dirty=false
 save = !$HG amend $@ && $HG evolve -a --no-update && $HG upload tree
 pullupdate = !$HG pull && $HG rebase -b . -d p4head && $HG evolve -a --no-update
 fixall = !tricorder analyze -fix -categories Lint
+[google]
+upload.default-rev = .
