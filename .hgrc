@@ -1,8 +1,8 @@
 [ui]
-username = Michael Graczyk <mgraczyk@fb.com>
+username = Michael Graczyk <mgraczyk@google.com>
 [trainingwheels]
 prevent-push-dirty=false
 [alias]
-save = !$HG amend $@ && $HG evolve -a --no-update && $HG uploadchain
+save = !$HG amend $@ && $HG evolve -a --no-update && $HG upload tree
 pullupdate = !$HG pull && $HG rebase -b . -d p4head && $HG evolve -a --no-update
 fixall = !tricorder analyze -fix -categories Lint
