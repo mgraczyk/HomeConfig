@@ -10,6 +10,7 @@ j: history-search-forward
 k: history-search-backward
 "gg": beginning-of-history
 "G": end-of-history
+v: ""
 set keymap vi-insert
 "\C-p": history-search-backward C-L: clear-screen
 # these are for vi-insert mode

@@ -52,7 +52,7 @@ set lazyredraw
 set undofile
 
 if has("autocmd")
-	filetype plugin indent on
+  filetype plugin indent on
 endif
 
 " Indentation settings
@@ -132,7 +132,7 @@ set sessionoptions-=options
 " Colors
 
 if has('gui_running')
-	set guioptions-=T " no toolbar
+   set guioptions-=T " no toolbar
    set guifont=Consolas
 endif
 

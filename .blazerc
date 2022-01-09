@@ -1,1 +1,2 @@
 import %workspace%/javascript/typescript/blazerc
+import %workspace%/java/com/google/android/apps/camera/tools/blazerc
