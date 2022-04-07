@@ -110,7 +110,17 @@ set -o vi
 
 # Only show 3 dirs in PS1
 export PROMPT_DIRTRIM=3
-export PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
+PS1="\[\e[0;32m\]\w\[\e[0;31m\]> \[\e[0m\]"
+PROMPT_COMMAND=__prompt_command    # Function to generate PS1 after CMDs
+
+__prompt_command() {
+    local EXIT="$?"                # This needs to be first
+    if [ $EXIT != 0 ]; then
+      PS1="\[\e[0;32m\]\w\[\e[0;31m\]> \[\e[0m\]"
+    else
+      PS1="\[\e[0;32m\]\w\[\e[0;37m\]> \[\e[0m\]"
+    fi
+}
 
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:~/scripts
 export TMP=${TMP:-/tmp}
