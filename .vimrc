@@ -24,6 +24,9 @@ call SourceIfExists("/usr/share/vim/google/google.vim")
 " Allow switching between unsaved buffers
 set hidden
 
+" Fix slow highlighting
+set re=0
+
 " Better completion
 set wildmenu
 set wildmode=list:longest
