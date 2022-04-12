@@ -24,7 +24,7 @@
 	url = https://github.com/jkaving/intellij-colors-solarized.git
 [submodule ".vim/bundle/vim-fugitive"]
 	path = .vim/bundle/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule ".matlab/solarized-matlab"]
 	path = .matlab/solarized-matlab
 	url = https://github.com/benhager/solarized-matlab.git
@@ -36,10 +36,10 @@
 	url = https://github.com/tomlion/vim-solidity.git
 [submodule ".vim/bundle/fzf.vim"]
 	path = .vim/bundle/fzf.vim
-	url = git@github.com:junegunn/fzf.vim.git
+	url = https://github.com/junegunn/fzf.vim.git
 [submodule ".vim/bundle/rust.vim"]
 	path = .vim/bundle/rust.vim
-	url = git@github.com:rust-lang/rust.vim.git
+	url = https://github.com/rust-lang/rust.vim.git
 [submodule "/home/ubuntu/.vim/pack/plugins/start/vim-gofmt"]
 	path = .vim/pack/plugins/start/vim-gofmt
 	url = https://github.com/darrikonn/vim-gofmt.git
