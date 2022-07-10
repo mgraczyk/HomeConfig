@@ -251,7 +251,8 @@ autocmd FileType go nnoremap <buffer><Leader>f :GoFmt<CR>
 autocmd FileType rust nnoremap <buffer><Leader>f :silent! RustFmt<CR>
 autocmd FileType rust vnoremap <buffer><Leader>f :silent! RustFmt<CR>
 autocmd FileType python map <buffer><Leader>f :call yapf#YAPF()<cr>
-autocmd FileType python imap <buffer><Leader>f <c-o>:call yapf#YAPF()<cr>
+autocmd FileType python nmap <buffer><Leader>f <c-o>:call yapf#YAPF()<cr>
+autocmd FileType python vmap <buffer><Leader>f <c-o>:call yapf#YAPF()<cr>
 autocmd FileType python setlocal indentkeys-=<:>
 autocmd FileType python setlocal indentkeys-=:
 
