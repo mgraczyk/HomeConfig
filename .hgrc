@@ -6,5 +6,12 @@ prevent-push-dirty=false
 save = !$HG amend $@ && $HG evolve -a --no-update && $HG upload tree
 pullupdate = !$HG pull && $HG rebase -b . -d p4head && $HG evolve -a --no-update
 fixall = !tricorder analyze -fix -categories Lint
+cont = !$HG resolve --mark && $HG continue
+[ui]
+merge = vimdiff
+[merge-tools]
+vimdiff.executable = vimdiff
+vimdiff.args = -f -d $output -M $local $base $other -c "wincmd J" -c "set modifiable" -c "set write"
+vimdiff.premerge = keep
 [google]
 upload.default-rev = .
