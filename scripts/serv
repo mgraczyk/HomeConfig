@@ -1,2 +1,8 @@
 #!/bin/sh
-python3 -m http.server $@
+if command -v webfsd &> /dev/null
+then
+  port=${1:-8000}
+  webfsd -F -r . -p $port -d -f index.html
+else
+  python3 -m http.server $@
+fi
