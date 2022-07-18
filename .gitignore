@@ -60,6 +60,10 @@ id_rsa
 .kshrc
 .cinnamon/
 dev
+.yarnrc
+.bundle/
+.keras/
+.nv 
 
 # Random macOS stuff
 Applications/
