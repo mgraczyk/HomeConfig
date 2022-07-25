@@ -372,7 +372,7 @@ fun! Align#Align(hasctrl,...) range
   if a:hasctrl && A[0] >= 1
 "   call Decho("Align! : using A[1]<".A[1]."> for AlignCtrl")
    if A[1] =~ '[gv]'
-   	let hasctrl= hasctrl + 1
+	let hasctrl= hasctrl + 1
 	call Align#AlignCtrl('m')
     call Align#AlignCtrl(A[1],A[2])
 "    call Decho("Align! : also using A[2]<".A[2]."> for AlignCtrl")
@@ -404,7 +404,7 @@ fun! Align#Align(hasctrl,...) range
 "   call Decho("A[0]=".A[0].": accepting list of separator regexp")
 
    if s:AlignCtrl =~# "="
-   	"= : consider all separators to be equivalent
+	"= : consider all separators to be equivalent
 "    call Decho("AlignCtrl: record list of equivalent alignment patterns")
     let s:AlignCtrl  = '='
     let s:AlignPat_1 = A[1 + hasctrl]

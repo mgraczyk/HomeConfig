@@ -1,14 +1,11 @@
 [submodule "scripts/.dircolors"]
 	path = scripts/.dircolors
 	url = https://github.com/seebi/dircolors-solarized.git
-[submodule ".vim/bundle/vim-pathogen"]
-	path = .vim/bundle/vim-pathogen
-	url = https://github.com/tpope/vim-pathogen.git
 [submodule ".vim/bundle/vim-colors-solarized"]
-	path = .vim/bundle/vim-colors-solarized
+	path = .vim/pack/plugins/start/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule ".vim/bundle/nerdcommenter"]
-	path = .vim/bundle/nerdcommenter
+	path = .vim/pack/plugins/start/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
 [submodule ".vim/bundle/MatchTag"]
 	path = .vim/bundle/MatchTag
@@ -23,13 +20,13 @@
 	path = .config/intellij-colors-solarized
 	url = https://github.com/jkaving/intellij-colors-solarized.git
 [submodule ".vim/bundle/vim-fugitive"]
-	path = .vim/bundle/vim-fugitive
+	path = .vim/pack/plugins/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 [submodule ".matlab/solarized-matlab"]
 	path = .matlab/solarized-matlab
 	url = https://github.com/benhager/solarized-matlab.git
 [submodule ".vim/bundle/vim-clang-format"]
-	path = .vim/bundle/vim-clang-format
+	path = .vim/pack/plugins/start/vim-clang-format
 	url = https://github.com/rhysd/vim-clang-format.git
 [submodule "/Users/mgraczyk/.vim/bundle/vim-solidity"]
 	path = /Users/mgraczyk/.vim/bundle/vim-solidity

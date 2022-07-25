@@ -1,22 +1,17 @@
-if filereadable("/usr/facebook/ops/rc/master.vimrc")
-  source /usr/facebook/ops/rc/master.vimrc
-endif
-
-" The bare necessities
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-
-filetype off
-execute pathogen#infect()
-filetype plugin on
-set nocompatible
-
 function! SourceIfExists(file)
   if filereadable(expand(a:file))
     exe 'source' a:file
   endif
 endfunction
 
+if filereadable("/usr/facebook/ops/rc/master.vimrc")
+  source /usr/facebook/ops/rc/master.vimrc
+endif
 call SourceIfExists("/usr/share/vim/google/google.vim")
+
+" Load modules.
+set nocompatible
+packloadall
 
 "----------------------------
 " Recommended vim settings

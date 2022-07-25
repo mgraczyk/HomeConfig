@@ -249,7 +249,7 @@ fun! GoWinbufnr(bufnum)
   winc t
   let first=1
   while winbufnr(0) != a:bufnum && (first || winnr() != 1)
-  	winc w
+	winc w
 	let first= 0
    endwhile
 "  call Dret("GoWinbufnr")
@@ -382,22 +382,22 @@ endfun
 
 " ---------------------------------------------------------------------
 " ListWinPosn: {{{2
-"fun! ListWinPosn()                                                        " Decho 
-"  if !exists("b:cecutil_iwinposn") || b:cecutil_iwinposn == 0             " Decho 
+"fun! ListWinPosn()                                                        " Decho
+"  if !exists("b:cecutil_iwinposn") || b:cecutil_iwinposn == 0             " Decho
 "   call Decho("nothing on SWP stack")                                     " Decho
 "  else                                                                    " Decho
-"   let jwinposn= b:cecutil_iwinposn                                       " Decho 
-"   while jwinposn >= 1                                                    " Decho 
-"    if exists("b:cecutil_winposn{jwinposn}")                              " Decho 
-"     call Decho("winposn{".jwinposn."}<".b:cecutil_winposn{jwinposn}.">") " Decho 
-"    else                                                                  " Decho 
-"     call Decho("winposn{".jwinposn."} -- doesn't exist")                 " Decho 
-"    endif                                                                 " Decho 
-"    let jwinposn= jwinposn - 1                                            " Decho 
-"   endwhile                                                               " Decho 
+"   let jwinposn= b:cecutil_iwinposn                                       " Decho
+"   while jwinposn >= 1                                                    " Decho
+"    if exists("b:cecutil_winposn{jwinposn}")                              " Decho
+"     call Decho("winposn{".jwinposn."}<".b:cecutil_winposn{jwinposn}.">") " Decho
+"    else                                                                  " Decho
+"     call Decho("winposn{".jwinposn."} -- doesn't exist")                 " Decho
+"    endif                                                                 " Decho
+"    let jwinposn= jwinposn - 1                                            " Decho
+"   endwhile                                                               " Decho
 "  endif                                                                   " Decho
-"endfun                                                                    " Decho 
-"com! -nargs=0 LWP	call ListWinPosn()                                    " Decho 
+"endfun                                                                    " Decho
+"com! -nargs=0 LWP	call ListWinPosn()                                    " Decho
 
 " ---------------------------------------------------------------------
 " SaveUserMaps: this function sets up a script-variable (s:restoremap) {{{2
@@ -450,7 +450,7 @@ fun! SaveUserMaps(mapmode,maplead,mapchx,suffix)
    endif
   endwhile
 "  call Decho("dounmap=".dounmap."  dobuffer<".dobuffer.">")
- 
+
   " save single map :...something...
   if strpart(a:mapchx,0,1) == ':'
 "   call Decho("save single map :...something...")
@@ -467,7 +467,7 @@ fun! SaveUserMaps(mapmode,maplead,mapchx,suffix)
    if dounmap
 	exe "sil! ".mapmode."unmap ".dobuffer.amap
    endif
- 
+
   " save single map <something>
   elseif strpart(a:mapchx,0,1) == '<'
 "   call Decho("save single map <something>")
@@ -484,7 +484,7 @@ fun! SaveUserMaps(mapmode,maplead,mapchx,suffix)
    if dounmap
 	exe "sil! ".mapmode."unmap ".dobuffer.amap
    endif
- 
+
   " save multiple maps
   else
 "   call Decho("save multiple maps")

@@ -159,22 +159,22 @@ fun! AlignMaps#CharJoiner(chr)
   let aline = line("'a")
   let rep   = line(".") - aline
   while rep > 0
-  	keepj norm! 'a
-  	while match(getline(aline),a:chr . "\s*$") != -1 && rep >= 0
-  	  " while = at end-of-line, delete it and join with next
-  	  keepj norm! 'a$
-  	  j!
-  	  let rep = rep - 1
-  	endwhile
-  	" update rep(eat) count
-  	let rep = rep - 1
-  	if rep <= 0
-  	  " terminate loop if at end-of-block
-  	  break
-  	endif
-  	" prepare for next line
-  	keepj norm! jma
-  	let aline = line("'a")
+	keepj norm! 'a
+	while match(getline(aline),a:chr . "\s*$") != -1 && rep >= 0
+	  " while = at end-of-line, delete it and join with next
+	  keepj norm! 'a$
+	  j!
+	  let rep = rep - 1
+	endwhile
+	" update rep(eat) count
+	let rep = rep - 1
+	if rep <= 0
+	  " terminate loop if at end-of-block
+	  break
+	endif
+	" prepare for next line
+	keepj norm! jma
+	let aline = line("'a")
   endwhile
 "  call Dret("AlignMaps#CharJoiner")
 endfun
@@ -237,7 +237,7 @@ fun! AlignMaps#Afnc()
 "   call Decho("line=".line(".")." col=".col("."))
    let parenid= synIDtrans(synID(line("."),col("."),1))
    if parenid != cmmntid && parenid != stringid
-   	break
+	break
    endif
   endwhile
   keepj norm! %my
