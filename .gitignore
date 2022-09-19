@@ -64,6 +64,15 @@ dev
 .bundle/
 .keras/
 .nv 
+.ICEauthority
+.gnome/
+.debug/
+.nvidia-settings-rc
+snap/
+.steampath
+.steampid
+.pulsecookie
+*.swp
 
 # Random macOS stuff
 Applications/
