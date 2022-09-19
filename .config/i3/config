@@ -141,9 +141,9 @@ mode "resize" {
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-}
+#bar {
+        #status_command i3status
+#}
 
 # Use tiny top bar.
 new_window 1pixel
@@ -172,3 +172,11 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 exec xmodmap -e "keycode 66 = Shift_L NoSymbol Shift_L"
+
+# Jump to chrome when opening a new tab
+# From https://www.reddit.com/r/i3wm/comments/4bveo1/jump_to_workspace_when_window_is_created/
+#for_window [urgent="latest" class="^Google-chrome$"] focus
+focus_on_window_activation focus
+
+# polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
