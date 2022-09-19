@@ -68,6 +68,8 @@ alias ll='ls -al'
 alias la='ls -A'
 alias l='ls -C'
 
+alias xclip="xclip -selection c"
+
 # dircolors on OS X
 if [ "$(uname)" == "Darwin" ]; then
     export CLICOLOR=1

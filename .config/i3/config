@@ -28,7 +28,7 @@ font pango:DejaVu Sans Mono 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+t exec uxterm
+bindsym $mod+t exec kitty
 
 
 bindsym $mod+Shift+q exec xflock4
