@@ -73,6 +73,9 @@ snap/
 .steampid
 .pulsecookie
 *.swp
+.pulse-cookie
+.conda/
+.sudo_as_admin_successful
 
 # Random macOS stuff
 Applications/
