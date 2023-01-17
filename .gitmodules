@@ -40,3 +40,6 @@
 [submodule "/home/ubuntu/.vim/pack/plugins/start/vim-gofmt"]
 	path = .vim/pack/plugins/start/vim-gofmt
 	url = https://github.com/darrikonn/vim-gofmt.git
+[submodule "/Users/mgraczyk/.vim/pack/typescript/start/typescript-vim"]
+	path = /Users/mgraczyk/.vim/pack/typescript/start/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git
