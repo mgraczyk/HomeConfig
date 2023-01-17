@@ -4,10 +4,10 @@ function! SourceIfExists(file)
   endif
 endfunction
 
-if filereadable("/usr/facebook/ops/rc/master.vimrc")
-  source /usr/facebook/ops/rc/master.vimrc
-endif
+call SourceIfExists("/usr/facebook/ops/rc/master.vimrc")
 call SourceIfExists("/usr/share/vim/google/google.vim")
+
+let mapleader = ","
 
 " Load modules.
 set nocompatible
@@ -49,9 +49,8 @@ set lazyredraw
 " undo between instances
 set undofile
 
-if has("autocmd")
-  filetype plugin indent on
-endif
+filetype plugin on
+filetype plugin indent on
 
 " Indentation settings
 set expandtab " Make sure that every file uses real tabs, not spaces
@@ -158,7 +157,6 @@ let g:tex_indent_items=0
 let g:tex_flavor='latex'
 
 "" Various Personal Remappings
-let mapleader = ","
 
 " I'll launch with "vim -E" if I want Ex mode
 nnoremap Q <nop>
@@ -240,6 +238,8 @@ vnoremap <leader>d "_d
 " without yanking it
 vnoremap <leader>p "_dP
 
+let g:typescript_compiler_binary = 'node_modules/typescript/bin/tsc'
+
 " Format code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :ClangFormat<CR>
 autocmd FileType go nnoremap <buffer><Leader>f :GoFmt<CR>
@@ -250,16 +250,21 @@ autocmd FileType python nmap <buffer><Leader>f <c-o>:call yapf#YAPF()<cr>
 autocmd FileType python vmap <buffer><Leader>f <c-o>:call yapf#YAPF()<cr>
 autocmd FileType python setlocal indentkeys-=<:>
 autocmd FileType python setlocal indentkeys-=:
+autocmd FileType solidity nnoremap <Leader>f :Prettier<CR>
+autocmd FileType javascript nnoremap <Leader>f :Prettier<CR>
+autocmd FileType typescript nnoremap <Leader>f :Prettier<CR>
 
 " Automatically reload folds
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
 
+au BufRead,BufNewFile,BufEnter * setlocal et sw=2 ts=2 sts=2
 au BufRead,BufNewFile,BufEnter *.m setlocal et sw=2 ts=2 sts=2
 au BufRead,BufNewFile,BufEnter *.py setlocal et sw=2 ts=2 sts=2 textwidth=100
 au BufRead,BufNewFile,BufEnter *.pyx setlocal et sw=2 ts=2 sts=2 textwidth=100
 au BufRead,BufNewFile,BufEnter *.pxd setlocal et sw=2 ts=2 sts=2 textwidth=100
 au BufRead,BufNewFile,BufEnter *.go setlocal noet sw=4 ts=4 sts=4 textwidth=100
+au BufRead,BufNewFile,BufEnter *.sol setlocal et sw=4 ts=4 sts=4 textwidth=100
 
 au BufRead,BufNewFile,BufEnter **/fbsource/**.py setlocal et sw=4 ts=4 sts=4 textwidth=88
 au BufRead,BufNewFile,BufEnter **/instagram-server/**.py setlocal et sw=4 ts=4 sts=4 textwidth=88
@@ -267,6 +272,4 @@ au BufRead,BufNewFile,BufEnter **/chia-blockchain/**.py setlocal et sw=4 ts=4 st
 
 au BufRead,BufNewFile,BufEnter **/exomind/**.py setlocal et sw=2 ts=2 sts=2 textwidth=120
 
-if filereadable(glob("~/.vimrc.local"))
-    source ~/.vimrc.local
-endif
+call SourceIfExists(glob("~/.vimrc.local"))
