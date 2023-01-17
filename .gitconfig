@@ -1,6 +1,6 @@
 [user]
   name = Michael Graczyk
-  email = mgraczyk@google.com
+  email = michael@mgraczyk.com
 [pull]
 	rebase = true
 [rebase]
@@ -11,5 +11,5 @@
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
   amend = commit -a --amend --no-edit
-[init]
-  defaultBranch = master
+[http]
+	cookiefile = /Users/mgraczyk/.gitcookies
