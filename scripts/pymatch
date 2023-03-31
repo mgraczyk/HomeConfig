@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+
+import sys
+import re
+
+def main(argv):
+  if len(argv) < 1:
+    print(f"Match with a python regular expression.\n\tUsage: pymatch <pattern> [file]")
+
+  pattern = argv[0]
+  if len(argv) >= 2:
+    f = open(argv[1], "r")
+  else:
+    f = sys.stdin
+
+  for line in f:
+    for m in re.findall(pattern, line):
+      print(m)
+
+if __name__ == "__main__":
+  main(sys.argv[1:])
