@@ -194,7 +194,7 @@ let g:cterm_color = {
     \ }
 
 let g:clang_format#style_options = {
-            \ "Standard" : "C++11"}
+            \ "Standard" : "C++17"}
 let g:yapf_style = "google"
 
 " map Leader-h to html-ify a given document, and Leader-H for a range
