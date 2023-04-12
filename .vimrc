@@ -196,6 +196,7 @@ let g:cterm_color = {
 let g:clang_format#style_options = {
             \ "Standard" : "C++17"}
 let g:yapf_style = "google"
+let g:black_use_virtualenv = 0
 
 " map Leader-h to html-ify a given document, and Leader-H for a range
 map <silent><Leader>h :TOhtml<CR>
@@ -230,6 +231,9 @@ nnoremap <leader>w :w <CR> :bp\|bd # <CR>
 nnoremap <leader>u a<CR><ESC>:.-1read !python -c 'from uuid import uuid4; import sys; sys.stdout.write(str(uuid4()))'<CR>I<BS><ESC>j0i<BS><ESC>l
 nnoremap <leader>U a<CR><ESC>:.-1read !python -c 'import os; from base64 import urlsafe_b64encode; import sys; sys.stdout.write(urlsafe_b64encode(os.urandom(16)).decode().rstrip("="))'<CR>I<BS><ESC>j0i<BS><ESC>l
 
+
+nnoremap <leader>i :setl noai nocin nosi inde=<CR>
+
 " delete without yanking
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
@@ -245,14 +249,14 @@ autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :ClangFormat<CR>
 autocmd FileType go nnoremap <buffer><Leader>f :GoFmt<CR>
 autocmd FileType rust nnoremap <buffer><Leader>f :silent! RustFmt<CR>
 autocmd FileType rust vnoremap <buffer><Leader>f :silent! RustFmt<CR>
-autocmd FileType python map <buffer><Leader>f :call yapf#YAPF()<cr>
-autocmd FileType python nmap <buffer><Leader>f <c-o>:call yapf#YAPF()<cr>
-autocmd FileType python vmap <buffer><Leader>f <c-o>:call yapf#YAPF()<cr>
+autocmd FileType python nnoremap <leader>f :Black<Cr>
+autocmd FileType python vnoremap <leader>f :0,$!Black<Cr>
 autocmd FileType python setlocal indentkeys-=<:>
 autocmd FileType python setlocal indentkeys-=:
 autocmd FileType solidity nnoremap <Leader>f :Prettier<CR>
 autocmd FileType javascript nnoremap <Leader>f :Prettier<CR>
 autocmd FileType typescript nnoremap <Leader>f :Prettier<CR>
+autocmd FileType python setlocal formatoptions=crnqj
 
 " Automatically reload folds
 au BufWinLeave ?* mkview
