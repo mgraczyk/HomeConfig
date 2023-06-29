@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+
+import os
+import io
+import sys
+import argparse
+import sys
+import numpy as np
+import matplotlib
+from matplotlib import pyplot as plt
+
+def get_arg_parser():
+  parser = argparse.ArgumentParser(
+      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+
+  parser.add_argument(
+      "npy_path", help="The path to the npy to plot.")
+
+  parser.add_argument(
+      "output_path", nargs="?", default=None, help="Where to write the image.")
+
+  parser.add_argument(
+      "--log", default=False, action="store_true", help="Plot the log of the function.")
+
+  parser.add_argument(
+      "--white_level", default=None, help="The path to the npy to plot.")
+
+  return parser
+
+def main(argv):
+  opts = get_arg_parser().parse_args(argv[1:])
+
+  array = np.load(opts.npy_path)
+  if opts.log:
+    array = np.log(array)
+
+  print(array.shape)
+  if len(array.shape) == 2:
+    array = array[None, ...]
+
+  array = np.moveaxis(array, 1, 2)
+  array = array[..., ::-1]
+  print(array.shape)
+  if opts.white_level is None:
+    white_level = np.max(array)
+  else:
+    white_level = opts.white_level
+
+  num_channels = array.shape[0]
+  if num_channels == 4:
+    fig, axes = plt.subplots(2, 2)
+    axes = axes.flatten()
+  else:
+    fig, axes = plt.subplots(array.shape[0], 1)
+
+  try:
+    iter(axes)
+  except Exception:
+    axes = axes,
+
+  for c, ax in enumerate(axes):
+    ax.imshow(array[c, ...] / white_level, label=f"")
+    ax.title.set_text(f"Channel {c}")
+
+
+  if opts.output_path is None:
+    if sys.stdout.isatty():
+      raise Exception("Refusing to dump image bytes to tty")
+    output_path = "/dev/stdout"
+  else:
+    output_path = opts.output_path
+  output_path = os.path.expanduser(output_path)
+
+  if output_path == "/dev/stdout":
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png')
+    buf.seek(0)
+    sys.stdout.buffer.write(buf.getvalue())
+    sys.stdout.flush()
+  else:
+    fig.savefig(output_path, format='png')
+
+if __name__ == "__main__":
+  main(sys.argv)

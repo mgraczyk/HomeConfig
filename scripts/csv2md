@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+import csv
+import sys
+
+# Read the CSV string from stdin
+csv_string = sys.stdin.read()
+
+# Parse the CSV data into a list of rows
+rows = list(csv.reader(csv_string.splitlines()))
+
+# Determine the maximum length of each column
+col_widths = [max(len(str(cell)) for cell in col) for col in zip(*rows)]
+
+# Generate the markdown table
+output = "| " + " | ".join("{cell:<{width}}".format(cell=rows[0][i], width=col_widths[i]) for i in range(len(rows[0]))) + " |\n"
+output += "| " + " | ".join("{cell:<{width}}".format(cell="---", width=col_widths[i]) for i in range(len(rows[0]))) + " |\n"
+for row in rows[1:]:
+    output += "| " + " | ".join("{cell:<{width}}".format(cell=row[i], width=col_widths[i]) for i in range(len(row))) + " |\n"
+
+# Output the markdown table
+print(output)
