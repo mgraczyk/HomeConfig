@@ -6,6 +6,7 @@ import re
 def main(argv):
   if len(argv) < 1:
     print(f"Match with a python regular expression.\n\tUsage: pymatch <pattern> [file]")
+    return
 
   pattern = argv[0]
   if len(argv) >= 2:
