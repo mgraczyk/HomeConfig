@@ -198,6 +198,15 @@ let g:clang_format#style_options = {
 let g:yapf_style = "google"
 let g:black_use_virtualenv = 0
 
+let g:ale_fixers = {
+\  'javascript': ['prettier', 'eslint'],
+\  'python': ['reorder-python-imports', 'pycln', 'pyflyby', 'ruff'],
+\}
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'python': ['pyright', 'ruff'],
+\}
+
 " map Leader-h to html-ify a given document, and Leader-H for a range
 map <silent><Leader>h :TOhtml<CR>
 
@@ -244,6 +253,11 @@ vnoremap <leader>p "_dP
 
 let g:typescript_compiler_binary = 'node_modules/typescript/bin/tsc'
 
+augroup SyntaxSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.tsx set filetype=typescript
+augroup END
+
 " Format code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :ClangFormat<CR>
 autocmd FileType go nnoremap <buffer><Leader>f :GoFmt<CR>
@@ -251,6 +265,7 @@ autocmd FileType rust nnoremap <buffer><Leader>f :silent! RustFmt<CR>
 autocmd FileType rust vnoremap <buffer><Leader>f :silent! RustFmt<CR>
 autocmd FileType python nnoremap <leader>f :Black<Cr>
 autocmd FileType python vnoremap <leader>f :0,$!Black<Cr>
+autocmd FileType python nnoremap <leader>F :ALEFix<Cr>
 autocmd FileType python setlocal indentkeys-=<:>
 autocmd FileType python setlocal indentkeys-=:
 autocmd FileType solidity nnoremap <Leader>f :Prettier<CR>

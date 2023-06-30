@@ -7,7 +7,8 @@ from matplotlib import pyplot as plt
 
 if __name__ == '__main__':
     for data in sys.argv[1:]:
-        values = np.fromstring(data, sep=',')
+        values = [v for v in np.fromstring(data, sep=',') if v < 1000]
+        # values = np.log10(np.fromstring(data, sep=','))
         plt.plot(values)
 
     plt.show()
