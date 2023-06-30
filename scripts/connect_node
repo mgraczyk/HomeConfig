@@ -1,0 +1,37 @@
+#!/bin/sh
+instance_id=i-0c2c5abba06cb97ca
+
+started=0
+
+while true; do
+
+aws ec2 describe-instance-status --instance-ids ${instance_id} | jq -r '.InstanceStatuses[0].InstanceState.Name' | grep running
+result=$?
+
+if [ $result -eq 0 ] ; then
+	break
+fi
+
+
+if [ $started -eq 0 ] ; then
+	aws ec2 start-instances \
+		--instance-ids ${instance_id}
+	started=1
+fi
+
+echo waiting for startup
+sleep 5
+
+done
+
+echo started
+
+
+ip_address=$(aws ec2 describe-instances \
+	--filters \
+	"Name=instance-state-name,Values=running" \
+	"Name=instance-id,Values=${instance_id}" \
+	--query 'Reservations[*].Instances[*].[PublicIpAddress]' \
+	--output text)
+
+mosh --ssh="ssh -i ~/.ssh/chia.pem -o StrictHostKeyChecking=no" ubuntu@"${ip_address}"

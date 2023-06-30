@@ -1,0 +1,12 @@
+ssh-keygen -t ed25519 -C "michael@mgraczyk.com"
+eval "$(ssh-agent -s)"
+touch ~/.ssh/config
+
+cat >> ~/.ssh/config <<EOF
+Host *github*
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+EOF
+
+ssh-add -K ~/.ssh/id_ed25519
