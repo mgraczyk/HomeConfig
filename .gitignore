@@ -76,6 +76,7 @@ snap/
 .pulse-cookie
 .conda/
 .sudo_as_admin_successful
+.nvm/
 
 # Random macOS stuff
 Applications/
