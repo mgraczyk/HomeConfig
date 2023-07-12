@@ -32,6 +32,7 @@ id_rsa
 .ssh/known_hosts
 .ssh/authorized_keys
 .ssh/sk-passwords
+.ssh/google_compute*
 .sso/
 .swp
 .swt
