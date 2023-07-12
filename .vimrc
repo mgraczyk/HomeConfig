@@ -253,10 +253,12 @@ vnoremap <leader>p "_dP
 
 let g:typescript_compiler_binary = 'node_modules/typescript/bin/tsc'
 
-augroup SyntaxSettings
-    autocmd!
-    autocmd BufNewFile,BufRead *.tsx set filetype=typescript
+augroup ReactFiletypes
+  autocmd!
+  autocmd BufRead,BufNewFile *.jsx set filetype=javascriptreact
+  autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact
 augroup END
+
 
 " Format code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :ClangFormat<CR>
@@ -271,6 +273,9 @@ autocmd FileType python setlocal indentkeys-=:
 autocmd FileType solidity nnoremap <Leader>f :Prettier<CR>
 autocmd FileType javascript nnoremap <Leader>f :Prettier<CR>
 autocmd FileType typescript nnoremap <Leader>f :Prettier<CR>
+autocmd FileType typescriptreact nnoremap <Leader>f :Prettier<CR>
+autocmd FileType json nnoremap <Leader>f :Prettier<CR>
+autocmd FileType jsonc nnoremap <Leader>f :Prettier<CR>
 autocmd FileType python setlocal formatoptions=crnqj
 
 " Automatically reload folds
