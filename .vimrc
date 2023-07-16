@@ -167,6 +167,13 @@ set number
 highlight clear CursorLineNR
 highlight CursorLineNR term=bold cterm=bold ctermfg=012 gui=bold
 
+" Show error signs in the number row to avoid resizing on error.
+" Also could use 'yes' to always show the column.
+set signcolumn=number
+
+" Run plugins faster than the default of 4000ms after typing stops.
+set updatetime=1000
+
 let g:tex_indent_items=0
 let g:tex_flavor='latex'
 
