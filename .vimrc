@@ -47,7 +47,21 @@ set ttyfast
 set lazyredraw
 
 " undo between instances
+"
+" Let's save undo info!
+if !isdirectory($HOME."/.vim")
+  call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/undo")
+  call mkdir($HOME."/.vim/undo", "", 0700)
+endif
+set undodir=~/.vim/undo/
 set undofile
+
+if !isdirectory($HOME."/.vim/backup")
+  call mkdir($HOME."/.vim/backup", "", 0700)
+endif
+set backupdir=~/.vim/backup/
 
 filetype plugin on
 filetype plugin indent on
