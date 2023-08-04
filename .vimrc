@@ -216,7 +216,6 @@ let g:cterm_color = {
 
 let g:clang_format#style_options = {
             \ "Standard" : "C++17"}
-let g:yapf_style = "google"
 let g:black_use_virtualenv = 0
 
 let g:ale_fixers = {
