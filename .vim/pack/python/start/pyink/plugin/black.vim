@@ -21,7 +21,7 @@ endif
 
 if v:version < 700 || !has('python3')
     func! __BLACK_MISSING()
-        echo "The black.vim plugin requires vim7.0+ with Python 3.6 support."
+        echo "The black.vim plugin requires vim7.0+ with Python 3.8 support."
     endfunc
     command! Black :call __BLACK_MISSING()
     command! BlackUpgrade :call __BLACK_MISSING()
@@ -72,9 +72,6 @@ endif
 
 function BlackComplete(ArgLead, CmdLine, CursorPos)
   return [
-\    'target_version=py27',
-\    'target_version=py36',
-\    'target_version=py37',
 \    'target_version=py38',
 \    'target_version=py39',
 \    'target_version=py310',
