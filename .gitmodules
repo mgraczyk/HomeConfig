@@ -55,3 +55,6 @@
 [submodule ".vim/pack/github/start/copilot.vim"]
 	path = .vim/pack/github/start/copilot.vim
 	url = https://github.com/github/copilot.vim
+[submodule ".config/i3/i3-chrome-tab-dragging"]
+	path = .config/i3/i3-chrome-tab-dragging
+	url = git@github.com:Syphdias/i3-chrome-tab-dragging.git
