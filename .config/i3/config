@@ -171,6 +171,9 @@ focus_on_window_activation focus
 # polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
+# Fix chrome tab dragging
+exec_always --no-startup-id ~/.config/i3/i3-chrome-tab-dragging/i3-chrome-tab-dragging.py
+
 # Screenshots
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date).png"
 bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).png"
