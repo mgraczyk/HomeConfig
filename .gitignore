@@ -78,6 +78,9 @@ snap/
 .conda/
 .sudo_as_admin_successful
 .nvm/
+.npm-global/
+.google-cloud-sdk/
+.thunderbird/
 
 # Random macOS stuff
 Applications/
