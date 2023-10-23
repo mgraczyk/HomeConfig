@@ -81,6 +81,10 @@ snap/
 .npm-global/
 .google-cloud-sdk/
 .thunderbird/
+.terraform.d/
+.ssh/*id_*
+.docker/
+.vscode/
 
 # Random macOS stuff
 Applications/
