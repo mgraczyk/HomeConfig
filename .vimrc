@@ -220,10 +220,12 @@ let g:black_use_virtualenv = 0
 
 let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
-\  'python': ['reorder-python-imports', 'pycln', 'pyflyby', 'ruff'],
+\  'typescript': ['prettier', 'eslint'],
+\  'python': ['reorder-python-imports', 'ruff'],
 \}
 let g:ale_linters = {
 \   'javascript': ['eslint'],
+\   'typescript': ['eslint', 'tsserver'],
 \   'python': ['pyright', 'ruff'],
 \}
 
