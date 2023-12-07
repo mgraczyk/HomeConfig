@@ -274,6 +274,7 @@ vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
 
 let g:typescript_compiler_binary = 'node_modules/typescript/bin/tsc'
+let g:black_virtualenv = "~/.vim/.venv"
 
 augroup ReactFiletypes
   autocmd!

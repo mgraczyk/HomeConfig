@@ -33,6 +33,29 @@ FLAGS = [
   Flag(name="preview", cast=strtobool),
 ]
 
+
+def _get_virtualenv_site_packages(venv_path, pyver):
+  if sys.platform[:3] == "win":
+    return venv_path / 'Lib' / 'site-packages'
+  return venv_path / 'lib' / f'python{pyver[0]}.{pyver[1]}' / 'site-packages'
+
+def _initialize_black_env():
+  pyver = sys.version_info[:3]
+  if pyver < (3, 8):
+    print("Sorry, Black requires Python 3.8+ to run.")
+    return False
+
+  from pathlib import Path
+  import venv
+  virtualenv_path = Path(vim.eval("g:black_virtualenv")).expanduser()
+  virtualenv_site_packages = str(_get_virtualenv_site_packages(virtualenv_path, pyver))
+  if virtualenv_site_packages not in sys.path:
+    sys.path.insert(0, virtualenv_site_packages)
+  return True
+
+if not _initialize_black_env():
+  raise Exception("Black initialization failed")
+
 import pyink as black
 import time
 
