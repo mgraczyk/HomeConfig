@@ -129,7 +129,7 @@ def get_configs():
 
 
 def BlackUpgrade():
-  _initialize_black_env(upgrade=True)
+  raise NotImplementedError("BlackUpgrade is not implemented yet")
 
 def BlackVersion():
   print(f'Black, version {black.__version__} on Python {sys.version}.')
