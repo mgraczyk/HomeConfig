@@ -242,7 +242,7 @@ nnoremap <Leader>n iMichael Graczyk<Esc>
 nnoremap <Leader>N imgraczyk<Esc>
 
 " Toggle paste and line numbers
-nnoremap <Leader>p :set invpaste paste?<CR>
+nnoremap <Leader>p :set invpaste paste?<CR>:set expandtab<CR>:set paste?<CR>
 nnoremap <Leader>l :set invnumber invrelativenumber<CR>
 
 " Toggle hex view
