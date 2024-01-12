@@ -85,6 +85,16 @@ snap/
 .ssh/*id_*
 .docker/
 .vscode/
+.cursor/
+.cursor-tutor/
+.bigqueryrc/
+.aztfexport/
+.vim/.venv/
+.vim/undo/
+.matplotlib/
+.cloudflared/
+.bigqueryrc
+.pnpm-state/
 
 # Random macOS stuff
 Applications/
