@@ -274,7 +274,6 @@ vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
 
 let g:typescript_compiler_binary = 'node_modules/typescript/bin/tsc'
-let g:black_virtualenv = "~/.vim/.venv"
 
 augroup ReactFiletypes
   autocmd!
@@ -282,15 +281,15 @@ augroup ReactFiletypes
   autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact
 augroup END
 
+augroup PrettierFileDetect
+  autocmd BufNewFile,BufReadPost tsconfig.json setfiletype jsonc
+augroup end
 
 " Format code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :ClangFormat<CR>
 autocmd FileType go nnoremap <buffer><Leader>f :GoFmt<CR>
 autocmd FileType rust nnoremap <buffer><Leader>f :silent! RustFmt<CR>
 autocmd FileType rust vnoremap <buffer><Leader>f :silent! RustFmt<CR>
-autocmd FileType python nnoremap <leader>f :Black<Cr>
-autocmd FileType python vnoremap <leader>f :0,$!Black<Cr>
-autocmd FileType python nnoremap <leader>F :ALEFix<Cr>
 autocmd FileType python setlocal indentkeys-=<:>
 autocmd FileType python setlocal indentkeys-=:
 autocmd FileType solidity nnoremap <Leader>f :Prettier<CR>
@@ -300,6 +299,11 @@ autocmd FileType typescriptreact nnoremap <Leader>f :Prettier<CR>
 autocmd FileType json nnoremap <Leader>f :Prettier<CR>
 autocmd FileType jsonc nnoremap <Leader>f :Prettier<CR>
 autocmd FileType python setlocal formatoptions=crnqj
+autocmd FileType terraform nnoremap <Leader>f :!terraform fmt<CR>
+autocmd FileType python nnoremap <leader>f :ALEFix<Cr>
+autocmd FileType python nnoremap <leader>F :ALEFix<Cr>
+autocmd FileType python vnoremap <leader>f :ALEFix<Cr>
+autocmd FileType python vnoremap <leader>F :ALEFix<Cr>
 
 " Automatically reload folds
 au BufWinLeave ?* mkview
