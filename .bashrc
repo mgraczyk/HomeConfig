@@ -19,8 +19,8 @@ export TERM=xterm-256color
 # don't put duplicate lines or lines starting with space in the history.
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 export HISTCONTROL=ignoreboth
-export HISTSIZE=5000
-export HISTFILESIZE=10000
+export HISTSIZE=50000
+export HISTFILESIZE=100000
 export HISTTIMEFORMAT="[%F %T] "
 HOSTNAME="$(hostname)"
 HOSTNAME_SHORT="${HOSTNAME%%.*}"
