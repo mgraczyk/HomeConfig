@@ -84,21 +84,21 @@ Rxvt.antialias: true
 Rxvt.rgba: rgb
 Rxvt.hinting: true
 Rxvt.hintstyle: hintfull
+
 URxvt.font:"Cascadia Code":size=11
 URxvt.antialias: true
 URxvt.rgba: rgb
 URxvt.hinting: true
 URxvt.hintstyle: hintfull
+URxvt.urgentOnBell: true
+URxvt.scrollBar: false
+URxvt.perl-ext:
+URxvt.perl-ext-common:
+
 xterm.antialias: true
 xterm.rgba: rgb
 xterm.hinting: true
 xterm.hintstyle: hintfull
-
-URxvt.urgentOnBell: true
-URxvt.scrollBar: false
-
-URxvt.perl-ext:
-URxvt.perl-ext-common:
 
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
