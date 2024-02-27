@@ -216,12 +216,12 @@ let g:cterm_color = {
 
 let g:clang_format#style_options = {
             \ "Standard" : "C++17"}
-let g:black_use_virtualenv = 0
 
 let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
 \  'typescript': ['prettier', 'eslint'],
-\  'python': ['reorder-python-imports', 'ruff'],
+\  'python': ['reorder-python-imports', 'ruff', 'ruff_format'],
+\  'html': ['prettier'],
 \}
 let g:ale_linters = {
 \   'javascript': ['eslint'],
