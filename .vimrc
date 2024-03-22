@@ -7,6 +7,8 @@ endfunction
 call SourceIfExists("/usr/facebook/ops/rc/master.vimrc")
 call SourceIfExists("/usr/share/vim/google/google.vim")
 
+let g:ale_completion_enabled = 1
+
 let mapleader = ","
 
 " Load modules.
@@ -214,20 +216,23 @@ let g:cterm_color = {
     \   12: "#839496", 13: "#6c71c4", 14: "#93a1a1", 15: "#fdf6e3"
     \ }
 
-let g:clang_format#style_options = {
-            \ "Standard" : "C++17"}
-
 let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint'],
 \  'typescript': ['prettier', 'eslint'],
-\  'python': ['reorder-python-imports', 'ruff', 'ruff_format'],
+\  'python': ['ruff', 'ruff_format'],
 \  'html': ['prettier'],
+\  'c': ['clang-format'],
+\  'cpp': ['clang-format'],
 \}
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint', 'tsserver'],
 \   'python': ['pyright', 'ruff'],
+\   'c': [],
+\   'cpp': [],
 \}
+
+let g:ale_c_clangformat_use_local_file = 1
 
 " map Leader-h to html-ify a given document, and Leader-H for a range
 map <silent><Leader>h :TOhtml<CR>
@@ -273,6 +278,9 @@ vnoremap <leader>d "_d
 " without yanking it
 vnoremap <leader>p "_dP
 
+nnoremap <leader>g :ALEGoToDefinition<CR>
+nnoremap <leader>s :ALEFindReferences<CR>
+
 let g:typescript_compiler_binary = 'node_modules/typescript/bin/tsc'
 
 augroup ReactFiletypes
@@ -286,7 +294,7 @@ augroup PrettierFileDetect
 augroup end
 
 " Format code
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :ClangFormat<CR>
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :ALEFix<CR>
 autocmd FileType go nnoremap <buffer><Leader>f :GoFmt<CR>
 autocmd FileType rust nnoremap <buffer><Leader>f :silent! RustFmt<CR>
 autocmd FileType rust vnoremap <buffer><Leader>f :silent! RustFmt<CR>
