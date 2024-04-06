@@ -95,6 +95,8 @@ snap/
 .cloudflared/
 .bigqueryrc
 .pnpm-state/
+.ssr/
+Videos/
 
 # Random macOS stuff
 Applications/
