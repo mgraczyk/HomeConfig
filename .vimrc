@@ -294,24 +294,17 @@ augroup PrettierFileDetect
 augroup end
 
 " Format code
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :ALEFix<CR>
 autocmd FileType go nnoremap <buffer><Leader>f :GoFmt<CR>
 autocmd FileType rust nnoremap <buffer><Leader>f :silent! RustFmt<CR>
 autocmd FileType rust vnoremap <buffer><Leader>f :silent! RustFmt<CR>
 autocmd FileType python setlocal indentkeys-=<:>
 autocmd FileType python setlocal indentkeys-=:
-autocmd FileType solidity nnoremap <Leader>f :Prettier<CR>
-autocmd FileType javascript nnoremap <Leader>f :Prettier<CR>
-autocmd FileType typescript nnoremap <Leader>f :Prettier<CR>
-autocmd FileType typescriptreact nnoremap <Leader>f :Prettier<CR>
-autocmd FileType json nnoremap <Leader>f :Prettier<CR>
-autocmd FileType jsonc nnoremap <Leader>f :Prettier<CR>
 autocmd FileType python setlocal formatoptions=crnqj
 autocmd FileType terraform nnoremap <Leader>f :!terraform fmt<CR>
-autocmd FileType python nnoremap <leader>f :ALEFix<Cr>
-autocmd FileType python nnoremap <leader>F :ALEFix<Cr>
-autocmd FileType python vnoremap <leader>f :ALEFix<Cr>
-autocmd FileType python vnoremap <leader>F :ALEFix<Cr>
+autocmd FileType c,cpp,objc,python,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>f :ALEFix<Cr>
+autocmd FileType c,cpp,objc,python,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>F :ALEFix<Cr>
+autocmd FileType c,cpp,objc,python,json,jsonc,javascript,typescript,typescriptreact,solidity vnoremap <leader>f :ALEFix<Cr>
+autocmd FileType c,cpp,objc,python,json,jsonc,javascript,typescript,typescriptreact,solidity vnoremap <leader>F :ALEFix<Cr>
 
 " Automatically reload folds
 au BufWinLeave ?* mkview
