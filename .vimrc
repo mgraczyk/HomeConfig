@@ -300,7 +300,7 @@ autocmd FileType rust vnoremap <buffer><Leader>f :silent! RustFmt<CR>
 autocmd FileType python setlocal indentkeys-=<:>
 autocmd FileType python setlocal indentkeys-=:
 autocmd FileType python setlocal formatoptions=crnqj
-autocmd FileType terraform nnoremap <Leader>f :!terraform fmt<CR>
+autocmd FileType terraform nnoremap <Leader>f :%!terraform fmt -<CR>
 autocmd FileType c,cpp,objc,python,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>f :ALEFix<Cr>
 autocmd FileType c,cpp,objc,python,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>F :ALEFix<Cr>
 autocmd FileType c,cpp,objc,python,json,jsonc,javascript,typescript,typescriptreact,solidity vnoremap <leader>f :ALEFix<Cr>
