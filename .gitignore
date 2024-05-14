@@ -96,7 +96,18 @@ snap/
 .bigqueryrc
 .pnpm-state/
 .ssr/
+.streamlit/
+.mongodb/
+.leon/
+.wasmer/
+.yarn/
+.bash_sessions/
+.azure/
+.gnupg/
+.inshellisense/
 Videos/
+*.png
+*.json
 
 # Random macOS stuff
 Applications/
