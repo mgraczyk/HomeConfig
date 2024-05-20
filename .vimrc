@@ -217,16 +217,18 @@ let g:cterm_color = {
     \ }
 
 let g:ale_fixers = {
-\  'javascript': ['prettier', 'eslint'],
-\  'typescript': ['prettier', 'eslint'],
+\  'javascript': ['eslint'],
+\  'typescript': ['eslint'],
+\  'typescriptreact': ['eslint'],
 \  'python': ['ruff', 'ruff_format'],
-\  'html': ['prettier'],
+\  'html': [],
 \  'c': ['clang-format'],
 \  'cpp': ['clang-format'],
 \}
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint', 'tsserver'],
+\   'typescriptreact': ['eslint', 'tsserver'],
 \   'python': ['pyright', 'ruff'],
 \   'c': [],
 \   'cpp': [],
@@ -282,6 +284,7 @@ nnoremap <leader>g :ALEGoToDefinition<CR>
 nnoremap <leader>s :ALEFindReferences<CR>
 
 let g:typescript_compiler_binary = 'node_modules/typescript/bin/tsc'
+let g:prettier#exec_cmd_async = 1
 
 augroup ReactFiletypes
   autocmd!
@@ -301,10 +304,15 @@ autocmd FileType python setlocal indentkeys-=<:>
 autocmd FileType python setlocal indentkeys-=:
 autocmd FileType python setlocal formatoptions=crnqj
 autocmd FileType terraform nnoremap <Leader>f :%!terraform fmt -<CR>
-autocmd FileType c,cpp,objc,python,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>f :ALEFix<Cr>
-autocmd FileType c,cpp,objc,python,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>F :ALEFix<Cr>
-autocmd FileType c,cpp,objc,python,json,jsonc,javascript,typescript,typescriptreact,solidity vnoremap <leader>f :ALEFix<Cr>
-autocmd FileType c,cpp,objc,python,json,jsonc,javascript,typescript,typescriptreact,solidity vnoremap <leader>F :ALEFix<Cr>
+autocmd FileType c,cpp,objc,python nnoremap <leader>f :ALEFix<Cr>
+autocmd FileType c,cpp,objc,python nnoremap <leader>F :ALEFix<Cr>
+autocmd FileType c,cpp,objc,python vnoremap <leader>f :ALEFix<Cr>
+autocmd FileType c,cpp,objc,python vnoremap <leader>F :ALEFix<Cr>
+
+autocmd FileType html,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>f :Prettier<Cr>
+autocmd FileType html,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>F :Prettier<Cr>
+autocmd FileType html,json,jsonc,javascript,typescript,typescriptreact,solidity vnoremap <leader>f :Prettier<Cr>
+autocmd FileType html,json,jsonc,javascript,typescript,typescriptreact,solidity vnoremap <leader>F :Prettier<Cr>
 
 " Automatically reload folds
 au BufWinLeave ?* mkview

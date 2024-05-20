@@ -52,3 +52,6 @@
 [submodule ".vim/pack/plugins/start/vim-terraform"]
 	path = .vim/pack/plugins/start/vim-terraform
 	url = git@github.com:hashivim/vim-terraform.git
+[submodule ".vim/pack/plugins/start/vim-prettier"]
+	path = .vim/pack/plugins/start/vim-prettier
+	url = https://github.com/prettier/vim-prettier
