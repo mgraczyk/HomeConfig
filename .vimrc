@@ -155,6 +155,7 @@ if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
 endif
 
 set background=dark
+set termguicolors
 let g:solarized_italic = 1
 colorscheme solarized
 

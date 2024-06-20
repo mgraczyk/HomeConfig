@@ -1,9 +1,6 @@
 [submodule "scripts/.dircolors"]
 	path = scripts/.dircolors
 	url = https://github.com/seebi/dircolors-solarized.git
-[submodule ".vim/bundle/vim-colors-solarized"]
-	path = .vim/pack/plugins/start/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule ".vim/bundle/nerdcommenter"]
 	path = .vim/pack/plugins/start/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
@@ -55,3 +52,6 @@
 [submodule ".vim/pack/plugins/start/vim-prettier"]
 	path = .vim/pack/plugins/start/vim-prettier
 	url = https://github.com/prettier/vim-prettier
+[submodule ".vim/pack/plugins/start/vim-solarized"]
+	path = .vim/pack/plugins/start/vim-solarized
+	url = git@github.com:ericbn/vim-solarized.git
