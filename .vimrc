@@ -223,6 +223,7 @@ let g:ale_fixers = {
 \  'typescriptreact': ['eslint'],
 \  'python': ['ruff', 'ruff_format'],
 \  'html': [],
+\  'xml': ['xmllint'],
 \  'c': ['clang-format'],
 \  'cpp': ['clang-format'],
 \}
@@ -305,10 +306,10 @@ autocmd FileType python setlocal indentkeys-=<:>
 autocmd FileType python setlocal indentkeys-=:
 autocmd FileType python setlocal formatoptions=crnqj
 autocmd FileType terraform nnoremap <Leader>f :%!terraform fmt -<CR>
-autocmd FileType c,cpp,objc,python nnoremap <leader>f :ALEFix<Cr>
-autocmd FileType c,cpp,objc,python nnoremap <leader>F :ALEFix<Cr>
-autocmd FileType c,cpp,objc,python vnoremap <leader>f :ALEFix<Cr>
-autocmd FileType c,cpp,objc,python vnoremap <leader>F :ALEFix<Cr>
+autocmd FileType xml,c,cpp,objc,python nnoremap <leader>f :ALEFix<Cr>
+autocmd FileType xml,c,cpp,objc,python nnoremap <leader>F :ALEFix<Cr>
+autocmd FileType xml,c,cpp,objc,python vnoremap <leader>f :ALEFix<Cr>
+autocmd FileType xml,c,cpp,objc,python vnoremap <leader>F :ALEFix<Cr>
 
 autocmd FileType html,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>f :Prettier<Cr>
 autocmd FileType html,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>F :Prettier<Cr>
