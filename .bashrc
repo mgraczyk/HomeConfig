@@ -69,6 +69,8 @@ alias la='ls -A'
 alias l='ls -C'
 
 alias xclip="xclip -selection c"
+amend="commit -a --amend --no-edit"
+gcm="git commit -m"
 
 # dircolors on OS X
 if [ "$(uname)" == "Darwin" ]; then
