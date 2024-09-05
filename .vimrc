@@ -248,8 +248,8 @@ map <silent><Leader>j :%!python3 -mjson.tool<CR><CR>
 map <silent><Leader>J :%s/[\n \t]\+//<CR>
 
 " n is name
-nnoremap <Leader>n iMichael Graczyk<Esc>
-nnoremap <Leader>N imgraczyk<Esc>
+nnoremap <Leader>n aMichael Graczyk<Esc>
+nnoremap <Leader>N amgraczyk<Esc>
 
 " Toggle paste and line numbers
 nnoremap <Leader>p :set invpaste paste?<CR>:set expandtab<CR>:set paste?<CR>
