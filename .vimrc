@@ -226,6 +226,7 @@ let g:ale_fixers = {
 \  'xml': ['xmllint'],
 \  'c': ['clang-format'],
 \  'cpp': ['clang-format'],
+\  'toml': ['dprint'],
 \}
 let g:ale_linters = {
 \   'javascript': ['eslint'],
