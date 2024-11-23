@@ -1,6 +1,7 @@
 [user]
   name = Michael Graczyk
   email = michael@mgraczyk.com
+  signingkey = 05B3B5CA47E136A1
 [pull]
 	rebase = true
 [rebase]
@@ -11,6 +12,7 @@
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
   amend = commit -a --amend --no-edit
+  ls-u = diff --name-only --diff-filter=U
 [http]
 	cookiefile = /Users/mgraczyk/.gitcookies
 [filter "lfs"]
