@@ -227,6 +227,8 @@ let g:ale_fixers = {
 \  'c': ['clang-format'],
 \  'cpp': ['clang-format'],
 \  'toml': ['dprint'],
+\  'json': ['pretter'],
+\  'jsonl': ['pretter'],
 \}
 let g:ale_linters = {
 \   'javascript': ['eslint'],
@@ -313,9 +315,9 @@ autocmd FileType xml,c,cpp,objc,python vnoremap <leader>f :ALEFix<Cr>
 autocmd FileType xml,c,cpp,objc,python vnoremap <leader>F :ALEFix<Cr>
 
 autocmd FileType html,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>f :Prettier<Cr>
-autocmd FileType html,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>F :Prettier<Cr>
+autocmd FileType html,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>F :ALEFix<Cr>
 autocmd FileType html,json,jsonc,javascript,typescript,typescriptreact,solidity vnoremap <leader>f :Prettier<Cr>
-autocmd FileType html,json,jsonc,javascript,typescript,typescriptreact,solidity vnoremap <leader>F :Prettier<Cr>
+autocmd FileType html,json,jsonc,javascript,typescript,typescriptreact,solidity vnoremap <leader>F :ALEFix<Cr>
 
 " Automatically reload folds
 au BufWinLeave ?* mkview
