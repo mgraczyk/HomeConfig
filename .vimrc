@@ -109,7 +109,13 @@ set nomodeline
 set ignorecase
 set smartcase
 
-set clipboard=unnamedplus
+if has('unix')
+  if has('mac')
+    " Nothing
+  else
+    set clipboard=unnamedplus
+  endif
+endif
 
 " Training
 nnoremap <up> <nop>
