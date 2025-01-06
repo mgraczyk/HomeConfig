@@ -274,7 +274,7 @@ nnoremap <leader>w :w <CR> :bp\|bd # <CR>
 nnoremap <leader>u a<CR><ESC>:.-1read !python3 -c 'from uuid import uuid4; import sys; sys.stdout.write(str(uuid4()))'<CR>I<BS><ESC>j0i<BS><ESC>l
 nnoremap <leader>U a<CR><ESC>:.-1read !python3 -c 'import os; from base64 import urlsafe_b64encode; import sys; sys.stdout.write(urlsafe_b64encode(os.urandom(16)).decode().rstrip("="))'<CR>I<BS><ESC>j0i<BS><ESC>l
 
-
+" Fix indentation.
 nnoremap <leader>i :setl noai nocin nosi inde=<CR>
 
 " delete without yanking
@@ -309,15 +309,21 @@ autocmd FileType python setlocal indentkeys-=<:>
 autocmd FileType python setlocal indentkeys-=:
 autocmd FileType python setlocal formatoptions=crnqj
 autocmd FileType terraform nnoremap <Leader>f :%!terraform fmt -<CR>
-autocmd FileType xml,c,cpp,objc,python nnoremap <leader>f :ALEFix<Cr>
-autocmd FileType xml,c,cpp,objc,python nnoremap <leader>F :ALEFix<Cr>
-autocmd FileType xml,c,cpp,objc,python vnoremap <leader>f :ALEFix<Cr>
-autocmd FileType xml,c,cpp,objc,python vnoremap <leader>F :ALEFix<Cr>
 
-autocmd FileType html,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>f :Prettier<Cr>
-autocmd FileType html,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>F :ALEFix<Cr>
-autocmd FileType html,json,jsonc,javascript,typescript,typescriptreact,solidity vnoremap <leader>f :Prettier<Cr>
-autocmd FileType html,json,jsonc,javascript,typescript,typescriptreact,solidity vnoremap <leader>F :ALEFix<Cr>
+autocmd FileType python nnoremap <leader>f :ALEImport<Cr> :ALEFix<Cr>
+autocmd FileType python nnoremap <leader>F :ALEImport<Cr> :ALEFix<Cr>
+autocmd FileType python vnoremap <leader>f :ALEImport<Cr> :ALEFix<Cr>
+autocmd FileType python vnoremap <leader>F :ALEImport<Cr> :ALEFix<Cr>
+
+autocmd FileType xml,c,cpp,objc nnoremap <leader>f :ALEFix<Cr>
+autocmd FileType xml,c,cpp,objc nnoremap <leader>F :ALEFix<Cr>
+autocmd FileType xml,c,cpp,objc vnoremap <leader>f :ALEFix<Cr>
+autocmd FileType xml,c,cpp,objc vnoremap <leader>F :ALEFix<Cr>
+
+autocmd FileType css,html,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>f :Prettier<Cr>
+autocmd FileType css,html,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>F :ALEFix<Cr>
+autocmd FileType css,html,json,jsonc,javascript,typescript,typescriptreact,solidity vnoremap <leader>f :Prettier<Cr>
+autocmd FileType css,html,json,jsonc,javascript,typescript,typescriptreact,solidity vnoremap <leader>F :ALEFix<Cr>
 
 " Automatically reload folds
 au BufWinLeave ?* mkview
