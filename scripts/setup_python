@@ -1,19 +1,28 @@
 #!/bin/bash
 python_version="$(python3 -V 2>&1)"
-required_python_version='Python 3.(7|8|9).(\d|\drc\d)'
+required_python_version='Python 3.(9|10|11|12|13).(\d|\drc\d)'
 
-if ! (echo $python_version | egrep "$required_python_version" >/dev/null); then
-  echo "Incorrect python version: You have $python_version, you need $required_python_version"
-else
-  if [ -x "$(command -v virtualenv)" ]; then
-    test -d .venv3/ || virtualenv .venv3 --python=python3
-  else
-    test -d .venv3/ || pyvenv virtualenv .venv3 --venv-base-dir .
+# If mac
+if [ "$(uname)" == "Darwin" ]; then
+  if ! (echo $python_version | ggrep -E "$required_python_version" >/dev/null); then
+    echo "Incorrect python version: You have $python_version, you need $required_python_version"
+    return 1
   fi
-  source .venv3/bin/activate
-
-  python -m pip install --upgrade pip
-  [ -f requirements.txt ] || touch requirements.txt
-  PYCURL_SSL_LIBRARY=openssl python -m pip install -r requirements.txt
-  export PYTHONPATH=$(pwd)
+else
+  if ! (echo $python_version | grep -P "$required_python_version" >/dev/null); then
+    echo "Incorrect python version: You have $python_version, you need $required_python_version"
+    return 1
+  fi
 fi
+
+if [ -x "$(command -v virtualenv)" ]; then
+  test -d .venv3/ || virtualenv .venv3 --python=python3
+else
+  test -d .venv3/ || pyvenv virtualenv .venv3 --venv-base-dir .
+fi
+source .venv3/bin/activate
+
+python -m pip install --upgrade pip
+[ -f requirements.txt ] || touch requirements.txt
+PYCURL_SSL_LIBRARY=openssl python -m pip install -r requirements.txt
+export PYTHONPATH=$(pwd)
