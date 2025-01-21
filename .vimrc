@@ -156,12 +156,12 @@ if has('gui_running')
 endif
 
 " Allow color schemes to do bright colors without forcing bold.
-if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
+if $TERM !~# '^linux\|^Eterm'
   set t_Co=256
+else
+  set termguicolors
 endif
-
 set background=dark
-set termguicolors
 let g:solarized_italic = 1
 colorscheme solarized
 
