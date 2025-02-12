@@ -1,0 +1,44 @@
+{
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit"
+    }
+  },
+  "workbench.colorTheme": "Solarized Dark+",
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["editor.action.formatDocument", "editor.action.fixAll"]
+    },
+    {
+      "before": ["<leader>", "g"],
+      "commands": ["editor.action.goToDeclaration"]
+    },
+    {
+      "before": ["<leader>", "s"],
+      "commands": ["editor.action.referenceSearch.trigger"]
+    }
+  ],
+  "vim.leader": ",",
+  "editor.lineNumbers": "relative",
+  "python.analysis.autoImportCompletions": true,
+  "vim.useSystemClipboard": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.panel.defaultLocation": "left",
+  "zenMode.centerLayout": false,
+  "zenMode.hideLineNumbers": false,
+  "zenMode.hideStatusBar": true,
+  "zenMode.hideTabs": true,
+  "zenMode.hideSidebar": true,
+  "zenMode.hideActivityBar": true
+}
