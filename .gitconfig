@@ -3,9 +3,10 @@
   email = michael@mgraczyk.com
   signingkey = 05B3B5CA47E136A1
 [pull]
-	rebase = true
+  rebase = true
 [rebase]
-	autoStash = true
+  autoStash = true
+  updateRefs = true
 [alias]
   ws = rebase --whitespace=fix
   so = status -uno
@@ -14,11 +15,37 @@
   amend = commit -a --amend --no-edit
   ls-u = diff --name-only --diff-filter=U
 [http]
-	cookiefile = /Users/mgraczyk/.gitcookies
+  cookiefile = /Users/mgraczyk/.gitcookies
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
 [advice]
-	skippedCherryPicks = false
+  skippedCherryPicks = false
+[column]
+  ui = auto
+[branch]
+  sort = -committerdate
+[tag]
+  sort = version:refname
+[init]
+  defaultBranch = main
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+[push]
+  default = simple
+  autoSetupRemote = true
+  followTags = true
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+[help]
+  autocorrect = prompt
+[rerere]
+  enabled = true
+  autoupdate = true

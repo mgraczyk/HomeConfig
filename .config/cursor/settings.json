@@ -28,17 +28,33 @@
     }
   ],
   "vim.leader": ",",
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
   "editor.lineNumbers": "relative",
   "python.analysis.autoImportCompletions": true,
   "vim.useSystemClipboard": true,
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "workbench.editor.showTabs": "single",
+  "workbench.editor.enablePreview": true,
+  "explorer.openEditors.visible": 0,
   "workbench.panel.defaultLocation": "left",
+  "terminal.integrated.scrollback": 10000,
+  "window.commandCenter": false,
   "zenMode.centerLayout": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": true,
-  "zenMode.hideTabs": true,
   "zenMode.hideSidebar": true,
-  "zenMode.hideActivityBar": true
+  "zenMode.hideActivityBar": true,
+  "zenMode.showTabs": "single",
+  "editor.fontSize": 13,
+  "git.openRepositoryInParentFolders": "never",
+  "window.customTitleBarVisibility": "never",
+  "window.titleBarStyle": "native",
+  "ruff.lint.preview": false,
+  "editor.tabSize": 2,
+  "explorer.excludeGitIgnore": true,
+  "terminal.external.osxExec": "ITerm.app"
 }
