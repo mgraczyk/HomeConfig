@@ -3,9 +3,10 @@
 import sys
 import re
 
+
 def main(argv):
   if len(argv) < 1:
-    print(f"Match with a python regular expression.\n\tUsage: pymatch <pattern> [file]")
+    print("Match with a python regular expression.\n\tUsage: pymatch <pattern> [file]")
     return
 
   pattern = argv[0]
@@ -17,6 +18,7 @@ def main(argv):
   for line in f:
     for m in re.findall(pattern, line):
       print(m)
+
 
 if __name__ == "__main__":
   main(sys.argv[1:])
