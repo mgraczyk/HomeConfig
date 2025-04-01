@@ -49,12 +49,19 @@
   "zenMode.hideSidebar": true,
   "zenMode.hideActivityBar": true,
   "zenMode.showTabs": "single",
-  "editor.fontSize": 13,
   "git.openRepositoryInParentFolders": "never",
   "window.customTitleBarVisibility": "never",
   "window.titleBarStyle": "native",
   "ruff.lint.preview": false,
   "editor.tabSize": 2,
   "explorer.excludeGitIgnore": true,
-  "terminal.external.osxExec": "ITerm.app"
+  "terminal.external.osxExec": "ITerm.app",
+  "editor.fontFamily": "\"Cascadia Code\",monospace",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "update.releaseTrack": "prerelease"
 }
