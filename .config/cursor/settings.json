@@ -63,5 +63,8 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "update.releaseTrack": "prerelease"
+  "update.releaseTrack": "prerelease",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
