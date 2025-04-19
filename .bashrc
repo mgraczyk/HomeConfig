@@ -333,7 +333,20 @@ function execute_in_all_panes {
 
 alias j="vim ~/journal/daily/$(date +"%Y-%m-%d")_daily.txt"
 
-[[ -r ~/.bashrc_local ]] && . ~/.bashrc_local
+function worktree {
+  if [ "$1" == "list" ]; then
+    git worktree list
+    return
+  fi
+  branchname=$1
+  tempdir=$(mktemp -d)
+  workdir="$tempdir"/$branchname
+  git worktree add --checkout -b $branchname $workdir
+  (cd $workdir && bash)
+  git worktree remove $workdir
+  rm -r $tempdir
+  git branch -d $branchname
+}
 
 # From when I worked at Facebook, keep around in case I go back.
 if [ -f /usr/facebook/ops/rc/master.bashrc ]; then
@@ -344,3 +357,5 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+[[ -r ~/.bashrc_local ]] && . ~/.bashrc_local
