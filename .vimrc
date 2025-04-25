@@ -224,22 +224,22 @@ let g:cterm_color = {
     \ }
 
 let g:ale_fixers = {
-\  'javascript': ['eslint'],
-\  'typescript': ['eslint'],
-\  'typescriptreact': ['eslint'],
+\  'javascript': ['biome'],
+\  'typescript': ['biome'],
+\  'typescriptreact': ['biome'],
 \  'python': ['ruff', 'ruff_format'],
 \  'html': [],
 \  'xml': ['xmllint'],
 \  'c': ['clang-format'],
 \  'cpp': ['clang-format'],
 \  'toml': ['dprint'],
-\  'json': ['pretter'],
-\  'jsonl': ['pretter'],
+\  'json': ['biome'],
+\  'jsonl': ['biome'],
 \}
 let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'typescript': ['eslint', 'tsserver'],
-\   'typescriptreact': ['eslint', 'tsserver'],
+\   'javascript': ['biome'],
+\   'typescript': ['biome', 'tsserver'],
+\   'typescriptreact': ['biome', 'tsserver'],
 \   'python': ['pyright', 'ruff'],
 \   'c': [],
 \   'cpp': [],
@@ -326,9 +326,9 @@ autocmd FileType xml,c,cpp,objc nnoremap <leader>F :ALEFix<Cr>
 autocmd FileType xml,c,cpp,objc vnoremap <leader>f :ALEFix<Cr>
 autocmd FileType xml,c,cpp,objc vnoremap <leader>F :ALEFix<Cr>
 
-autocmd FileType css,html,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>f :Prettier<Cr>
+autocmd FileType css,html,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>f :ALEFix<Cr>
 autocmd FileType css,html,json,jsonc,javascript,typescript,typescriptreact,solidity nnoremap <leader>F :ALEFix<Cr>
-autocmd FileType css,html,json,jsonc,javascript,typescript,typescriptreact,solidity vnoremap <leader>f :Prettier<Cr>
+autocmd FileType css,html,json,jsonc,javascript,typescript,typescriptreact,solidity vnoremap <leader>f :ALEFix<Cr>
 autocmd FileType css,html,json,jsonc,javascript,typescript,typescriptreact,solidity vnoremap <leader>F :ALEFix<Cr>
 
 " Automatically reload folds

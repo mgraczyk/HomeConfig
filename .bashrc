@@ -354,8 +354,4 @@ if [ -f /usr/facebook/ops/rc/master.bashrc ]; then
   PATH=$PATH:$saved_path
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 [[ -r ~/.bashrc_local ]] && . ~/.bashrc_local

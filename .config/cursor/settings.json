@@ -66,5 +66,10 @@
   "update.releaseTrack": "prerelease",
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "[css]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "terminal.integrated.defaultProfile.linux": "",
+  "terminal.integrated.defaultProfile.osx": "bash"
 }
