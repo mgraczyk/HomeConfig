@@ -294,6 +294,23 @@ vnoremap <leader>p "_dP
 nnoremap <leader>g :ALEGoToDefinition<CR>
 nnoremap <leader>s :ALEFindReferences<CR>
 
+function! s:ToggleCopilot() abort
+  " Ask Copilot for its status and capture the reply
+  let l:status = execute('Copilot status')
+
+  " If the reply contains “Ready” it’s currently ON → turn it OFF
+  if l:status =~# 'Ready'
+    silent! Copilot disable
+    echo 'GitHub Copilot disabled'
+  else
+    " Any other state means it’s OFF → turn it ON
+    silent! Copilot enable
+    echo 'GitHub Copilot enabled'
+  endif
+endfunction
+
+nnoremap <silent> <leader>c :call <SID>ToggleCopilot()<CR>
+
 let g:typescript_compiler_binary = 'node_modules/typescript/bin/tsc'
 let g:prettier#exec_cmd_async = 1
 
