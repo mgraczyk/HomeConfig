@@ -14,6 +14,7 @@ id_rsa
 .aws/
 .bashrc_local
 .cache
+.claude/statsig
 .dbus
 .cargo/
 .config/**
