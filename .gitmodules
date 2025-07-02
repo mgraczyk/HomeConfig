@@ -43,9 +43,6 @@
 [submodule ".vim/pack/github/start/copilot.vim"]
 	path = .vim/pack/github/start/copilot.vim
 	url = https://github.com/github/copilot.vim
-[submodule ".config/i3/i3-chrome-tab-dragging/"]
-	path = .config/i3/i3-chrome-tab-dragging
-	url = git@github.com:mgraczyk/i3-chrome-tab-dragging.git
 [submodule ".vim/pack/plugins/start/vim-terraform"]
 	path = .vim/pack/plugins/start/vim-terraform
 	url = git@github.com:hashivim/vim-terraform.git
