@@ -8,11 +8,6 @@ if [ -f /etc/bashrc ]; then
     source /etc/bashrc
 fi
 
-if [ -f /usr/facebook/ops/rc/master.bashrc ]; then
-    source /usr/facebook/ops/rc/master.bashrc
-    saved_path=$PATH
-fi
-
 # COLORS!!!!!!1111one
 export TERM=xterm-256color
 
@@ -347,11 +342,5 @@ function worktree {
   rm -r $tempdir
   git branch -d $branchname
 }
-
-# From when I worked at Facebook, keep around in case I go back.
-if [ -f /usr/facebook/ops/rc/master.bashrc ]; then
-  # my bashrc overwrites the path, so save it
-  PATH=$PATH:$saved_path
-fi
 
 [[ -r ~/.bashrc_local ]] && . ~/.bashrc_local
