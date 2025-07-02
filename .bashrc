@@ -145,14 +145,6 @@ if [ -n "$DISPLAY" ]; then
 fi
 
 
-################################################################################
-# PYTHON
-################################################################################
-
-# TODO
-
-################################################################################
-
 # Some cool directory navigation stuff from 
 # http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
 export MARKPATH=$HOME/.marks
