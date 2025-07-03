@@ -52,9 +52,9 @@ truncate_hostname() {
 precmd() {
   local EXIT="$?"                # This needs to be first
   if [ $EXIT != 0 ]; then
-    PROMPT="%F{yellow}$(truncate_hostname)%f %F{64}%(5~|%-1~/…/%3~|%4~)%f%F{1}> %f"
+    PROMPT="%F{yellow}$(truncate_hostname)%f %F{2}%(5~|%-1~/…/%3~|%4~)%f%F{1}> %f"
   else
-    PROMPT="%F{yellow}$(truncate_hostname)%f %F{64}%(5~|%-1~/…/%3~|%4~)%f%F{7}> %f"
+    PROMPT="%F{yellow}$(truncate_hostname)%f %F{2}%(5~|%-1~/…/%3~|%4~)%f%F{7}> %f"
   fi
 }
 
