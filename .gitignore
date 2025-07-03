@@ -15,11 +15,13 @@ id_rsa
 *.png
 *.swp
 .*_history
+.*.backup
 .CFUserTextEncoding
 .DS_Store
 .ICEauthority
 .Xauthority
 .android/
+.async_memoize/
 .atom/
 .aws/
 .aztfexport/
@@ -60,6 +62,7 @@ id_rsa
 .m2
 .marks
 .matplotlib/
+.most-recently-activated-cluster
 .mongodb/
 .mozilla/
 .netrc
