@@ -43,9 +43,19 @@
 [fetch]
   prune = true
   pruneTags = true
-  all = true
+  all = false
 [help]
   autocorrect = prompt
 [rerere]
   enabled = true
   autoupdate = true
+[core]
+	commitGraph = true
+[gc]
+	writeCommitGraph = true
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[gpg "ssh"]
+	defaultKeyCommand = ssh-add -L

@@ -31,7 +31,7 @@ alias xclip="xclip -selection c"
 alias amend="git commit --amend --no-edit"
 alias gcm="git commit -m"
 
-alias whereami="echo $HOSTNAME"
+alias whereami="echo $(hostname)"
 alias hop='cd "$(pwd -L)"'
 
 export EDITOR=vim
