@@ -1,14 +1,13 @@
 [user]
   name = Michael Graczyk
   email = michael@mgraczyk.com
-  signingkey = 05B3B5CA47E136A1
 [pull]
   rebase = true
 [rebase]
   autoStash = true
   updateRefs = true
 [alias]
-  ws = rebase --whitespace=fix
+  ws = rebase --whitespace=fix --no-update-refs
   so = status -uno
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
@@ -53,9 +52,3 @@
 	commitGraph = true
 [gc]
 	writeCommitGraph = true
-[gpg]
-	format = ssh
-[commit]
-	gpgsign = true
-[gpg "ssh"]
-	defaultKeyCommand = ssh-add -L
