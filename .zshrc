@@ -181,5 +181,94 @@ complete -o nospace -F __tmux_sessions rsc 2>/dev/null
 
 ################################################################################
 
+function llm_small() {
+  claude --model claude-3-5-haiku-20241022 -p "$1"
+}
+function llm() {
+  claude --model claude-sonnet-4-20250514 -p "$1"
+}
+function llm_big() {
+  claude --model claude-opus-4-20250514	-p "$1"
+}
+
+function push() {
+  # Get current branch name
+  local current_branch=$(git branch --show-current)
+
+  # Check if branch starts with "mgraczyk/"
+  if [[ ! "$current_branch" =~ ^mgraczyk/ ]]; then
+    # Create a temporary branch first
+    local temp_branch="mgraczyk/temp-$(date +%s)"
+    git checkout -b "$temp_branch"
+
+    # Check if there are staged changes
+    if ! git diff --cached --quiet; then
+      # Get the staged diff
+      local diff=$(git diff --cached)
+
+      # Generate commit message using llm
+      local commit_message=$(echo "$diff" | llm "Based on the following git diff, write a concise and descriptive git commit message. The message should follow conventional commit standards. Only output the commit message, nothing else.")
+
+      # Print the generated commit message
+      echo "Generated commit message: $commit_message"
+
+      # Create a commit with the generated message
+      git commit --no-verify -m "$commit_message"
+    fi
+
+    # Check if there's any difference between current commit and staging
+    if git diff staging --quiet; then
+      echo "Error: No changes between current commit and staging branch"
+      # Clean up - go back to staging and delete temp branch
+      git checkout staging
+      git branch -D "$temp_branch"
+      return 1
+    fi
+
+    # Get the commit diff for branch name generation
+    local commit_diff=$(git diff staging)
+
+    # Generate branch name using llm_small based on the commit diff
+    local branch_name=$(echo "$commit_diff" | llm_small "Generate a very short branch name (max 30 chars) based on this git diff. Use only lowercase letters, numbers, and dashes. No spaces or other characters. Output only the branch name, nothing else.")
+
+    # Validate and clean branch name with regex
+    if [[ ! "$branch_name" =~ ^[a-z0-9-]+$ ]]; then
+      # Remove any invalid characters if llm_small didn't follow instructions perfectly
+      branch_name=$(echo "$branch_name" | tr -cd 'a-z0-9-' | sed 's/^-*//' | sed 's/-*$//')
+    fi
+
+    # Ensure branch name is not empty
+    if [[ -z "$branch_name" ]]; then
+      branch_name="auto-branch-$(date +%s)"
+    fi
+
+    # Rename the branch
+    git branch -m "mgraczyk/$branch_name"
+    current_branch="mgraczyk/$branch_name"
+
+    # Print the branch name
+    echo "Created branch: $current_branch"
+  fi
+
+  # Push the current branch to remote
+  echo "Pushing branch to remote..."
+  git push -u origin "$current_branch"
+
+  # Get the most recent commit message
+  local commit_title=$(git log -1 --pretty=format:"%s")
+
+  # Create PR using gh CLI with staging as base
+  local pr_url=$(gh pr create --base staging --title "$commit_title" --body "" | tail -1)
+
+  echo "Pull request created: $pr_url"
+
+  # Enable auto-merge if available
+  gh pr merge "$pr_url" --auto --squash --delete-branch
+
+  # Open the PR in Chrome
+  sh -i -c 'chrome '"$pr_url"
+}
 
 [[ -r ~/.zshrc_local ]] && . ~/.zshrc_local
+
+source /Users/mgraczyk/code/anthropic/config/local/zsh/zshrc  # added by conda.sh
