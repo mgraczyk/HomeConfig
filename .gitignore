@@ -35,6 +35,8 @@ id_rsa
 .cargo/
 .cinnamon/
 .claude/statsig
+.claude/projects
+.claude/.*
 .cloudflared/
 .conda/
 .config/**
@@ -68,6 +70,7 @@ id_rsa
 .netrc
 .npm-global/
 .npm/
+.npmrc-e
 .nv 
 .nvidia-settings-rc
 .nvm/
@@ -86,6 +89,7 @@ id_rsa
 .ssh/authorized_keys
 .ssh/google_compute*
 .ssh/id*
+.ssh/jobs
 .ssh/known_hosts
 .ssh/sk-passwords
 .sso/
