@@ -254,12 +254,17 @@ function push() {
   # Push the current branch to remote
   echo "Pushing branch to remote..."
   git push -u origin "$current_branch"
+  if [[ $? -ne 0 ]]; then
+    echo "Failed to push branch to remote."
+    return 1
+  fi
 
   # Get the most recent commit message
   local commit_title=$(git log -1 --pretty=format:"%s")
 
   # Create PR using gh CLI with staging as base
   local pr_url=$(gh pr create --base staging --title "$commit_title" --body "" | tail -1)
+  # TODO(mgraczyk): Error handling
 
   echo "Pull request created: $pr_url"
 
@@ -267,7 +272,7 @@ function push() {
   gh pr merge "$pr_url" --auto --squash
 
   # Open the PR in Chrome
-  zsh -i -c 'chrome '"$pr_url"
+  zsh -i -c 'chrome e --profile-directory=Default '"$pr_url"
 }
 
 function worktree {
@@ -286,5 +291,3 @@ function worktree {
 }
 
 [[ -r ~/.zshrc_local ]] && . ~/.zshrc_local
-
-source /Users/mgraczyk/code/anthropic/config/local/zsh/zshrc  # added by conda.sh
