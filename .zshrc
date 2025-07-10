@@ -15,6 +15,7 @@ export HISTFILE=~/.zsh_history
 setopt SHARE_HISTORY          # Share history between sessions
 setopt EXTENDED_HISTORY       # Save timestamp
 setopt APPEND_HISTORY         # Append to history file
+export SHELL=/bin/zsh
 
 autoload -Uz compinit
 compinit
@@ -263,10 +264,25 @@ function push() {
   echo "Pull request created: $pr_url"
 
   # Enable auto-merge if available
-  gh pr merge "$pr_url" --auto --squash --delete-branch
+  gh pr merge "$pr_url" --auto --squash
 
   # Open the PR in Chrome
-  sh -i -c 'chrome '"$pr_url"
+  zsh -i -c 'chrome '"$pr_url"
+}
+
+function worktree {
+  if [[ "$1" == "list" ]]; then
+    git worktree list
+    return
+  fi
+  branchname=$1
+  tempdir=$(mktemp -d)
+  workdir="$tempdir"/$branchname
+  git worktree add --checkout -b $branchname $workdir
+  (cd $workdir && $SHELL)
+  git worktree remove $workdir
+  rm -r $tempdir
+  git branch -d $branchname
 }
 
 [[ -r ~/.zshrc_local ]] && . ~/.zshrc_local
