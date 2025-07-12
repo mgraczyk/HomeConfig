@@ -1,8 +1,7 @@
 {
   "permissions": {
-    "defaultMode": "bypassPermissions",
+    "defaultMode": "acceptEdits",
     "allow": [
-      // File operations - allow all reads and edits
       "Read(**)",
       "Edit(**)",
       "Create(**)",
@@ -10,17 +9,15 @@
       "Rename(**)",
       "Move(**)",
 
-      // Search and navigation
       "Grep(**)",
       "Glob(**)",
       "LS(**)",
       "Find(**)",
 
-      // Version control operations
       "Git(**)",
 
-      // Shell commands - common development commands
       "Bash(npm:*)",
+      "Bash(grep:*)",
       "Bash(yarn:*)",
       "Bash(pnpm:*)",
       "Bash(pip:*)",
@@ -40,31 +37,21 @@
       "Bash(deno:*)",
       "Bash(bun:*)",
 
-      // Web operations
       "WebFetch",
       "WebSearch",
 
-      // Task delegation
       "Task",
 
-      // MCP tools (if you have any configured)
       "mcp__*__*"
     ],
     "deny": [
-      // Deny dangerous system modifications
       "Bash(rm -rf /)",
       "Bash(sudo rm -rf /)",
       "Bash(dd if=/dev/zero of=/dev/*)",
 
-      // Deny password/credential modifications
       "Edit(/etc/passwd)",
       "Edit(/etc/shadow)",
-      "Edit(~/.ssh/id_*)",
-
-      // Deny curl/wget to prevent arbitrary downloads
-      // (uncomment if you want to be more restrictive)
-      // "Bash(curl:*)",
-      // "Bash(wget:*)"
+      "Edit(~/.ssh/id_*)"
     ]
   },
   "model": "opus"
