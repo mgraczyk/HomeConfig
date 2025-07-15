@@ -12,7 +12,7 @@ fi
 export HISTSIZE=50000
 export SAVEHIST=100000
 export HISTFILE=~/.zsh_history
-setopt SHARE_HISTORY          # Share history between sessions
+#setopt SHARE_HISTORY          # Share history between sessions
 setopt EXTENDED_HISTORY       # Save timestamp
 setopt APPEND_HISTORY         # Append to history file
 export SHELL=/bin/zsh
@@ -272,7 +272,7 @@ function push() {
   gh pr merge "$pr_url" --auto --squash
 
   # Open the PR in Chrome
-  zsh -i -c 'chrome e --profile-directory=Default '"$pr_url"
+  zsh -i -c 'chrome --profile-directory=Default '"$pr_url"
 }
 
 function worktree {
