@@ -346,5 +346,3 @@ BASH_DEFAULT_TIMEOUT_MS=300000
 BASH_MAX_TIMEOUT_MS=3600000
 
 [[ -r ~/.zshrc_local ]] && . ~/.zshrc_local
-
-source /Users/mgraczyk/code/anthropic/config/local/zsh/zshrc  # added by conda.sh

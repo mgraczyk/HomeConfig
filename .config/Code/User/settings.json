@@ -1,0 +1,122 @@
+{
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit"
+        },
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.defaultColorDecorators": "never",
+        "editor.formatOnType": true,
+        "editor.wordBasedSuggestions": "off"
+    },
+    "workbench.colorTheme": "Solarized Dark+",
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "vim.leader": ",",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "f"],
+            "commands": ["editor.action.formatDocument", "editor.action.fixAll"]
+        },
+        {
+            "before": ["<leader>", "g"],
+            "commands": ["editor.action.revealDefinition"]
+        },
+        {
+            "before": ["<leader>", "s"],
+            "commands": ["editor.action.referenceSearch.trigger"]
+        }
+    ],
+    "editor.formatOnSave": true,
+    "remote.SSH.connectTimeout": 1800,
+    "github.copilot.advanced": {},
+    "redhat.telemetry.enabled": false,
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.nodeExecutable": "/opt/homebrew/bin/node",
+    "python.analysis.nodeArguments": [
+        "--max-old-space-size=32768",
+        "--max-semi-space-size=256"
+    ],
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1
+    },
+    "remote.SSH.defaultExtensions": [
+        "charliermarsh.ruff",
+        "github.copilot",
+        "ms-python.debugpy",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.jupyter-keymap",
+        "ms-toolsai.jupyter-renderers",
+        "ms-toolsai.vscode-jupyter-cell-tags",
+        "ms-toolsai.vscode-jupyter-slideshow",
+        "ms-vscode-remote.remote-ssh",
+        "ms-vscode-remote.remote-ssh-edit",
+        "ms-vscode.remote-explorer"
+    ],
+    "editor.lineNumbers": "relative",
+    "terminal.integrated.inheritEnv": true,
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.typeCheckingMode": "standard",
+    "vim.useSystemClipboard": true,
+    "workbench.editor.showTabs": "single",
+    "workbench.editor.enablePreview": true,
+    "editor.autoClosingQuotes": "never",
+    "editor.minimap.enabled": false,
+    "workbench.activityBar.location": "hidden",
+    "workbench.editor.editorActionsLocation": "titleBar",
+    "workbench.panel.defaultLocation": "left",
+    "explorer.openEditors.visible": 0,
+    "terminal.integrated.scrollback": 10000,
+    "window.commandCenter": false,
+    "zenMode.centerLayout": false,
+    "zenMode.hideLineNumbers": false,
+    "zenMode.hideStatusBar": true,
+    "zenMode.hideSidebar": true,
+    "zenMode.hideActivityBar": true,
+    "zenMode.showTabs": "single",
+    "git.openRepositoryInParentFolders": "never",
+    "window.titleBarStyle": "native",
+    "ruff.lint.preview": false,
+    "editor.tabSize": 2,
+    "explorer.excludeGitIgnore": true,
+    "terminal.external.osxExec": "ITerm.app",
+    "editor.fontFamily": "\"Cascadia Code\",monospace",
+    "[json]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "biomejs.biome",
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit"
+        }
+    },
+    "update.releaseTrack": "prerelease",
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "biomejs.biome",
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit"
+        }
+    },
+    "[css]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[cpp]": {
+        "editor.wordBasedSuggestions": "off",
+        "editor.semanticHighlighting.enabled": true,
+        "editor.stickyScroll.defaultModel": "foldingProviderModel",
+        "editor.suggest.insertMode": "replace"
+    },
+    "C_Cpp.default.cppStandard": "c++23",
+    "C_Cpp.autocomplete": "disabled",
+    "clangd.arguments": ["--std=c++23"]
+}
