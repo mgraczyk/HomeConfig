@@ -192,7 +192,52 @@ function llm_big() {
   claude --model claude-opus-4-20250514	-p "$1"
 }
 
+claude_push_prompt="
+You are helping me commit and push to github.
+
+I have a very specific workflow which you should always attempt to implement.
+
+Your high level goal is to make sure there is a PR for my current set of changes, open the PR in chrome, then make sure the git checkout (actual files) are the same as when you started.
+
+This is how my workflow works:
+* There is a branch called 'staging' which tracks origin/staging, all my work is done on top of this.
+* For individual features I create branches named 'mgraczyk/<branch-name>'.
+* You will never push any changes I have not staged (with git add), only changes that are staged should be committed. Everything else should be stashed, but never discarded. You will return the working directory to the state it was in when you started.
+* When I ask you for help, I will either be on staging or a specific feature branch.
+  - If I am on staging, you should make sure to create a new branch before pushing anything
+  - If I am on a branch, you should add any staged changes to the branch, and then push it.
+* You should also create pull request once all the changes are committed and pushed.
+* Finally you should open the pull request in Chrome, regardless of whether it was created or already existed
+
+You should generally use the following commands for everything:
+
+
+Creating a commit:
+$ git commit --no-verify -m "$commit_message"
+
+Creating or updating a PR:
+# Do not set a body, I will do that manually.
+# You should extract the pr_url from the created PR
+$ gh pr create --base staging --title "$commit_title" --body ""
+# Always try enable auto-merge and squash like this
+$ gh pr merge "$pr_url" --auto --squash
+
+Opening the PR in Chrome:
+# Make sure to run this exact command, do not print it but actually run it.
+$ zsh -i -c 'chrome --profile-directory=Default '"$pr_url"
+
+If something goes wrong you should figure it out and fix it yourself UNLESS you think you will break the state on github or lose uncommmited changes locally.
+"
+
+function claude-push() {
+  claude --model claude-sonnet-4-20250514 -p "$claude_push_prompt"
+}
+
 function push() {
+  # Robustly pushes code to github following a specific workflow.
+  # The goal is the push all committed and staged changes to a branch and Github PR.
+  # This function NEVER stages unstaged changes and never drops code in the codebase.
+ 
   # Get current branch name
   local current_branch=$(git branch --show-current)
 
@@ -290,4 +335,16 @@ function worktree {
   git branch -d $branchname
 }
 
+function git-cleanup() {
+  # https://stackoverflow.com/a/6127884
+  git branch --merged | grep -Ev "(^\*|^\+|master|main|staging|dev)" | xargs --no-run-if-empty git branch -d
+  git remote prune origin
+}
+
+# Claude code setup
+BASH_DEFAULT_TIMEOUT_MS=300000
+BASH_MAX_TIMEOUT_MS=3600000
+
 [[ -r ~/.zshrc_local ]] && . ~/.zshrc_local
+
+source /Users/mgraczyk/code/anthropic/config/local/zsh/zshrc  # added by conda.sh
