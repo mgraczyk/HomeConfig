@@ -34,9 +34,11 @@ id_rsa
 .cache
 .cargo/
 .cinnamon/
-.claude/statsig
-.claude/projects
 .claude/.*
+.claude/ide/
+.claude/projects
+.claude/shell-snapshots/
+.claude/statsig
 .cloudflared/
 .conda/
 .config/**
@@ -54,7 +56,9 @@ id_rsa
 .googlekeys
 .icedtea
 .inshellisense/
+.ipython/
 .java
+.jupyter/
 .keras/
 .kshrc
 .kube/
@@ -64,8 +68,8 @@ id_rsa
 .m2
 .marks
 .matplotlib/
-.most-recently-activated-cluster
 .mongodb/
+.most-recently-activated-cluster
 .mozilla/
 .netrc
 .npm-global/
@@ -115,6 +119,8 @@ id_rsa
 .yarn/
 .yarnrc
 .zcompdump
+.zcompdump*
+.zshrc_local
 Videos/
 code/
 dev/
