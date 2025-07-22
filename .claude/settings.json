@@ -36,6 +36,11 @@
       "Bash(node:*)",
       "Bash(deno:*)",
       "Bash(bun:*)",
+      "Bash(gh:*)",
+      "Bash(chrome:*)",
+      "Bash(zsh:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
 
       "WebFetch",
       "WebSearch",
