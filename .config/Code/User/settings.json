@@ -10,7 +10,7 @@
         "editor.formatOnType": true,
         "editor.wordBasedSuggestions": "off"
     },
-    "workbench.colorTheme": "Solarized Dark+",
+    "workbench.colorTheme": "Solarized Dark+ (High Contrast)",
     "github.copilot.enable": {
         "*": true,
         "plaintext": false,
@@ -37,6 +37,7 @@
     "github.copilot.advanced": {},
     "redhat.telemetry.enabled": false,
     "python.analysis.autoImportCompletions": true,
+    "python.analysis.typeCheckingMode": "standard",
     "python.analysis.nodeExecutable": "/opt/homebrew/bin/node",
     "python.analysis.nodeArguments": [
         "--max-old-space-size=32768",
@@ -62,8 +63,6 @@
     ],
     "editor.lineNumbers": "relative",
     "terminal.integrated.inheritEnv": true,
-    "python.analysis.autoImportCompletions": true,
-    "python.analysis.typeCheckingMode": "standard",
     "vim.useSystemClipboard": true,
     "workbench.editor.showTabs": "single",
     "workbench.editor.enablePreview": true,
