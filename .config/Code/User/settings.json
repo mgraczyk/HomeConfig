@@ -30,6 +30,10 @@
         {
             "before": ["<leader>", "s"],
             "commands": ["editor.action.referenceSearch.trigger"]
+        },
+        {
+            "before": ["<C-c>"],
+            "commands": ["workbench.action.closeActiveEditor"]
         }
     ],
     "editor.formatOnSave": true,

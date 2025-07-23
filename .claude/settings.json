@@ -41,6 +41,8 @@
       "Bash(zsh:*)",
       "Bash(ls:*)",
       "Bash(mkdir:*)",
+      "Bash(echo:*)",
+      "Bash(printf:*)",
 
       "WebFetch",
       "WebSearch",

@@ -1,8 +1,13 @@
-# If not running interactively, don't do anything
+# Determine if shell is interactive
+IS_INTERACTIVE=false
 case $- in
-    *i*) ;;
-      *) return;;
+    *i*) IS_INTERACTIVE=true ;;
 esac
+
+# If not running interactively, don't do anything, unless claude code.
+if [[ ! $CLAUDECODE ]] && [[ $IS_INTERACTIVE == false ]]; then
+    return
+fi
 
 if [ -f /etc/zshrc ]; then
     source /etc/zshrc
@@ -71,7 +76,7 @@ export TMP=${TMP:-/tmp}
 export TMPDIR=${TMPDIR:-/tmp}
 
 # Disable ctrl-s
-if [[ ! $OS == *Windows* ]]; then
+if [[ ! $OS == *Windows* ]] && [[ $IS_INTERACTIVE == false ]]; then
   stty ixany
   stty ixoff -ixon
 fi
