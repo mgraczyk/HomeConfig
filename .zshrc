@@ -76,7 +76,7 @@ export TMP=${TMP:-/tmp}
 export TMPDIR=${TMPDIR:-/tmp}
 
 # Disable ctrl-s
-if [[ ! $OS == *Windows* ]] && [[ $IS_INTERACTIVE == false ]]; then
+if [[ ! $OS == *Windows* ]] && [[ $IS_INTERACTIVE == true ]]; then
   stty ixany
   stty ixoff -ixon
 fi
@@ -323,6 +323,15 @@ function push() {
 
   # Open the PR in Chrome
   zsh -i -c 'chrome --profile-directory=Default '"$pr_url"
+}
+
+function worktree-nobranch {
+  tempdir=$(mktemp -d)
+  workdir="$tempdir"
+  git worktree add $workdir
+  (cd $workdir && $SHELL)
+  git worktree remove $workdir
+  rm -r $tempdir
 }
 
 function worktree {
