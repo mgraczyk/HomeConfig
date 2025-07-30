@@ -16,6 +16,7 @@
 
       "Git(**)",
 
+      "Bash(chmod:*)",
       "Bash(npm:*)",
       "Bash(grep:*)",
       "Bash(poetry:*)",
@@ -35,6 +36,8 @@
       "Bash(mkdir:*)",
       "Bash(echo:*)",
       "Bash(find:*)",
+      "Bash(srun:*)",
+      "Bash(aws sso:*)",
       "Bash(./sandbox/sandbox/mgraczyk/**:*)",
 
       "WebFetch",
