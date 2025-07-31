@@ -313,7 +313,7 @@ function push() {
   local commit_title=$(git log -1 --pretty=format:"%s")
 
   # Create PR using gh CLI with staging as base
-  local pr_url=$(gh pr create --base staging --title "$commit_title" --body "" | tail -1)
+  local pr_url=$(gh pr create --base staging --title "$commit_title" --body "TODO" --label squash-before-merge | tail -1)
   # TODO(mgraczyk): Error handling
 
   echo "Pull request created: $pr_url"
