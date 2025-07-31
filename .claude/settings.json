@@ -1,6 +1,9 @@
 {
+  "env": {
+    "BASH_DEFAULT_TIMEOUT_MS": "600000",
+    "BASH_MAX_TIMEOUT_MS": "600000"
+  },
   "permissions": {
-    "defaultMode": "acceptEdits",
     "allow": [
       "Read(**)",
       "Edit(**)",
@@ -8,14 +11,11 @@
       "Delete(**)",
       "Rename(**)",
       "Move(**)",
-
       "Grep(**)",
       "Glob(**)",
       "LS(**)",
       "Find(**)",
-
       "Git(**)",
-
       "Bash(chmod:*)",
       "Bash(npm:*)",
       "Bash(grep:*)",
@@ -39,23 +39,21 @@
       "Bash(srun:*)",
       "Bash(aws sso:*)",
       "Bash(./sandbox/sandbox/mgraczyk/**:*)",
-
       "WebFetch",
       "WebSearch",
-
       "Task",
-
       "mcp__*__*"
     ],
     "deny": [
       "Bash(rm -rf /)",
       "Bash(sudo rm -rf /)",
       "Bash(dd if=/dev/zero of=/dev/*)",
-
       "Edit(/etc/passwd)",
       "Edit(/etc/shadow)",
       "Edit(~/.ssh/id_*)"
-    ]
+    ],
+    "defaultMode": "acceptEdits"
   },
-  "model": "opus"
+  "model": "opus",
+  "enableAllProjectMcpServers": true
 }
