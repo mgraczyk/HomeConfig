@@ -32,6 +32,15 @@
             "commands": ["editor.action.referenceSearch.trigger"]
         },
         {
+            "before": ["<leader>", "e"],
+            "commands": ["workbench.action.files.revert"]
+        },
+        {
+            "before": ["<leader>", "p", "y"],
+            "commands": ["copyRelativeFilePath"],
+            "when": "editorFocus"
+        },
+        {
             "before": ["<C-c>"],
             "commands": ["workbench.action.closeActiveEditor"]
         }
@@ -121,5 +130,10 @@
     },
     "C_Cpp.default.cppStandard": "c++23",
     "C_Cpp.autocomplete": "disabled",
-    "clangd.arguments": ["--std=c++23"]
+    "clangd.arguments": ["--std=c++23"],
+    "git.blame.editorDecoration.enabled": false,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "github.copilot.chat.codesearch.enabled": true,
+    "github.copilot.chat.agent.thinkingTool": true,
+    "github.copilot.chat.editor.temporalContext.enabled": true
 }
