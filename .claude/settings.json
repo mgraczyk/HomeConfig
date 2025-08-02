@@ -35,6 +35,7 @@
       "Bash(npm:*)",
       "Bash(poetry:*)",
       "Bash(pyright:*)",
+      "Bash(rg:*)",
       "Bash(python:*)",
       "Bash(run:*)",
       "Bash(srun:*)",
