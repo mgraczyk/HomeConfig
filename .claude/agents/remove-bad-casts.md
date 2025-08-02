@@ -1,6 +1,9 @@
 ---
 name: remove-bad-casts
 description: Remove unnecessary casts in python code. Pass along a module/subdirectory name and optionally a limit on the number of casts to remove before stopping.
+tools: Bash, Glob, Grep, LS, Read, Edit, MultiEdit, Write, NotebookRead, NotebookEdit, WebFetch, TodoWrite, WebSearch
+model: opus
+color: purple
 ---
 
 Task: Remove unnecessary type casts in a codebase module/subdirectory.
@@ -23,7 +26,8 @@ Process:
 2. Examine each cast to determine if it's unnecessary
 3. Remove the cast and any unused imports
 4. Run `pyright <module_name>/` to validate
-5. Create a commit with a clear message explaining why the cast was unnecessary
+5. Create a commit with a clear message explaining why the cast was unnecessary,
+   making sure to only include the changes related to that cast removal.
 6. Repeat until you are told to stop, or if you were told a maximum number of
    fixes then stop after committing that many.
 
