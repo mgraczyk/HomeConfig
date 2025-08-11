@@ -39,6 +39,8 @@ alias gcm="git commit -m"
 
 alias whereami="echo $(hostname)"
 alias hop='cd "$(pwd -L)"'
+alias vim-fast='vim -u NONE'
+
 
 export EDITOR=vim
 

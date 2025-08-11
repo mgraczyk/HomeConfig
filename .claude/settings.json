@@ -34,6 +34,7 @@
       "Bash(run:*)",
       "Bash(srun:*)",
       "Bash(test:*)",
+      "Bash(touch:*)",
       "Bash(zsh:*)",
       "Create(**)",
       "Delete(**)",
