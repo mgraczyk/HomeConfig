@@ -34,7 +34,9 @@ def main():
         sys.exit(1)
 
     # Get API key from environment
-    api_key = os.environ.get("CLLM_ANTHROPIC_API_KEY")
+    api_key = os.environ.get("CLLM_ANTHROPIC_API_KEY") or os.environ.get(
+        "ANTHROPIC_API_KEY"
+    )
     if not api_key:
         print(
             "Error: CLLM_ANTHROPIC_API_KEY environment variable not set",
@@ -63,7 +65,7 @@ def main():
         "model": model_id,
         "system": "You are responding to a request sent via a CLI (command line interface). Your output should be directly useable by command line tools and scripts. Be concise and avoid unnecessary formatting unless specifically requested.",
         "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": 4096,
+        "max_tokens": 16000,
     }
 
     try:
