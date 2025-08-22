@@ -20,29 +20,60 @@
     "vim.leader": ",",
     "vim.normalModeKeyBindingsNonRecursive": [
         {
-            "before": ["<leader>", "f"],
-            "commands": ["editor.action.formatDocument", "editor.action.fixAll"]
+            "before": [
+                "<leader>",
+                "f"
+            ],
+            "commands": [
+                "editor.action.formatDocument",
+                "editor.action.fixAll"
+            ]
         },
         {
-            "before": ["<leader>", "g"],
-            "commands": ["editor.action.revealDefinition"]
+            "before": [
+                "<leader>",
+                "g"
+            ],
+            "commands": [
+                "editor.action.revealDefinition"
+            ]
         },
         {
-            "before": ["<leader>", "s"],
-            "commands": ["editor.action.referenceSearch.trigger"]
+            "before": [
+                "<leader>",
+                "s"
+            ],
+            "commands": [
+                "editor.action.referenceSearch.trigger"
+            ]
         },
         {
-            "before": ["<leader>", "e"],
-            "commands": ["workbench.action.files.revert"]
+            "before": [
+                "<leader>",
+                "e"
+            ],
+            "commands": [
+                "workbench.action.files.revert"
+            ]
         },
         {
-            "before": ["<leader>", "p", "y"],
-            "commands": ["copyRelativeFilePath"],
+            "before": [
+                "<leader>",
+                "p",
+                "y"
+            ],
+            "commands": [
+                "copyRelativeFilePath"
+            ],
             "when": "editorFocus"
         },
         {
-            "before": ["<C-c>"],
-            "commands": ["workbench.action.closeActiveEditor"]
+            "before": [
+                "<C-c>"
+            ],
+            "commands": [
+                "workbench.action.closeActiveEditor"
+            ]
         }
     ],
     "editor.formatOnSave": true,
