@@ -1,4 +1,5 @@
-$include /etc/inputrc
+set input-meta on
+set output-meta on
 
 set editing-mode vi
 $if mode=vi

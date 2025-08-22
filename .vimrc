@@ -60,10 +60,7 @@ endif
 set undodir=~/.vim/undo/
 set undofile
 
-if !isdirectory($HOME."/.vim/backup")
-  call mkdir($HOME."/.vim/backup", "", 0700)
-endif
-set backupdir=~/.vim/backup/
+set nobackup
 
 filetype plugin on
 filetype plugin indent on
@@ -364,7 +361,6 @@ au BufRead,BufNewFile,BufEnter *.sol setlocal et sw=4 ts=4 sts=4 textwidth=100
 au BufRead,BufNewFile,BufEnter **/fbsource/**.py setlocal et sw=4 ts=4 sts=4 textwidth=88
 au BufRead,BufNewFile,BufEnter **/instagram-server/**.py setlocal et sw=4 ts=4 sts=4 textwidth=88
 au BufRead,BufNewFile,BufEnter **/chia-blockchain/**.py setlocal et sw=4 ts=4 sts=4 textwidth=100
-
-au BufRead,BufNewFile,BufEnter **/exomind/**.py setlocal et sw=2 ts=2 sts=2 textwidth=120
+au BufRead,BufNewFile,BufEnter **/code/**.py setlocal et sw=4 ts=4 sts=4 textwidth=120
 
 call SourceIfExists(glob("~/.vimrc.local"))

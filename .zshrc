@@ -17,7 +17,7 @@ fi
 export HISTSIZE=50000
 export SAVEHIST=100000
 export HISTFILE=~/.zsh_history
-#setopt SHARE_HISTORY          # Share history between sessions
+#setopt SHARE_HISTORY          # Share history between sessions (this is annoying)
 setopt EXTENDED_HISTORY       # Save timestamp
 setopt APPEND_HISTORY         # Append to history file
 export SHELL=/bin/zsh
@@ -40,6 +40,14 @@ alias gcm="git commit -m"
 alias whereami="echo $(hostname)"
 alias hop='cd "$(pwd -L)"'
 alias vim-fast='vim -u NONE'
+
+function gb() {
+  git checkout --track -b mgraczyk/$1
+}
+
+function gb-test() {
+  echo git checkout --track -b mgraczyk/$1
+}
 
 
 export EDITOR=vim
@@ -356,9 +364,5 @@ function git-cleanup() {
   git branch --merged | grep -Ev "(^\*|^\+|master|main|staging|dev)" | xargs --no-run-if-empty git branch -d
   git remote prune origin
 }
-
-# Claude code setup
-BASH_DEFAULT_TIMEOUT_MS=300000
-BASH_MAX_TIMEOUT_MS=3600000
 
 [[ -r ~/.zshrc_local ]] && . ~/.zshrc_local
