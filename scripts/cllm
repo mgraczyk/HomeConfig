@@ -1,0 +1,101 @@
+#!/usr/bin/env python3
+"""
+CLI tool to interact with Anthropic Claude models.
+"""
+
+import argparse
+import json
+import os
+import sys
+import requests
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Query Anthropic Claude models")
+    parser.add_argument("prompt", nargs="?", help="The prompt to send to the model")
+    parser.add_argument(
+        "-m",
+        "--model",
+        choices=["haiku", "sonnet", "opus"],
+        default="sonnet",
+        help="Model to use (default: sonnet)",
+    )
+
+    args = parser.parse_args()
+
+    # Get prompt from stdin if not provided as argument
+    if args.prompt:
+        prompt = args.prompt
+    else:
+        prompt = sys.stdin.read().strip()
+
+    if not prompt:
+        print("Error: No prompt provided", file=sys.stderr)
+        sys.exit(1)
+
+    # Get API key from environment
+    api_key = os.environ.get("CLLM_ANTHROPIC_API_KEY")
+    if not api_key:
+        print(
+            "Error: CLLM_ANTHROPIC_API_KEY environment variable not set",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    # Map model names to API model IDs
+    model_map = {
+        "haiku": "claude-3-5-haiku-20241022",  # Claude 3.5 Haiku
+        "sonnet": "claude-sonnet-4-0",  # Claude Sonnet 4 (latest alias)
+        "opus": "claude-opus-4-1",  # Claude Opus 4.1 (latest alias)
+    }
+
+    model_id = model_map[args.model]
+
+    # Prepare API request
+    url = "https://api.anthropic.com/v1/messages"
+    headers = {
+        "x-api-key": api_key,
+        "content-type": "application/json",
+        "anthropic-version": "2023-06-01",
+    }
+
+    data = {
+        "model": model_id,
+        "system": "You are responding to a request sent via a CLI (command line interface). Your output should be directly useable by command line tools and scripts. Be concise and avoid unnecessary formatting unless specifically requested.",
+        "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": 4096,
+    }
+
+    try:
+        response = requests.post(url, headers=headers, json=data)
+        response.raise_for_status()
+
+        result = response.json()
+
+        # Extract and print only the content
+        if "content" in result and result["content"]:
+            for content_block in result["content"]:
+                if content_block.get("type") == "text":
+                    print(content_block["text"])
+        else:
+            print("Error: Unexpected response format", file=sys.stderr)
+            sys.exit(1)
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error calling API: {e}", file=sys.stderr)
+        if hasattr(e, "response") and e.response is not None:
+            try:
+                error_detail = e.response.json()
+                print(
+                    f"API error: {json.dumps(error_detail, indent=2)}", file=sys.stderr
+                )
+            except Exception:
+                print(f"Response: {e.response.text}", file=sys.stderr)
+        sys.exit(1)
+    except Exception as e:
+        print(f"Unexpected error: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
