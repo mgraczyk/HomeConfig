@@ -25,7 +25,6 @@ export SHELL=/bin/zsh
 autoload -Uz compinit
 compinit
 
-
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -102,20 +101,6 @@ if [ -n "$DISPLAY" ]; then
   fi
 fi
 
-# Load complete compat for zsh
-if [[ -n ${ZSH_VERSION-} ]]; then
-  # First calling compinit (only if not called yet!)
-  # and then bashcompinit as mentioned by zsh man page.
-  if ! command -v compinit > /dev/null; then
-    autoload -U +X compinit && if [[ ${ZSH_DISABLE_COMPFIX-} = true ]]; then
-      compinit -u
-    else
-      compinit
-    fi
-  fi
-  autoload -U +X bashcompinit && bashcompinit
-fi
-
 
 # Directory navigation with marks
 export MARKPATH=$HOME/.marks
@@ -142,21 +127,15 @@ function marks {
 }
 
 _completemarks() {
-  local mark_print_cmd
-
-  # OSX find lacks printf
-  if [[ "$(uname)" == "Darwin" ]]; then
-    mark_print_cmd="-exec basename {} ;"
+  local marks
+  marks=($(find $MARKPATH -type l -exec basename {} \; 2>/dev/null))
+  
+  if [[ ${#marks[@]} -eq 0 ]]; then
+     _message "No marks found"
   else
-    mark_print_cmd="-printf %f\n"
+     compadd -S ' ' -a marks
   fi
-  local curw=${COMP_WORDS[COMP_CWORD]}
-  local wordlist=$(find $MARKPATH -type l $mark_print_cmd)
-  COMPREPLY=($(compgen -W ${wordlist} -- "$curw"))
-  return 0
 }
-
-complete -F _completemarks jump unmark
 
 function flip() {
     python3 -c "import random; print('HEADS' if random.randint(0,1) else 'TAILS')"
@@ -169,31 +148,23 @@ function line_count_tree() {
 ################################################################################
 # TMUX
 ################################################################################
+
 function rsc() {
+  tmux new-session -d -s $1
   CLIENTID=$1$(date +%s)
   tmux new-session -d -t $1 -s $CLIENTID \; set-option destroy-unattached on \; attach-session -t $CLIENTID
 }
 
-function mksc () {
-  tmux new-session -d -s $1
-  rsc $1
+_tmux_session_groups() {
+   local groups
+   groups=($(tmux list-sessions 2>/dev/null | sed -n 's/.*[(]group \([^)]*\)[)].*/\1/p' | sort -u))
+   
+   if [[ ${#groups[@]} -eq 0 ]]; then
+      _message "No tmux session groups found"
+   else
+      compadd -S '' -a groups
+   fi
 }
-
-function __tmux_sessions() {
-    local cur sessions
-    COMPREPLY=()
-    cur="${COMP_WORDS[COMP_CWORD]}"
-    sessions="$(cut -d ":" -f1 <(tmux list-sessions 2> /dev/null))"
-    if [ -z "${sessions}" ]; then
-      >&2 printf "\rNo sessions active."
-      return 1
-    else
-      COMPREPLY=( $(compgen -W "${sessions}" -- ${cur}) )
-      return 0
-    fi
-}
-complete -o nospace -F __tmux_sessions rsc 2>/dev/null
-
 
 ################################################################################
 
@@ -366,3 +337,9 @@ function git-cleanup() {
 }
 
 [[ -r ~/.zshrc_local ]] && . ~/.zshrc_local
+
+# Register completions at the end in case something overwrites us.
+compdef _tmux_session_groups rsc
+compdef _completemarks jump
+compdef _completemarks unmark
+compdef _completemarks marks
