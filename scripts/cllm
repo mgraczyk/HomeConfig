@@ -7,7 +7,8 @@ import argparse
 import json
 import os
 import sys
-import requests
+
+import requests  # noqa: ANT110
 
 
 def main():
@@ -23,13 +24,10 @@ def main():
 
     args = parser.parse_args()
 
-    # Get prompt from stdin if not provided as argument
-    if args.prompt:
-        prompt = args.prompt
-    else:
-        prompt = sys.stdin.read().strip()
+    stdin_prompt = "" if os.isatty(0) else sys.stdin.read().strip()
+    full_prompt = "\n".join((args.prompt.strip(), stdin_prompt.strip())).strip()
 
-    if not prompt:
+    if not full_prompt:
         print("Error: No prompt provided", file=sys.stderr)
         sys.exit(1)
 
@@ -53,6 +51,8 @@ def main():
 
     model_id = model_map[args.model]
 
+    max_tokens = 8192 if args.model == "haiku" else 16000
+
     # Prepare API request
     url = "https://api.anthropic.com/v1/messages"
     headers = {
@@ -64,8 +64,8 @@ def main():
     data = {
         "model": model_id,
         "system": "You are responding to a request sent via a CLI (command line interface). Your output should be directly useable by command line tools and scripts. Be concise and avoid unnecessary formatting unless specifically requested.",
-        "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": 16000,
+        "messages": [{"role": "user", "content": full_prompt}],
+        "max_tokens": max_tokens,
     }
 
     try:

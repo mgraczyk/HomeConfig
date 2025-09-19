@@ -1,0 +1,119 @@
+#!/bin/zsh
+# Robustly pushes code to github following a specific workflow.
+# The goal is the push all committed and staged changes to a branch and Github PR.
+# This function NEVER stages unstaged changes and never drops code in the codebase.
+
+function llm_small() {
+  cllm -m haiku "$1"
+}
+function llm() {
+  cllm -m sonnet "$1"
+}
+function llm_big() {
+  cllm -m opus "$1"
+}
+
+# Get current branch name
+local current_branch=$(git branch --show-current)
+
+# Check if branch starts with "mgraczyk/"
+if [[ ! "$current_branch" =~ ^mgraczyk/ ]]; then
+  # First, check if there are any changes (staged or committed) relative to staging
+  local has_staged_changes=false
+  local has_committed_changes=false
+
+  if ! git diff --cached --quiet; then
+    has_staged_changes=true
+  fi
+
+  # Only check for committed changes if we're not on staging branch
+  # If we're on staging, any commits we have ARE staging
+  if [[ "$current_branch" != "staging" ]]; then
+    if ! git diff staging --quiet HEAD; then
+      has_committed_changes=true
+    fi
+  fi
+
+  # If no changes at all, exit early
+  if [[ "$has_staged_changes" == "false" ]] && [[ "$has_committed_changes" == "false" ]]; then
+    echo "Error: No changes to push"
+    return 1
+  fi
+
+  # Create a temporary branch
+  local temp_branch="mgraczyk/temp-$(date +%s)"
+  git checkout -b "$temp_branch"
+
+  # Commit staged changes if they exist
+  if [[ "$has_staged_changes" == "true" ]]; then
+    # Get the staged diff
+    local diff=$(git diff --cached)
+
+    # Generate commit message using llm
+    local commit_message=$(echo "$diff" | llm "Based on the following git diff, write a concise and descriptive git commit message. The message should follow conventional commit standards. Only output the commit message, nothing else.")
+
+    # Print the generated commit message
+    echo "Generated commit message: $commit_message"
+
+    # Create a commit with the generated message
+    git commit --no-verify -m "$commit_message"
+  fi
+
+  # Now get the full diff between current HEAD and staging for branch name and PR body
+  # This will now include the commit we just made from staged changes
+  local commit_diff=$(git diff staging HEAD)
+
+  # If there's still no diff after committing (shouldn't happen but let's be safe)
+  if [[ -z "$commit_diff" ]]; then
+    echo "Error: No changes between current commit and staging branch"
+    git checkout staging
+    git branch -D "$temp_branch"
+    return 1
+  fi
+
+  # Generate branch name using llm_small based on the commit diff
+  local branch_name=$(echo "$commit_diff" | llm_small "Generate a very short branch name (max 30 chars) based on this git diff. Use only lowercase letters, numbers, and dashes. No spaces or other characters. Output only the branch name, nothing else.")
+
+  local pr_body=$(echo "$commit_diff" | llm "Generate a github PR description based on the git diff. Use markdown where appropriate. If some necessary data is missing, include a TODO.")
+
+  # Validate and clean branch name with regex
+  if [[ ! "$branch_name" =~ ^[a-z0-9-]+$ ]]; then
+    # Remove any invalid characters if llm_small didn't follow instructions perfectly
+    branch_name=$(echo "$branch_name" | tr -cd 'a-z0-9-' | sed 's/^-*//' | sed 's/-*$//')
+  fi
+
+  # Ensure branch name is not empty
+  if [[ -z "$branch_name" ]]; then
+    branch_name="auto-branch-$(date +%s)"
+  fi
+
+  # Rename the branch
+  git branch -m "mgraczyk/$branch_name"
+  current_branch="mgraczyk/$branch_name"
+
+  # Print the branch name
+  echo "Created branch: $current_branch"
+fi
+
+# Push the current branch to remote
+echo "Pushing branch to remote..."
+git push -u origin "$current_branch"
+if [[ $? -ne 0 ]]; then
+  echo "Failed to push branch to remote."
+  return 1
+fi
+
+# Get the most recent commit message
+local commit_title=$(git log -1 --pretty=format:"%s")
+
+# Create PR using gh CLI with staging as base
+local pr_url=$(gh pr create --base staging --title "$commit_title" --body "$pr_body" --label squash-before-merge,run-monorepo-tests-on-push | tail -1)
+# TODO(mgraczyk): Error handling
+
+echo "Pull request created: $pr_url"
+
+# Enable auto-merge if available
+gh pr merge "$pr_url" --auto --squash
+
+# Open the PR in Chrome
+zsh -i -c 'chrome --profile-directory=Default '"$pr_url"
